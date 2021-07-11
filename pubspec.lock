@@ -197,6 +197,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  dfc_flutter:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: a223164937146a09319cd2c2ef04677ecd4ae0fa
+      url: "git://github.com/sgehrman/dfc_flutter"
+    source: git
+    version: "1.0.1"
   dotted_border:
     dependency: transitive
     description:
@@ -204,15 +213,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  dfc_flutter:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "933eeac1f91f3679cc6c27e2493354610ef13cf5"
-      url: "git://github.com/dvx-ventures/dfc_flutter"
-    source: git
-    version: "1.0.1"
   email_validator:
     dependency: transitive
     description:
@@ -516,7 +516,7 @@ packages:
       name: image_picker_for_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   image_picker_platform_interface:
     dependency: transitive
     description:

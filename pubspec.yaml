@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   dfc_flutter:
-    git: git://github.com/dvx-ventures/dfc_flutter
+    git: git://github.com/sgehrman/dfc_flutter
     # path: ./dfc_flutter
   avatar_glow: ^2.0.1
   bubble: ^1.2.1
