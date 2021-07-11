@@ -1,0 +1,36 @@
+name: dfc_flutter_firebase
+description: A new Flutter package project.
+version: 1.0.1
+author: null
+homepage: distantfutu.re
+publish_to: none
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dfc_flutter:
+    git: git://github.com/dvx-ventures/dfc_flutter
+    # path: ./dfc_flutter
+  avatar_glow: ^2.0.1
+  bubble: ^1.2.1
+  cloud_firestore: ^2.3.0
+  cloud_functions: ^2.0.0
+  firebase_auth: ^2.0.0
+  firebase_storage: ^9.0.0
+  flutter_keyboard_visibility: ^5.0.1
+  flutter_parsed_text: ^2.1.0
+  google_sign_in: ^5.0.4
+  image: ^3.0.1
+  image_picker: ^0.8.1+3
+  provider: ^5.0.0
+  sign_in_with_apple: ^3.0.0
+  stream_transform: ^2.0.0
+
+dev_dependencies:
+  lint: ^1.5.3
+
+flutter:
+  uses-material-design: true
