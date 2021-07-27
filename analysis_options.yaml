@@ -27,6 +27,7 @@ linter:
     file_names: false
     join_return_with_assignment: false
     avoid_function_literals_in_foreach_calls: false
+    directives_ordering: false
     sort_pub_dependencies: false
     # turn off if annoying
     # prefer_final_locals: false

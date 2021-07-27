@@ -21,7 +21,7 @@ class ChatInput extends StatefulWidget {
   _ChatInputState createState() => _ChatInputState();
 }
 
-class _ChatInputState extends State<ChatInput> with TickerProviderStateMixin {
+class _ChatInputState extends State<ChatInput> {
   final TextEditingController _textController = TextEditingController();
   bool expanded = true;
   bool _showThumb = true;
@@ -93,7 +93,6 @@ class _ChatInputState extends State<ChatInput> with TickerProviderStateMixin {
       alignment: Alignment.centerLeft,
       duration: const Duration(milliseconds: 100),
       curve: Curves.easeIn,
-      vsync: this,
       child: Row(
         children: result,
       ),
