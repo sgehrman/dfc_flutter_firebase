@@ -18,8 +18,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
   bool _autovalidate = false;
 
   Future<void> handleImagePicker({required bool camera}) async {
-    final PickedFile? file = await ImagePicker()
-        .getImage(source: camera ? ImageSource.camera : ImageSource.gallery);
+    final file = await ImagePicker()
+        .pickImage(source: camera ? ImageSource.camera : ImageSource.gallery);
 
     if (file != null) {
       final Uint8List imageData = await file.readAsBytes();
