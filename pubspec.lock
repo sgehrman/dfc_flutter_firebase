@@ -202,7 +202,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d5e6eac0cb9d3119703f37042e5fc60477d9f029
+      resolved-ref: "4980a57aca42df68fc81ca7f5205b8afb03bba6b"
       url: "git://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -212,7 +212,7 @@ packages:
       name: dotted_border
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.0+1"
   email_validator:
     dependency: transitive
     description:
@@ -394,7 +394,7 @@ packages:
       name: flutter_multi_formatter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   flutter_parsed_text:
     dependency: "direct main"
     description:
@@ -509,7 +509,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.3+1"
+    version: "0.8.3+2"
   image_picker_for_web:
     dependency: transitive
     description:
