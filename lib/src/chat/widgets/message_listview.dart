@@ -53,7 +53,9 @@ class _MessageListViewState extends State<MessageListView> {
     if (showDate) {
       return Container(
         decoration: BoxDecoration(
-            color: Colors.grey, borderRadius: BorderRadius.circular(10.0)),
+          color: Colors.grey,
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         padding: const EdgeInsets.only(
           bottom: 5.0,
           top: 5.0,
@@ -148,8 +150,11 @@ class _MessageListViewState extends State<MessageListView> {
                                       leading: const Icon(Icons.content_copy),
                                       title: const Text('Copy to clipboard'),
                                       onTap: () {
-                                        Clipboard.setData(ClipboardData(
-                                            text: widget.messages![i].text));
+                                        Clipboard.setData(
+                                          ClipboardData(
+                                            text: widget.messages![i].text,
+                                          ),
+                                        );
                                         Navigator.pop(context);
                                       },
                                     ),

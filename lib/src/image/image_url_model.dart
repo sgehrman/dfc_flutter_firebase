@@ -80,10 +80,18 @@ class ImageUrlUtils {
 
   // saves as JPG by default since they are smallest
   // set to false for PNG with transparency
-  static Future<String> uploadImageData(String imageName, Uint8List imageData,
-      {bool saveAsJpg = true, int maxWidth = 1024}) async {
-    final String url = await uploadImageDataReturnUrl(imageName, imageData,
-        saveAsJpg: saveAsJpg, maxWidth: maxWidth);
+  static Future<String> uploadImageData(
+    String imageName,
+    Uint8List imageData, {
+    bool saveAsJpg = true,
+    int maxWidth = 1024,
+  }) async {
+    final String url = await uploadImageDataReturnUrl(
+      imageName,
+      imageData,
+      saveAsJpg: saveAsJpg,
+      maxWidth: maxWidth,
+    );
 
     ImageUrlUtils.addImage(imageName, url);
 
@@ -125,8 +133,10 @@ class ImageUrlUtils {
     return url;
   }
 
-  static Future<void> deleteImageStorage(String? imageId,
-      [String? folder]) async {
+  static Future<void> deleteImageStorage(
+    String? imageId, [
+    String? folder,
+  ]) async {
     final Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child(folder != null ? '$folder/$imageId' : imageId!);

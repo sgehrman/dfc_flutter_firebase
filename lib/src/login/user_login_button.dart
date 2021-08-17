@@ -51,7 +51,9 @@ class _UserLoginButtonState extends State<UserLoginButton> {
       final AuthService auth = AuthService();
 
       handleAuthResult(
-          context, await auth.emailSignIn(data.email, data.password));
+        context,
+        await auth.emailSignIn(data.email, data.password),
+      );
     }
   }
 
@@ -76,7 +78,9 @@ class _UserLoginButtonState extends State<UserLoginButton> {
         final userCredential = await signInWithApple();
 
         handleAuthResult(
-            context, SignInResult(user: userCredential.user, errorString: ''));
+          context,
+          SignInResult(user: userCredential.user, errorString: ''),
+        );
         break;
       default:
         handleAuthResult(context, await auth.anonLogin());

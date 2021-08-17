@@ -125,7 +125,8 @@ class _LoginDialogState extends State<LoginDialog> {
                   icon: const Icon(Icons.lock),
                   suffixIcon: IconButton(
                     icon: Icon(
-                        _obscureText ? Icons.visibility_off : Icons.visibility),
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                    ),
                     onPressed: () {
                       setState(() {
                         _obscureText = !_obscureText;

@@ -97,8 +97,10 @@ class UserLoginViewState extends State<UserLoginView> {
               style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
-            Text('Login to get started',
-                style: Theme.of(context).textTheme.subtitle1),
+            Text(
+              'Login to get started',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
             const SizedBox(height: 40),
             loginButtons(context),
           ],

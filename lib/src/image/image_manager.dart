@@ -43,8 +43,11 @@ class ImageManagerScreen extends StatelessWidget {
                   onTap: () async {
                     await showImageDeleteDialog(context, imageUrls[index]);
                   },
-                  child: const Icon(Icons.remove_circle,
-                      size: 16, color: Color.fromRGBO(200, 0, 0, 1.0)),
+                  child: const Icon(
+                    Icons.remove_circle,
+                    size: 16,
+                    color: Color.fromRGBO(200, 0, 0, 1.0),
+                  ),
                 ),
               ),
             ],

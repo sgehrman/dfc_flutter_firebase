@@ -2,7 +2,11 @@ import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 
 typedef FirestoreRefConverter = dynamic Function(
-    Type t, Map<String, dynamic> data, String id, Document document);
+  Type t,
+  Map<String, dynamic> data,
+  String id,
+  Document document,
+);
 
 class FirestoreRefs {
   static FirestoreRefConverter? converter;

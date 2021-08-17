@@ -67,7 +67,9 @@ class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
 }
 
 Future<void> showImageDeleteDialog(
-    BuildContext context, ImageUrl imageUrl) async {
+  BuildContext context,
+  ImageUrl imageUrl,
+) async {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {

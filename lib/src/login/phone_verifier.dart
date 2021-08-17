@@ -15,7 +15,8 @@ class PhoneVerifyier extends ChangeNotifier {
 
   // PhoneVerificationCompleted
   Future<void> _verificationCompleted(
-      auth.AuthCredential phoneAuthCredential) async {
+    auth.AuthCredential phoneAuthCredential,
+  ) async {
     try {
       await _auth.signInWithCredential(phoneAuthCredential);
     } on auth.FirebaseAuthException catch (error) {
@@ -68,11 +69,12 @@ class PhoneVerifyier extends ChangeNotifier {
 
   Future<void> verifyPhoneNumber(String phoneNumber) async {
     await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 10),
-        verificationCompleted: _verificationCompleted,
-        verificationFailed: _verificationFailed,
-        codeSent: _codeSent,
-        codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout);
+      phoneNumber: phoneNumber,
+      timeout: const Duration(seconds: 10),
+      verificationCompleted: _verificationCompleted,
+      verificationFailed: _verificationFailed,
+      codeSent: _codeSent,
+      codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
+    );
   }
 }

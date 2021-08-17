@@ -103,8 +103,10 @@ class _UploadDialogState extends State<UploadDialog> {
 
     if (imageData != null) {
       final String url = await ImageUrlUtils.uploadImageData(
-          filename, imageData,
-          saveAsJpg: _saveAsJpg!);
+        filename,
+        imageData,
+        saveAsJpg: _saveAsJpg!,
+      );
 
       return url;
     }
@@ -113,12 +115,16 @@ class _UploadDialogState extends State<UploadDialog> {
   }
 
   Future<String?> _uploadFileContents(
-      BuildContext context, String filename) async {
+    BuildContext context,
+    String filename,
+  ) async {
     final Uint8List? imageData = await _imageFile?.readAsBytes();
     if (imageData != null) {
       final String url = await ImageUrlUtils.uploadImageData(
-          filename, imageData,
-          saveAsJpg: _saveAsJpg!);
+        filename,
+        imageData,
+        saveAsJpg: _saveAsJpg!,
+      );
 
       return url;
     }
@@ -154,16 +160,18 @@ class _UploadDialogState extends State<UploadDialog> {
               TextFormField(
                 autocorrect: false,
                 decoration: InputDecoration(
-                    labelText: 'Image URL',
-                    suffixIcon: IconButton(
-                        icon: const Icon(Icons.cloud_download),
-                        onPressed: () {
-                          _formKey.currentState!.save();
+                  labelText: 'Image URL',
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.cloud_download),
+                    onPressed: () {
+                      _formKey.currentState!.save();
 
-                          setState(() {
-                            _imageUrl = _data.url;
-                          });
-                        })),
+                      setState(() {
+                        _imageUrl = _data.url;
+                      });
+                    },
+                  ),
+                ),
                 onChanged: (String value) {
                   setState(() {
                     _data.url = value;

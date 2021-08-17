@@ -70,7 +70,9 @@ class AuthService {
 
   // returns a map {user: user, error: 'error message'}
   Future<SignInResult> createUserWithEmail(
-      String email, String password) async {
+    String email,
+    String password,
+  ) async {
     auth.User? user;
     String? errorString;
 
@@ -216,7 +218,9 @@ class AuthService {
 
   // returns a map {user: user, error: 'error message'}
   Future<SignInResult> phoneSignIn(
-      String verificationId, String smsCode) async {
+    String verificationId,
+    String smsCode,
+  ) async {
     auth.User? user;
     String? errorString;
 

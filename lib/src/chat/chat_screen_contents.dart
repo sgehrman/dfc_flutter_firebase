@@ -170,13 +170,14 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
             } else {
               messages = [
                 ChatMessage(
-                    toUid: widget.toUid,
-                    user: ChatUser(
-                      uid: 'admin',
-                      name: widget.name,
-                    ),
-                    text:
-                        'Hi, this is a community chat open to members.  Discuss whatever you like.'),
+                  toUid: widget.toUid,
+                  user: ChatUser(
+                    uid: 'admin',
+                    name: widget.name,
+                  ),
+                  text:
+                      'Hi, this is a community chat open to members.  Discuss whatever you like.',
+                ),
               ];
             }
 

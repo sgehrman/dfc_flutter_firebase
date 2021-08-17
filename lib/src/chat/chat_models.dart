@@ -157,7 +157,9 @@ class ChatMessageUtils {
       final ChatMessage? message = await doc.getData<ChatMessage>();
       if (Utils.isNotEmpty(message?.imageId)) {
         await ImageUrlUtils.deleteImageStorage(
-            message!.imageId, ImageUrlUtils.chatImageFolder);
+          message!.imageId,
+          ImageUrlUtils.chatImageFolder,
+        );
       }
 
       await doc.delete();
@@ -171,7 +173,8 @@ class ChatMessageUtils {
   }
 
   static Future<bool> deleteMessagesFromStream(
-      Stream<List<ChatMessage?>> chatStream) async {
+    Stream<List<ChatMessage?>> chatStream,
+  ) async {
     final List<ChatMessage?> list = await chatStream.first;
 
     for (final ChatMessage? chat in list) {
@@ -187,7 +190,9 @@ class ChatMessageUtils {
     await Future.forEach(list, (ChatMessage? item) {
       if (Utils.isNotEmpty(item!.imageId)) {
         ImageUrlUtils.deleteImageStorage(
-            item.imageId, ImageUrlUtils.chatImageFolder);
+          item.imageId,
+          ImageUrlUtils.chatImageFolder,
+        );
       }
     });
 

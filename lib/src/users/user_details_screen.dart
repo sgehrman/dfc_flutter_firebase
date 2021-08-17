@@ -45,22 +45,27 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             ElevatedButton(
               onPressed: () async {
                 final claim = await showStringDialog(
-                    context: context,
-                    title: 'Add Membership',
-                    message:
-                        'Enter a membership id to make this user a member.');
+                  context: context,
+                  title: 'Add Membership',
+                  message: 'Enter a membership id to make this user a member.',
+                );
 
                 if (Utils.isNotEmpty(claim)) {
                   final bool result = await auth.addClaimToUid(uid, claim);
 
                   if (result) {
                     Utils.showSnackbar(
-                        context, '$uid as now is a member of $claim');
+                      context,
+                      '$uid as now is a member of $claim',
+                    );
 
                     Navigator.of(context).pop(true);
                   } else {
-                    Utils.showSnackbar(context, 'An error occurred',
-                        error: true);
+                    Utils.showSnackbar(
+                      context,
+                      'An error occurred',
+                      error: true,
+                    );
                   }
                 }
               },
@@ -69,22 +74,28 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             ElevatedButton(
               onPressed: () async {
                 final claim = await showStringDialog(
-                    context: context,
-                    title: 'Remove Membership',
-                    message:
-                        'Enter a membership id to remove this user as as a member.');
+                  context: context,
+                  title: 'Remove Membership',
+                  message:
+                      'Enter a membership id to remove this user as as a member.',
+                );
 
                 if (Utils.isNotEmpty(claim)) {
                   final bool result = await auth.removeClaimForUid(uid, claim);
 
                   if (result) {
                     Utils.showSnackbar(
-                        context, '$claim membership has been removed for $uid');
+                      context,
+                      '$claim membership has been removed for $uid',
+                    );
 
                     Navigator.of(context).pop(true);
                   } else {
-                    Utils.showSnackbar(context, 'An error occurred',
-                        error: true);
+                    Utils.showSnackbar(
+                      context,
+                      'An error occurred',
+                      error: true,
+                    );
                   }
                 }
               },

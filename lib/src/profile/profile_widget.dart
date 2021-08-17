@@ -7,7 +7,9 @@ import 'package:dfc_flutter/dfc_flutter_web.dart';
 
 class ProfileWidget extends StatelessWidget {
   Widget _userImageWidget(
-      BuildContext context, FirebaseUserProvider userProvider) {
+    BuildContext context,
+    FirebaseUserProvider userProvider,
+  ) {
     Widget image;
     Color backColor = Colors.white;
 
@@ -52,14 +54,22 @@ class ProfileWidget extends StatelessWidget {
           children: [
             _userImageWidget(context, userProvider),
             Text(userName, style: Theme.of(context).textTheme.headline5),
-            Text(userProvider.email,
-                style: Theme.of(context).textTheme.subtitle1),
-            Text(userProvider.phoneNumber,
-                style: Theme.of(context).textTheme.subtitle1),
-            Text('id: ${userProvider.userId}',
-                style: Theme.of(context).textTheme.subtitle1),
-            Text('admin: ${userProvider.isAdmin}',
-                style: Theme.of(context).textTheme.subtitle1),
+            Text(
+              userProvider.email,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Text(
+              userProvider.phoneNumber,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Text(
+              'id: ${userProvider.userId}',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Text(
+              'admin: ${userProvider.isAdmin}',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () async {
@@ -70,7 +80,9 @@ class ProfileWidget extends StatelessWidget {
                   try {
                     if (Utils.isNotEmpty(data.name)) {
                       await userProvider.updateProfile(
-                          data.name, data.photoUrl);
+                        data.name,
+                        data.photoUrl,
+                      );
                     }
 
                     if (Utils.isNotEmpty(data.email)) {

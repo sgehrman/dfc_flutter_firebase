@@ -26,8 +26,10 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
       final imageId = Utils.uniqueFirestoreId();
 
       final url = await ImageUrlUtils.uploadImageDataReturnUrl(
-          imageId, imageData,
-          folder: ImageUrlUtils.chatImageFolder);
+        imageId,
+        imageData,
+        folder: ImageUrlUtils.chatImageFolder,
+      );
 
       _data.photoUrl = url;
     }

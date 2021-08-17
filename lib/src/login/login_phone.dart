@@ -39,10 +39,11 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
       return <Widget>[
         TextFormField(
           decoration: InputDecoration(
-              border: const UnderlineInputBorder(),
-              hintText: 'Type a phone to format',
-              hintStyle: TextStyle(color: Colors.black.withOpacity(.3)),
-              errorStyle: const TextStyle(color: Colors.red)),
+            border: const UnderlineInputBorder(),
+            hintText: 'Type a phone to format',
+            hintStyle: TextStyle(color: Colors.black.withOpacity(.3)),
+            errorStyle: const TextStyle(color: Colors.red),
+          ),
           keyboardType: TextInputType.phone,
           controller: _phoneController,
           inputFormatters: PhoneInputUtils.inputFormatters(),
@@ -105,8 +106,9 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
               }
             } else {
               final SignInResult result = await AuthService().phoneSignIn(
-                  _phoneVerifier.verificationId!,
-                  _smsCodeController.text.trim());
+                _phoneVerifier.verificationId!,
+                _smsCodeController.text.trim(),
+              );
 
               Navigator.of(context).pop(result);
             }

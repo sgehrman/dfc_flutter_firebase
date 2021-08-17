@@ -27,14 +27,10 @@ class AvatarContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onPress != null) {
-          onPress!(user);
-        }
+        onPress?.call(user);
       },
       onLongPress: () {
-        if (onLongPress != null) {
-          onLongPress!(user);
-        }
+        onLongPress?.call(user);
       },
       child: CircleAvatar(
         backgroundImage: avatarImage(),

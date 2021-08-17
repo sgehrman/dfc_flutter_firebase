@@ -108,8 +108,10 @@ class _ChatInputState extends State<ChatInput> {
       final imageId = Utils.uniqueFirestoreId();
 
       final url = await ImageUrlUtils.uploadImageDataReturnUrl(
-          imageId, imageData,
-          folder: ImageUrlUtils.chatImageFolder);
+        imageId,
+        imageData,
+        folder: ImageUrlUtils.chatImageFolder,
+      );
 
       final ChatMessage message = ChatMessage(
         toUid: widget.toUid,

@@ -45,24 +45,28 @@ class Document {
   String get documentId => ref.id;
 
   Future<T?> getData<T>() {
-    return ref.get().then((v) => FirestoreRefs.convert(
-          T,
-          v.data(),
-          documentId,
-          Document.withRef(v.reference),
-        ) as T?);
+    return ref.get().then(
+          (v) => FirestoreRefs.convert(
+            T,
+            v.data(),
+            documentId,
+            Document.withRef(v.reference),
+          ) as T?,
+        );
   }
 
   Stream<T> streamData<T>() {
     // remove the null values
     final filter = ref.snapshots().where((v) => v.data() != null);
 
-    return filter.map((v) => FirestoreRefs.convert(
-          T,
-          v.data(),
-          documentId,
-          Document.withRef(v.reference),
-        ) as T);
+    return filter.map(
+      (v) => FirestoreRefs.convert(
+        T,
+        v.data(),
+        documentId,
+        Document.withRef(v.reference),
+      ) as T,
+    );
   }
 
   Future<void> upsert(Map<String, dynamic> data) {
@@ -99,24 +103,30 @@ class Collection {
   Future<List<T>> getData<T>() async {
     final snapshots = await ref.get();
     return snapshots.docs
-        .map((doc) => FirestoreRefs.convert(
-              T,
-              doc.data(),
-              doc.id,
-              Document.withRef(doc.reference),
-            ) as T)
+        .map(
+          (doc) => FirestoreRefs.convert(
+            T,
+            doc.data(),
+            doc.id,
+            Document.withRef(doc.reference),
+          ) as T,
+        )
         .toList();
   }
 
   Stream<List<T>> streamData<T>() {
-    return ref.snapshots().map((v) => v.docs
-        .map((doc) => FirestoreRefs.convert(
-              T,
-              doc.data(),
-              doc.id,
-              Document.withRef(doc.reference),
-            ) as T)
-        .toList());
+    return ref.snapshots().map(
+          (v) => v.docs
+              .map(
+                (doc) => FirestoreRefs.convert(
+                  T,
+                  doc.data(),
+                  doc.id,
+                  Document.withRef(doc.reference),
+                ) as T,
+              )
+              .toList(),
+        );
   }
 
   // must use add to add the timestamp automatically
@@ -159,14 +169,18 @@ class Collection {
 
       return stream.asBroadcastStream();
     } else {
-      return query.snapshots().map((v) => v.docs
-          .map((doc) => FirestoreRefs.convert(
-                T,
-                doc.data(),
-                doc.id,
-                Document.withRef(doc.reference),
-              ) as T)
-          .toList());
+      return query.snapshots().map(
+            (v) => v.docs
+                .map(
+                  (doc) => FirestoreRefs.convert(
+                    T,
+                    doc.data(),
+                    doc.id,
+                    Document.withRef(doc.reference),
+                  ) as T,
+                )
+                .toList(),
+          );
     }
   }
 
