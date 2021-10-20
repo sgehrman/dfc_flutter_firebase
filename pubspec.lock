@@ -209,7 +209,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9ae8c1978ce264111bef7beb6f44a44d7e8129eb"
+      resolved-ref: aafe0c60efcd218b194b18be7c4200490df6dba1
       url: "git://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -436,7 +436,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.22.0"
+    version: "0.23.0+1"
   flutter_test:
     dependency: transitive
     description: flutter
