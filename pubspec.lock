@@ -28,7 +28,7 @@ packages:
       name: avatar_glow
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   barcode:
     dependency: transitive
     description:
@@ -70,14 +70,14 @@ packages:
       name: bonsoir
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0+1"
+    version: "1.0.1+1"
   bonsoir_platform_interface:
     dependency: transitive
     description:
       name: bonsoir_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.0+1"
   boolean_selector:
     dependency: transitive
     description:
@@ -175,7 +175,7 @@ packages:
       name: cross_file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.1+5"
+    version: "0.3.2"
   crypto:
     dependency: "direct main"
     description:
@@ -196,7 +196,7 @@ packages:
       name: device_info
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   device_info_platform_interface:
     dependency: transitive
     description:
@@ -251,7 +251,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "65e710c70f5b89022a67cc1faa71283747afb498"
+      resolved-ref: "41cde73dfe37613ef21aaa8e8b086e3db9cab69f"
       url: "git@github.com:sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -401,7 +401,7 @@ packages:
       name: flutter_archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.1"
+    version: "4.1.0"
   flutter_barcode_scanner:
     dependency: transitive
     description:
@@ -511,7 +511,7 @@ packages:
       name: google_sign_in
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.0"
+    version: "5.2.1"
   google_sign_in_platform_interface:
     dependency: transitive
     description:
@@ -595,7 +595,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.4+3"
+    version: "0.8.4+4"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -637,7 +637,7 @@ packages:
       name: just_the_tooltip
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.9+1"
+    version: "0.0.10"
   lints:
     dependency: transitive
     description:
@@ -730,7 +730,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.5"
+    version: "2.0.6"
   path_provider_linux:
     dependency: transitive
     description:
@@ -1031,7 +1031,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.5"
+    version: "2.2.6"
   video_player_platform_interface:
     dependency: transitive
     description:
