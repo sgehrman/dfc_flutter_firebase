@@ -36,7 +36,8 @@ dependencies:
   stream_transform: ^2.0.0
 
 dev_dependencies:
-  lint: ^1.5.3
+  dfc_lints:
+    git: git@github.com:sgehrman/dfc_lints
 
 flutter:
   uses-material-design: true
