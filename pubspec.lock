@@ -251,8 +251,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d497c05b65d76a77b6c4d3a7a07d6fe73fbd8e11
-      url: "git@github.com:sgehrman/dfc_flutter"
+      resolved-ref: a6dcb143d343ae69c440befa9f5b18d336f40303
+      url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
   dfc_lints:
@@ -261,7 +261,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: b702d0be394eddffad5710749032f5717c67dff0
-      url: "git@github.com:sgehrman/dfc_lints"
+      url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
   dotted_border:
@@ -422,7 +422,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: "0831af6f0f239d20fb9578612d7a893e2a53d044"
-      url: "git@github.com:adarsh-technocrat/flutter-icons.git"
+      url: "https://github.com/adarsh-technocrat/flutter-icons.git"
     source: git
     version: "1.1.1-nullsafety.0"
   flutter_keyboard_visibility:
@@ -693,7 +693,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: "2cadda6d282935afce8b02aefe41a198f0c49c0c"
-      url: "git@github.com:crazecoder/open_file"
+      url: "https://github.com/crazecoder/open_file"
     source: git
     version: "3.2.1"
   package_info:
@@ -821,7 +821,7 @@ packages:
       path: "."
       ref: HEAD
       resolved-ref: "8d5a1d01ef4c9404906602e2ad83a0d59cb6aba4"
-      url: "git@github.com:finroly/ShareExtend.git"
+      url: "https://github.com/finroly/ShareExtend.git"
     source: git
     version: "1.1.9"
   shared_preferences:
