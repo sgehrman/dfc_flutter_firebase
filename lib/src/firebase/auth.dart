@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:dfc_flutter_firebase/src/firebase/firebase_utils.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
+import 'package:dfc_flutter_firebase/src/firebase/firebase_utils.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SignInResult {
   const SignInResult({this.user, this.errorString});
@@ -308,11 +308,11 @@ class AuthService {
       try {
         final x = await user.getIdTokenResult();
 
-        x.claims!.keys.forEach((key) {
+        for (final key in x.claims!.keys) {
           if (x.claims![key] == true) {
             result.add(key);
           }
-        });
+        }
       } catch (error) {
         print(error);
       }
