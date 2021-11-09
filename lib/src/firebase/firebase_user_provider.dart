@@ -1,6 +1,6 @@
+import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
-import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 
 class FirebaseUserProvider extends ChangeNotifier {
   FirebaseUserProvider() {
@@ -9,14 +9,14 @@ class FirebaseUserProvider extends ChangeNotifier {
 
   auth.User? _user;
   final AuthService _auth = AuthService();
-  bool _initalized = false;
+  bool _initialized = false;
   bool _isAdmin = false;
 
   bool get isAdmin => _isAdmin;
   bool get hasUser => _user != null;
   String get userId => hasUser ? _user!.uid : '';
 
-  bool get initalized => _initalized;
+  bool get initialized => _initialized;
 
   // work around for reload
   Future<void> reload() async {
@@ -68,7 +68,7 @@ class FirebaseUserProvider extends ChangeNotifier {
 
       // want to avoid flashing the login screen until we get the
       // first response
-      _initalized = true;
+      _initialized = true;
 
       notifyListeners();
     });
