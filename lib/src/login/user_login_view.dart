@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:dfc_flutter_firebase/src/login/user_login_button.dart';
+import 'package:flutter/material.dart';
 
 class UserLoginView extends StatefulWidget {
   const UserLoginView({this.anonymousLogin = true});
@@ -43,7 +42,7 @@ class UserLoginViewState extends State<UserLoginView> {
       const SizedBox(height: 4),
       const UserLoginButton(
         text: 'Login with Google',
-        icon: FontAwesome5Brands.google,
+        icon: Icons.golf_course, // SNG needs svg
         type: 'google',
       ),
     ]);
