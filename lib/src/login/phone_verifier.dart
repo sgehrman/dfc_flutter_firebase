@@ -1,6 +1,6 @@
+import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
-import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 
 class PhoneVerifyier extends ChangeNotifier {
   String? _verificationId;

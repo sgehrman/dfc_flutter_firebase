@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_admin_screen_contents.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_login_screen.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
@@ -6,6 +5,7 @@ import 'package:dfc_flutter_firebase/src/chat/chat_screen_contents.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {

@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:flutter/material.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:dfc_flutter_firebase/src/login/login_apple.dart';
 import 'package:dfc_flutter_firebase/src/login/login_email.dart';
 import 'package:dfc_flutter_firebase/src/login/login_phone.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class UserLoginButton extends StatefulWidget {

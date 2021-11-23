@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/chat_widget.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
-import 'package:dfc_flutter/dfc_flutter_web.dart';
 
 class ChatScreenContents extends StatefulWidget {
   const ChatScreenContents({

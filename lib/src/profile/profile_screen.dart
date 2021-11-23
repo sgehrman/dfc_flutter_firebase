@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
 import 'package:dfc_flutter_firebase/src/profile/profile_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {

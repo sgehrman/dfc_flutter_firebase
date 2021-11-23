@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:dfc_flutter/dfc_flutter.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:dfc_flutter_firebase/src/image/image_delete_dialog.dart';
 import 'package:dfc_flutter_firebase/src/image/image_upload_dialog.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
+import 'package:flutter/material.dart';
 
 class ImageManagerScreen extends StatelessWidget {
   final String appBarTitle = 'Images';

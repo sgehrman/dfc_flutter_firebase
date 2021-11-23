@@ -1,9 +1,9 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:flutter/material.dart';
+import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
 import 'package:dfc_flutter_firebase/src/profile/profile_editor.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dfc_flutter/dfc_flutter_web.dart';
 
 class ProfileWidget extends StatelessWidget {
   Widget _userImageWidget(

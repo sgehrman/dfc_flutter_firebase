@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/users/user_details_screen.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_utils.dart';
+import 'package:dfc_flutter_firebase/src/users/user_details_screen.dart';
+import 'package:flutter/material.dart';
 
 class UsersScreen extends StatefulWidget {
   @override

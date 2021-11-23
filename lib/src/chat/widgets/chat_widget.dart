@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/chat_input.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/message_listview.dart';
+import 'package:flutter/material.dart';
 
 class ChatWidget extends StatefulWidget {
   const ChatWidget({

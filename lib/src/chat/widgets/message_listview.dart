@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/avatar_container.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/message_container.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:dfc_flutter/dfc_flutter_web.dart';
 
 class MessageListView extends StatefulWidget {
   const MessageListView({

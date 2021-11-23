@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
+import 'package:flutter/material.dart';
 
 class LoginData {
   String email = '';

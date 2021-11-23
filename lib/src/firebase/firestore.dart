@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore_refs.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:stream_transform/stream_transform.dart';
 
 class WhereQuery {
