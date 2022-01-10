@@ -180,12 +180,16 @@ class AuthService {
     return SignInResult(user: user, errorString: errorString);
   }
 
-  Future<void> signOut() {
-    // Google only: allows you to login to a new google account next login
-    // otherwise you will be stuck on the first account you login with
-    _googleSignIn?.disconnect();
+  Future<void> signOut() async {
+    try {
+      // Google only: allows you to login to a new google account next login
+      // otherwise you will be stuck on the first account you login with
+      await _googleSignIn?.disconnect();
 
-    return fbAuth.signOut();
+      return fbAuth.signOut();
+    } catch (err) {
+      print(err);
+    }
   }
 
   bool isAnonymous() {
