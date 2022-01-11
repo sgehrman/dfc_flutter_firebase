@@ -167,7 +167,7 @@ class _LoginDialogState extends State<LoginDialog> {
               }
             },
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
               child: Text(
                 _resetEmailText(),
                 textAlign: TextAlign.left,

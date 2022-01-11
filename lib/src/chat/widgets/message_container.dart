@@ -37,7 +37,7 @@ class MessageContainer extends StatelessWidget {
         color: isUser! ? Utils.darken(Colors.blue) : Utils.darken(Colors.green),
         nip: isUser! ? BubbleNip.rightBottom : BubbleNip.leftBottom,
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(4),
           child: child,
         ),
       );
@@ -69,7 +69,7 @@ class MessageContainer extends StatelessWidget {
         maxWidth: MediaQuery.of(context).size.width * 0.8,
       ),
       child: Container(
-        padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+        padding: const EdgeInsets.only(right: 8, left: 8),
         child: Column(
           crossAxisAlignment:
               isUser! ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -83,11 +83,11 @@ class MessageContainer extends StatelessWidget {
                 enableViewer: true,
               ),
             Padding(
-              padding: const EdgeInsets.only(top: 4.0),
+              padding: const EdgeInsets.only(top: 4),
               child: Text(
                 userName(),
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 10,
                   color: Utils.isDarkMode(context)
                       ? Colors.white54
                       : Colors.black54,

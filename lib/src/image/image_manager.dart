@@ -30,7 +30,7 @@ class ImageManagerScreen extends StatelessWidget {
             fit: StackFit.passthrough,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 18.0),
+                padding: const EdgeInsets.symmetric(vertical: 18),
                 child: SuperImage(
                   SuperImageSource(url: imageUrls[index].url),
                   enableViewer: true,
@@ -46,7 +46,7 @@ class ImageManagerScreen extends StatelessWidget {
                   child: const Icon(
                     Icons.remove_circle,
                     size: 16,
-                    color: Color.fromRGBO(200, 0, 0, 1.0),
+                    color: Color.fromRGBO(200, 0, 0, 1),
                   ),
                 ),
               ),

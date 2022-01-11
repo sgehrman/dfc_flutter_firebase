@@ -54,20 +54,20 @@ class _MessageListViewState extends State<MessageListView> {
       return Container(
         decoration: BoxDecoration(
           color: Colors.grey,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(10),
         ),
         padding: const EdgeInsets.only(
-          bottom: 5.0,
-          top: 5.0,
-          left: 10.0,
-          right: 10.0,
+          bottom: 5,
+          top: 5,
+          left: 10,
+          right: 10,
         ),
-        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         child: Text(
           DateFormat('MMM dd').format(widget.messages![index].createdAt),
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 12.0,
+            fontSize: 12,
           ),
         ),
       );
@@ -107,7 +107,7 @@ class _MessageListViewState extends State<MessageListView> {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Padding(
-          padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+          padding: const EdgeInsets.only(right: 10, left: 10),
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
             controller: widget.scrollController,
@@ -118,7 +118,7 @@ class _MessageListViewState extends State<MessageListView> {
 
               return Align(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
+                  padding: const EdgeInsets.only(bottom: 12),
                   child: Column(
                     children: <Widget>[
                       dateWidget(showDate: showDate, index: i),

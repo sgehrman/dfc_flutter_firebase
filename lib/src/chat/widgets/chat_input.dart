@@ -162,7 +162,7 @@ class _ChatInputState extends State<ChatInput> {
           toolbar(context),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: TextField(
                 onTap: () {
                   if (expanded) {
@@ -177,14 +177,14 @@ class _ChatInputState extends State<ChatInput> {
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                     borderRadius: BorderRadius.all(
-                      Radius.circular(500.0),
+                      Radius.circular(500),
                     ),
                   ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                 ),
                 controller: _textController,
-                style: const TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16),
                 minLines: 1,
                 showCursor: true,
                 keyboardType: TextInputType.text,

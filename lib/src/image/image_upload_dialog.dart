@@ -151,7 +151,7 @@ class _UploadDialogState extends State<UploadDialog> {
             children: <Widget>[
               imageWell(context),
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Text(
                   'To upload a file from a URL, put in the URL below and hit the download button.',
                 ),

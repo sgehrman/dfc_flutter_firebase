@@ -21,16 +21,16 @@ class ProfileWidget extends StatelessWidget {
     }
 
     return AvatarGlow(
-      endRadius: 80.0, //required
+      endRadius: 80, //required
       glowColor: Colors.blue,
 
       child: Material(
         clipBehavior: Clip.antiAlias,
-        elevation: 8.0,
+        elevation: 8,
         shape: const CircleBorder(),
         child: CircleAvatar(
           backgroundColor: backColor,
-          radius: 60.0,
+          radius: 60,
           child: image,
         ),
       ),
@@ -48,7 +48,7 @@ class ProfileWidget extends StatelessWidget {
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Center(
         child: Column(
           children: [
