@@ -186,7 +186,7 @@ class AuthService {
       // otherwise you will be stuck on the first account you login with
       await _googleSignIn?.disconnect();
 
-      return fbAuth.signOut();
+      await fbAuth.signOut();
     } catch (err) {
       print(err);
     }
