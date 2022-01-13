@@ -244,7 +244,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: e6618c2716acffe77d8b110d0086881fdc21046e
+      resolved-ref: ab8713b56e032f4544c29af9385ff23376c49911
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -284,7 +284,7 @@ packages:
       name: extended_image_library
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.1"
+    version: "3.1.2"
   extension:
     dependency: transitive
     description:
@@ -464,7 +464,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -560,7 +560,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.1.1"
   image_picker:
     dependency: "direct main"
     description:
@@ -617,6 +617,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  loading_animation_widget:
+    dependency: transitive
+    description:
+      name: loading_animation_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+1"
   markdown:
     dependency: transitive
     description:
