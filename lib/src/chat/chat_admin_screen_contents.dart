@@ -91,7 +91,7 @@ class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
               },
             );
           }
-          return LoadingWidget();
+          return const LoadingWidget();
         },
       ),
     );

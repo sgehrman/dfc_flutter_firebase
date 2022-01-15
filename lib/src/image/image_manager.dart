@@ -69,7 +69,7 @@ class ImageManagerScreen extends StatelessWidget {
             return _buildGrid(context, imageUrls ?? []);
           }
 
-          return LoadingWidget();
+          return const LoadingWidget();
         },
       ),
       appBar: AppBar(title: Text(appBarTitle)),

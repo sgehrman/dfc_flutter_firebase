@@ -195,7 +195,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
             );
           }
 
-          return LoadingWidget();
+          return const LoadingWidget();
         },
       ),
     );

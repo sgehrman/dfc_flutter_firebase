@@ -105,7 +105,7 @@ class _UsersScreenState extends State<UsersScreen> {
               itemCount: list.length,
             );
           } else {
-            return LoadingWidget();
+            return const LoadingWidget();
           }
         },
       ),
