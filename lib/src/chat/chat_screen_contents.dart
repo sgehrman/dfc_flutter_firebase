@@ -12,10 +12,10 @@ import 'package:provider/provider.dart';
 class ChatScreenContents extends StatefulWidget {
   const ChatScreenContents({
     required this.stream,
-    this.isAdmin = false,
     required this.toUid,
     required this.title,
     required this.name,
+    this.isAdmin = false,
   });
 
   final Stream<List<ChatMessage>> stream;

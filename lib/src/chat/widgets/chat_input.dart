@@ -9,9 +9,9 @@ import 'package:image_picker/image_picker.dart';
 
 class ChatInput extends StatefulWidget {
   const ChatInput({
-    Key? key,
     required this.user,
     required this.toUid,
+    Key? key,
   }) : super(key: key);
 
   final ChatUser user;

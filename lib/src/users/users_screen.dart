@@ -93,7 +93,7 @@ class _UsersScreenState extends State<UsersScreen> {
                       ),
                     );
 
-                    if (modified == true) {
+                    if (modified ?? false) {
                       setState(() {
                         _future = FirebaseUtils.users();
                       });

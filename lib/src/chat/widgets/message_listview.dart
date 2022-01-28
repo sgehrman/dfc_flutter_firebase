@@ -8,9 +8,9 @@ import 'package:intl/intl.dart';
 
 class MessageListView extends StatefulWidget {
   const MessageListView({
+    required this.user,
     this.scrollController,
     this.messages,
-    required this.user,
     this.onLongPressAvatar,
     this.onLongPressMessage,
     this.onPressAvatar,

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 class ChatWidget extends StatefulWidget {
   const ChatWidget({
-    Key? key,
     required this.messages,
     required this.user,
     required this.toUid,
     this.onLongPressAvatar,
     this.onLongPressMessage,
     this.onPressAvatar,
+    Key? key,
   }) : super(key: key);
 
   final List<ChatMessage> messages;
