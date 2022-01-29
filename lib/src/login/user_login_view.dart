@@ -4,9 +4,13 @@ import 'package:dfc_flutter_firebase/src/login/user_login_button.dart';
 import 'package:flutter/material.dart';
 
 class UserLoginView extends StatefulWidget {
-  const UserLoginView({this.anonymousLogin = true});
+  const UserLoginView({
+    this.googleClientId,
+    this.anonymousLogin = true,
+  });
 
   final bool anonymousLogin;
+  final String? googleClientId;
 
   @override
   State<StatefulWidget> createState() => UserLoginViewState();

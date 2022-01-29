@@ -107,12 +107,12 @@ class AuthService {
   }
 
   // returns a map {user: user, error: 'error message'}
-  Future<SignInResult> googleSignIn() async {
+  Future<SignInResult> googleSignIn(String clientId) async {
     auth.User? user;
     String? errorString;
 
     try {
-      _googleSignIn = GoogleSignIn();
+      _googleSignIn = GoogleSignIn(clientId: clientId);
 
       final GoogleSignInAccount? googleSignInAccount =
           await _googleSignIn!.signIn();

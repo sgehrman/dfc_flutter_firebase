@@ -12,11 +12,13 @@ class UserLoginButton extends StatefulWidget {
     required this.text,
     required this.icon,
     required this.type,
+    this.googleClientId,
   });
 
   final IconData icon;
   final String text;
   final String type;
+  final String? googleClientId;
 
   @override
   _UserLoginButtonState createState() => _UserLoginButtonState();
@@ -72,7 +74,14 @@ class _UserLoginButtonState extends State<UserLoginButton> {
         await loginWithPhone();
         break;
       case 'google':
-        handleAuthResult(context, await auth.googleSignIn());
+        if (Utils.isNotEmpty(widget.googleClientId)) {
+          handleAuthResult(
+            context,
+            await auth.googleSignIn(widget.googleClientId!),
+          );
+        } else {
+          print('### googleClientId is required.');
+        }
         break;
       case 'apple':
         final userCredential = await signInWithApple();
