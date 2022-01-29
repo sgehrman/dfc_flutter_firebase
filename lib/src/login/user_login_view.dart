@@ -44,10 +44,11 @@ class UserLoginViewState extends State<UserLoginView> {
         type: 'phone',
       ),
       const SizedBox(height: 4),
-      const UserLoginButton(
+      UserLoginButton(
         text: 'Login with Google',
         icon: Icons.golf_course, // SNG needs svg
         type: 'google',
+        googleClientId: widget.googleClientId,
       ),
     ]);
 
