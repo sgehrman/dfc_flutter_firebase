@@ -235,7 +235,7 @@ class UserData {
       final Document doc = Document('$collection/${user!.uid}');
       return doc.getData<T>();
     } else {
-      return Future.value(null);
+      return Future.value();
     }
   }
 

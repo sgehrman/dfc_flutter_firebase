@@ -70,7 +70,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
 
     _subscription = widget.stream.listen(
       (data) {
-        SchedulerBinding.instance!.addPostFrameCallback((_) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
           final scrollController = getScrollController;
           if (scrollController != null) {
             if (firstTime) {
