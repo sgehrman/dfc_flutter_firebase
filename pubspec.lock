@@ -112,7 +112,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.15"
+    version: "3.1.16"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -168,7 +168,7 @@ packages:
       name: cross_file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.3+1"
   crypto:
     dependency: "direct main"
     description:
@@ -244,7 +244,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "97f3853802dd6a994d7d374a072a280fb2ba8701"
+      resolved-ref: "50e6437dbb8fda45112de9ed5d2eb2e622fbd49a"
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -429,7 +429,7 @@ packages:
       name: flutter_markdown
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.10"
+    version: "0.6.10+1"
   flutter_multi_formatter:
     dependency: "direct main"
     description:
@@ -456,7 +456,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: f0a1b4f8cb73524ddf67468be189d481b5ff2046
+      resolved-ref: "1e053b954b0b7c8f2a0777850dac11616c5aa9a3"
       url: "https://github.com/dnfield/flutter_svg.git"
     source: git
     version: "1.1.0"
@@ -471,14 +471,14 @@ packages:
       name: google_fonts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   google_sign_in:
     dependency: "direct main"
     description:
       name: google_sign_in
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.3.1"
+    version: "5.3.2"
   google_sign_in_android:
     dependency: transitive
     description:
@@ -851,7 +851,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.2"
+    version: "6.0.3"
   qr:
     dependency: transitive
     description:
@@ -1166,7 +1166,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.1"
+    version: "6.1.0"
 sdks:
   dart: ">=2.17.0 <3.0.0"
   flutter: ">=3.0.0"
