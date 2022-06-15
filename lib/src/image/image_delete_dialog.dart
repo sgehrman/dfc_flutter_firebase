@@ -25,6 +25,7 @@ class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
       await ImageUrlUtils.deleteImage(widget.imageUrl);
     } catch (error) {
       print(error);
+
       return false;
     }
 

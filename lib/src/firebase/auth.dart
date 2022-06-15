@@ -216,6 +216,7 @@ class AuthService {
         case 'user-not-found':
           break;
       }
+
       return <String, dynamic>{'result': false, 'errorString': errorString};
     }
   }

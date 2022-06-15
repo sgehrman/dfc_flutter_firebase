@@ -35,8 +35,8 @@ class AvatarContainer extends StatelessWidget {
       child: CircleAvatar(
         backgroundImage: avatarImage(),
         backgroundColor: isUser!
-            ? Utils.darken(Colors.blue, .2)
-            : Utils.darken(Colors.green, .2),
+            ? Utils.darken(Colors.blue, 0.2)
+            : Utils.darken(Colors.green, 0.2),
         foregroundColor: Colors.white,
         child: Text(user.initials),
       ),

@@ -41,7 +41,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
           decoration: InputDecoration(
             border: const UnderlineInputBorder(),
             hintText: 'Type a phone to format',
-            hintStyle: TextStyle(color: Colors.black.withOpacity(.3)),
+            hintStyle: TextStyle(color: Colors.black.withOpacity(0.3)),
             errorStyle: const TextStyle(color: Colors.red),
           ),
           keyboardType: TextInputType.phone,

@@ -51,6 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     if (!userProvider.hasUser) {
       _login();
+
       return ChatLoginScreen();
     }
 

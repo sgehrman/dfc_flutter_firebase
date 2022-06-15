@@ -44,15 +44,15 @@ class Document {
 
   String get documentId => ref.id;
 
-  Future<T?> getData<T>() {
-    return ref.get().then(
-          (v) => FirestoreRefs.convert(
-            T,
-            v.data(),
-            documentId,
-            Document.withRef(v.reference),
-          ) as T?,
-        );
+  Future<T?> getData<T>() async {
+    final v = await ref.get();
+
+    return FirestoreRefs.convert(
+      T,
+      v.data(),
+      documentId,
+      Document.withRef(v.reference),
+    ) as T?;
   }
 
   Stream<T> streamData<T>() {
@@ -102,6 +102,7 @@ class Collection {
 
   Future<List<T>> getData<T>() async {
     final snapshots = await ref.get();
+
     return snapshots.docs
         .map(
           (doc) => FirestoreRefs.convert(
@@ -157,14 +158,16 @@ class Collection {
       Stream<List<T>> stream = streams.first;
 
       if (streams.length > 1) {
-        stream = stream.combineLatest<List<T>, List<T>>(streams[1],
-            (List<T> a, List<T> b) {
-          final List<T> result = [];
-          result.addAll(a);
-          result.addAll(b);
+        stream = stream.combineLatest<List<T>, List<T>>(
+          streams[1],
+          (List<T> a, List<T> b) {
+            final List<T> result = [];
+            result.addAll(a);
+            result.addAll(b);
 
-          return result;
-        });
+            return result;
+          },
+        );
       }
 
       return stream.asBroadcastStream();
@@ -221,6 +224,7 @@ class UserData {
     return authService.userStream.switchMap((user) {
       if (user != null) {
         final Document doc = Document('$collection/${user.uid}');
+
         return doc.streamData<T>();
       } else {
         return Stream<T>.empty();
@@ -233,6 +237,7 @@ class UserData {
 
     if (Utils.isNotEmpty(user?.uid)) {
       final Document doc = Document('$collection/${user!.uid}');
+
       return doc.getData<T>();
     } else {
       return Future.value();
@@ -244,6 +249,7 @@ class UserData {
 
     if (user != null && user.uid.isNotEmpty) {
       final Document ref = Document('$collection/${user.uid}');
+
       return ref.upsert(data);
     }
   }

@@ -50,7 +50,7 @@ class ChatWidgetState extends State<ChatWidget> {
         ChatInput(
           toUid: widget.toUid,
           user: widget.user,
-        )
+        ),
       ],
     );
   }

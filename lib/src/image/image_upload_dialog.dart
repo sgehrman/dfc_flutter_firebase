@@ -50,7 +50,9 @@ class _UploadDialogState extends State<UploadDialog> {
           width: 180,
           decoration: BoxDecoration(
             color: Colors.black.withAlpha(30),
-            border: Border.all(color: Colors.black12),
+            border: const Border.fromBorderSide(
+              BorderSide(color: Colors.black12),
+            ),
           ),
           child: child,
         ),
@@ -102,13 +104,11 @@ class _UploadDialogState extends State<UploadDialog> {
     final Uint8List? imageData = await getNetworkImageData(_imageUrl!);
 
     if (imageData != null) {
-      final String url = await ImageUrlUtils.uploadImageData(
+      return ImageUrlUtils.uploadImageData(
         filename,
         imageData,
         saveAsJpg: _saveAsJpg!,
       );
-
-      return url;
     }
 
     return null;
@@ -120,13 +120,11 @@ class _UploadDialogState extends State<UploadDialog> {
   ) async {
     final Uint8List? imageData = await _imageFile?.readAsBytes();
     if (imageData != null) {
-      final String url = await ImageUrlUtils.uploadImageData(
+      return ImageUrlUtils.uploadImageData(
         filename,
         imageData,
         saveAsJpg: _saveAsJpg!,
       );
-
-      return url;
     }
 
     return null;
@@ -188,6 +186,7 @@ class _UploadDialogState extends State<UploadDialog> {
                   if (value!.isEmpty) {
                     return 'Name cannot be blank';
                   }
+
                   return null;
                 },
                 onSaved: (String? value) {

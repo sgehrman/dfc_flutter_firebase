@@ -32,6 +32,8 @@ dependencies:
   stream_transform: ^2.0.0
 
 dev_dependencies:
+  # must include this with dfc_lints. see https://github.com/dart-code-checker/dart-code-metrics/issues/254
+  dart_code_metrics: ^4.15.2
   dfc_lints:
     git: https://github.com/sgehrman/dfc_lints
 

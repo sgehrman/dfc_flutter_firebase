@@ -18,15 +18,19 @@ class UserLoginView extends StatefulWidget {
 
 class UserLoginViewState extends State<UserLoginView> {
   UserLoginViewState() {
-    Utils.getAppName().then((name) {
-      setState(() {
-        appName = name;
-      });
-    });
+    _setup();
   }
 
   AuthService auth = AuthService();
   String appName = '';
+
+  Future<void> _setup() async {
+    final name = await Utils.getAppName();
+
+    setState(() {
+      appName = name;
+    });
+  }
 
   List<Widget> _buttons() {
     final List<Widget> result = [];

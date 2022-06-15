@@ -138,6 +138,7 @@ class _LoginDialogState extends State<LoginDialog> {
                   if (value!.isEmpty) {
                     return 'Please enter your password';
                   }
+
                   return null;
                 },
                 onSaved: (String? value) {

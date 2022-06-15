@@ -128,9 +128,8 @@ class ImageUrlUtils {
         firebaseStorageRef.putData(Uint8List.fromList(data));
 
     final taskSnapshot = await uploadTask;
-    final String url = await taskSnapshot.ref.getDownloadURL();
 
-    return url;
+    return taskSnapshot.ref.getDownloadURL();
   }
 
   static Future<void> deleteImageStorage(

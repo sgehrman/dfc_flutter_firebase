@@ -12,16 +12,15 @@ class FirebaseUtils {
         'nextPageToken': nextPageToken,
       };
 
-      return callable.call<Map>(params).then((HttpsCallableResult resp) {
-        if (resp.data != null) {
-          final Map m = resp.data as Map;
+      final resp = await callable.call<Map>(params);
 
-          if (m.listVal<Map>('list') != null) {
-            return m.listVal<Map>('list');
-          }
-        }
-        return null;
-      });
+      final Map m = resp.data;
+
+      if (m.listVal<Map>('list') != null) {
+        return m.listVal<Map>('list');
+      }
+
+      return null;
     } catch (error) {
       print('error $error');
     }
@@ -39,16 +38,11 @@ class FirebaseUtils {
         'docPath': docPath,
       };
 
-      return callable.call<Map>(params).then((HttpsCallableResult resp) {
-        if (resp.data != null) {
-          final respMap = resp.data as Map;
+      final resp = await callable.call<Map>(params);
 
-          final List<String> m = respMap['collections'] as List<String>;
+      final respMap = resp.data;
 
-          return m;
-        }
-        return null;
-      });
+      return respMap['collections'] as List<String>;
     } catch (error) {
       print('error $error');
     }
@@ -77,6 +71,7 @@ class FirebaseUtils {
 
         if (respMap['error'] != null) {
           print(resp.data);
+
           return false;
         }
 
@@ -114,6 +109,7 @@ class FirebaseUtils {
 
         if (respMap['error'] != null) {
           print(resp.data);
+
           return false;
         }
 

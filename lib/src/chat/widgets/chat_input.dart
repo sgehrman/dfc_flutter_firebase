@@ -173,7 +173,7 @@ class _ChatInputState extends State<ChatInput> {
                   hintText: 'Message...',
                   isDense: true, // Globals.isDense,
                   filled: true,
-                  fillColor: Color.fromRGBO(0, 0, 0, .1),
+                  fillColor: Color.fromRGBO(0, 0, 0, 0.1),
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                     borderRadius: BorderRadius.all(

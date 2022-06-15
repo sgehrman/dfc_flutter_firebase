@@ -108,6 +108,7 @@ class ChatMessage extends Serializable {
     } catch (e) {
       print(e);
     }
+
     return data;
   }
 
