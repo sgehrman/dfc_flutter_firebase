@@ -15,7 +15,7 @@ dependencies:
   crypto: ^3.0.1
   dfc_flutter:
     git: https://github.com/sgehrman/dfc_flutter
-  extended_image: ^4.1.0
+  extended_image: ^6.2.1
   firebase_auth: ^3.0.1
   firebase_storage: ^10.0.1
   flutter:
