@@ -96,6 +96,7 @@ class UserLoginViewState extends State<UserLoginView> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 30),
