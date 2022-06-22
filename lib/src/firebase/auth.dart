@@ -22,11 +22,12 @@ class AuthService {
 
   // only used for the disconnect
   GoogleSignIn? _googleSignIn;
+  final AuthInstance _authInstance = AuthInstance();
 
-  auth.User? get currentUser => fbAuth.currentUser;
-  Stream<auth.User?> get userStream => fbAuth.authStateChanges();
-  FirebaseFirestore get store => FirebaseFirestore.instance;
-  auth.FirebaseAuth get fbAuth => auth.FirebaseAuth.instance;
+  auth.User? get currentUser => _authInstance.currentUser;
+  Stream<auth.User?> get userStream => _authInstance.userStream;
+  FirebaseFirestore? get store => _authInstance.store;
+  auth.FirebaseAuth? get authInstance => _authInstance.authInstance;
 
   // returns a map {user: user, error: 'error message'}
   Future<SignInResult> emailSignIn(String email, String password) async {
@@ -38,13 +39,17 @@ class AuthService {
     final trimmedPassword = StrUtils.trim(password);
 
     try {
-      final auth.UserCredential authResult =
-          await fbAuth.signInWithEmailAndPassword(
+      final auth.UserCredential? result =
+          await authInstance?.signInWithEmailAndPassword(
         email: trimmedEmail,
         password: trimmedPassword,
       );
 
-      user = authResult.user;
+      if (result != null) {
+        user = result.user;
+      } else {
+        errorString = 'not supported';
+      }
     } on auth.FirebaseAuthException catch (error) {
       errorString = error.message;
 
@@ -81,13 +86,17 @@ class AuthService {
     final trimmedPassword = StrUtils.trim(password);
 
     try {
-      final auth.UserCredential result =
-          await fbAuth.createUserWithEmailAndPassword(
+      final auth.UserCredential? result =
+          await authInstance?.createUserWithEmailAndPassword(
         email: trimmedEmail,
         password: trimmedPassword,
       );
 
-      user = result.user;
+      if (result != null) {
+        user = result.user;
+      } else {
+        errorString = 'not supported';
+      }
     } on auth.FirebaseAuthException catch (error) {
       errorString = error.message;
 
@@ -127,9 +136,14 @@ class AuthService {
           idToken: googleAuth.idToken,
         );
 
-        final auth.UserCredential authResult =
-            await fbAuth.signInWithCredential(credential);
-        user = authResult.user;
+        final auth.UserCredential? result =
+            await authInstance?.signInWithCredential(credential);
+
+        if (result != null) {
+          user = result.user;
+        } else {
+          errorString = 'not supported';
+        }
       }
     } on auth.FirebaseAuthException catch (error) {
       errorString = error.message;
@@ -165,9 +179,14 @@ class AuthService {
     String? errorString;
 
     try {
-      final auth.UserCredential authResult = await fbAuth.signInAnonymously();
+      final auth.UserCredential? result =
+          await authInstance?.signInAnonymously();
 
-      user = authResult.user;
+      if (result != null) {
+        user = result.user;
+      } else {
+        errorString = 'not supported';
+      }
     } on auth.FirebaseAuthException catch (error) {
       errorString = error.message;
 
@@ -186,7 +205,7 @@ class AuthService {
       // otherwise you will be stuck on the first account you login with
       await _googleSignIn?.disconnect();
 
-      await fbAuth.signOut();
+      await authInstance?.signOut();
     } catch (err) {
       print(err);
     }
@@ -204,7 +223,7 @@ class AuthService {
 
   Future<Map> sendPasswordResetEmail(String email) async {
     try {
-      await fbAuth.sendPasswordResetEmail(email: email);
+      await authInstance?.sendPasswordResetEmail(email: email);
 
       return <String, dynamic>{'result': true, 'errorString': ''};
     } on auth.FirebaseAuthException catch (error) {
@@ -238,9 +257,14 @@ class AuthService {
         smsCode: trimmedSmsCode,
       );
 
-      final auth.UserCredential authResult =
-          await fbAuth.signInWithCredential(credential);
-      user = authResult.user;
+      final auth.UserCredential? result =
+          await authInstance?.signInWithCredential(credential);
+
+      if (result != null) {
+        user = result.user;
+      } else {
+        errorString = 'not supported';
+      }
     } on auth.FirebaseAuthException catch (error) {
       errorString = error.message;
 
@@ -386,5 +410,45 @@ class AuthService {
     }
 
     return result ?? '';
+  }
+}
+
+// ========================================================
+
+class AuthInstance {
+  auth.User? get currentUser {
+    // firebase plugins don't work yet on these
+    if (!Utils.isLinux && !Utils.isWindows) {
+      return authInstance!.currentUser;
+    }
+
+    return null;
+  }
+
+  Stream<auth.User?> get userStream {
+    // firebase plugins don't work yet on these
+    if (!Utils.isLinux && !Utils.isWindows) {
+      return authInstance!.authStateChanges();
+    }
+
+    return const Stream.empty();
+  }
+
+  FirebaseFirestore? get store {
+    // firebase plugins don't work yet on these
+    if (!Utils.isLinux && !Utils.isWindows) {
+      return FirebaseFirestore.instance;
+    }
+
+    return null;
+  }
+
+  auth.FirebaseAuth? get authInstance {
+    // firebase plugins don't work yet on these
+    if (!Utils.isLinux && !Utils.isWindows) {
+      return auth.FirebaseAuth.instance;
+    }
+
+    return null;
   }
 }

@@ -30,7 +30,9 @@ class WhereQuery {
 
 class Document {
   Document(String path) {
-    ref = _store.doc(path);
+    if (_store != null) {
+      ref = _store!.doc(path);
+    }
   }
 
   Document.withRef(this.ref);
@@ -39,7 +41,7 @@ class Document {
     return ref.path;
   }
 
-  final FirebaseFirestore _store = AuthService().store;
+  final FirebaseFirestore? _store = AuthService().store;
   late DocumentReference<Map<String, dynamic>> ref;
 
   String get documentId => ref.id;
@@ -84,12 +86,14 @@ class Document {
 
 class Collection {
   Collection(String path) {
-    ref = _store.collection(path);
+    if (_store != null) {
+      ref = _store!.collection(path);
+    }
   }
 
   Collection.withRef(this.ref);
 
-  final FirebaseFirestore _store = AuthService().store;
+  final FirebaseFirestore? _store = AuthService().store;
   late CollectionReference<Map<String, dynamic>> ref;
 
   String path() {

@@ -6,8 +6,6 @@ class PhoneVerifyier extends ChangeNotifier {
   String? _verificationId;
   String? _errorMessage;
 
-  final auth.FirebaseAuth _auth = AuthService().fbAuth;
-
   bool get hasVerificationId =>
       _verificationId != null && _verificationId!.isNotEmpty;
   String? get verificationId => _verificationId;
@@ -18,7 +16,9 @@ class PhoneVerifyier extends ChangeNotifier {
     auth.AuthCredential phoneAuthCredential,
   ) async {
     try {
-      await _auth.signInWithCredential(phoneAuthCredential);
+      final auth.FirebaseAuth? authInstance = AuthService().authInstance;
+
+      await authInstance?.signInWithCredential(phoneAuthCredential);
     } on auth.FirebaseAuthException catch (error) {
       _errorMessage = error.message;
 
@@ -68,7 +68,9 @@ class PhoneVerifyier extends ChangeNotifier {
   }
 
   Future<void> verifyPhoneNumber(String phoneNumber) async {
-    await _auth.verifyPhoneNumber(
+    final auth.FirebaseAuth? authInstance = AuthService().authInstance;
+
+    await authInstance?.verifyPhoneNumber(
       phoneNumber: phoneNumber,
       timeout: const Duration(seconds: 10),
       verificationCompleted: _verificationCompleted,

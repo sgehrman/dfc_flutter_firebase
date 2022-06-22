@@ -71,7 +71,7 @@ class UserLoginViewState extends State<UserLoginView> {
       result.addAll(<Widget>[
         const SizedBox(height: 4),
         const UserLoginButton(
-          text: 'Anonymous Login ',
+          text: 'Anonymous Login',
           icon: Icons.person,
           type: 'anon',
         ),
