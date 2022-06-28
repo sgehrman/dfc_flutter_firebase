@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
+import 'package:dfc_flutter_firebase/src/chat/chat_message_utils.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
-import 'package:dfc_flutter_firebase/src/chat/models/chat_message_utils.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/chat_widget.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';

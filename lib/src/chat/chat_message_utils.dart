@@ -6,6 +6,9 @@ import 'package:dfc_flutter_firebase/src/firebase/firestore_converter.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_utils.dart';
 
 class ChatMessageUtils {
+  static String userIdToCollectionPath(String userId) =>
+      '/private/$userId/messages';
+
   static Stream<List<ChatMessageModel>> chatMessagesForUser({
     required String collectionPath,
   }) {
