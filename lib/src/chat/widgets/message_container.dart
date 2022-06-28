@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
+import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:intl/intl.dart';
 
 class MessageContainer extends StatelessWidget {
@@ -25,41 +26,24 @@ class MessageContainer extends StatelessWidget {
           color: Colors.white,
         );
       } else {
-        // child = ParsedText(
-        //   parse: Utils.matchArray(),
-        //   text: message.text,
-        //   style: const TextStyle(
-        //     color: Colors.white,
-        //   ),
-        // );
-        child = Text(
-          message.text,
+        child = ParsedText(
+          parse: Utils.matchArray(),
+          text: message.text,
           style: const TextStyle(
             color: Colors.white,
           ),
         );
       }
 
-      return LayoutBuilder(
-        builder: (context, constraints) {
-          print(constraints.maxWidth);
-
-          return ChatBubble(
-            clipper: isUser
-                ? ChatBubbleClipper1(type: BubbleType.sendBubble)
-                : ChatBubbleClipper1(type: BubbleType.receiverBubble),
-            backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: constraints.maxWidth * 0.8,
-                ),
-                child: child,
-              ),
-            ),
-          );
-        },
+      return ChatBubble(
+        clipper: isUser
+            ? ChatBubbleClipper1(type: BubbleType.sendBubble)
+            : ChatBubbleClipper1(type: BubbleType.receiverBubble),
+        backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: child,
+        ),
       );
     }
 
@@ -92,7 +76,7 @@ class MessageContainer extends StatelessWidget {
         crossAxisAlignment:
             isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          _bubble(),
+          Expanded(child: _bubble()),
           if (Utils.isNotEmpty(message.image))
             Image.network(
               message.image,

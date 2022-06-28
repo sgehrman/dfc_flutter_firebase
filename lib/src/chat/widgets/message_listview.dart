@@ -162,21 +162,20 @@ class _MessageListViewState extends State<MessageListView> {
 
               final chatMessage = widget.messages[i];
 
-              return Align(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: Column(
-                    children: <Widget>[
-                      dateWidget(showDate: showDate, index: i),
-                      Row(
-                        mainAxisAlignment:
-                            chatMessage.user.userId == widget.userModel.userId
-                                ? MainAxisAlignment.end
-                                : MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          avatarWidget(index: i, leftSide: true),
-                          GestureDetector(
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Column(
+                  children: <Widget>[
+                    dateWidget(showDate: showDate, index: i),
+                    Row(
+                      mainAxisAlignment:
+                          chatMessage.user.userId == widget.userModel.userId
+                              ? MainAxisAlignment.end
+                              : MainAxisAlignment.start,
+                      children: <Widget>[
+                        avatarWidget(index: i, leftSide: true),
+                        Expanded(
+                          child: GestureDetector(
                             onLongPress: () => _handleLongPress(chatMessage),
                             child: MessageContainer(
                               isUser: chatMessage.user.userId ==
@@ -184,11 +183,11 @@ class _MessageListViewState extends State<MessageListView> {
                               message: chatMessage,
                             ),
                           ),
-                          avatarWidget(index: i, leftSide: false),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                        avatarWidget(index: i, leftSide: false),
+                      ],
+                    ),
+                  ],
                 ),
               );
             },
