@@ -68,38 +68,42 @@ class MessageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width * 0.8,
-      ),
-      child: Container(
-        padding: const EdgeInsets.only(right: 8, left: 8),
-        child: Column(
-          crossAxisAlignment:
-              isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-          children: <Widget>[
-            _bubble(),
-            if (Utils.isNotEmpty(message.image))
-              Image.network(
-                message.image,
-                width: MediaQuery.of(context).size.width * 0.7,
-                fit: BoxFit.contain,
-              ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                userName(),
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Utils.isDarkMode(context)
-                      ? Colors.white54
-                      : Colors.black54,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: constraints.maxWidth * 0.8,
+          ),
+          child: Container(
+            padding: const EdgeInsets.only(right: 8, left: 8),
+            child: Column(
+              crossAxisAlignment:
+                  isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: <Widget>[
+                _bubble(),
+                if (Utils.isNotEmpty(message.image))
+                  Image.network(
+                    message.image,
+                    width: constraints.maxWidth * 0.7,
+                    fit: BoxFit.contain,
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                    userName(),
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Utils.isDarkMode(context)
+                          ? Colors.white54
+                          : Colors.black54,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
