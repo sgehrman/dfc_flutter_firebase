@@ -13,7 +13,11 @@ class ChatUserModel extends ModelToMap {
     this.name = '',
     this.email = '',
     this.avatar = '',
-  });
+  }) {
+    if (id.isEmpty) {
+      id = Utils.uniqueFirestoreId();
+    }
+  }
 
   @JsonKey(ignore: true)
   dynamic document;

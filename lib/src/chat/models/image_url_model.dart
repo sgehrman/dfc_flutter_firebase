@@ -11,7 +11,11 @@ class ImageUrlModel extends ModelToMap {
     this.id = '',
     this.name = '',
     this.url = '',
-  });
+  }) {
+    if (id.isEmpty) {
+      id = Utils.uniqueFirestoreId();
+    }
+  }
 
   @JsonKey(ignore: true)
   dynamic document;

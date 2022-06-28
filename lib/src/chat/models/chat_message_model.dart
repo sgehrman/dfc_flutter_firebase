@@ -16,6 +16,10 @@ class ChatMessageModel extends ModelToMap {
     this.imageId = '',
     this.timestamp = 0,
   }) {
+    if (id.isEmpty) {
+      id = Utils.uniqueFirestoreId();
+    }
+
     if (timestamp == 0) {
       timestamp = DateTime.now().millisecondsSinceEpoch;
     }
