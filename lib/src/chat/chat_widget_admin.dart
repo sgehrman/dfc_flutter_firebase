@@ -97,11 +97,15 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
               ),
               if (_clickedChat != null)
                 Positioned.fill(
-                  child: ChatWidgetUser(
-                    title: 'Admin',
-                    name: 'admin',
-                    collectionPath: _clickedChat?.user.userId ?? '',
-                    scrollController: ScrollController(),
+                  child: Material(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    child: ChatWidgetUser(
+                      title: 'Admin',
+                      name: 'admin',
+                      collectionPath:
+                          "/private/${_clickedChat?.user.userId ?? ''}/messages",
+                      scrollController: ScrollController(),
+                    ),
                   ),
                 ),
             ],
