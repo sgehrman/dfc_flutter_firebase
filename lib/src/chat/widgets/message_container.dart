@@ -1,18 +1,20 @@
-import 'package:bubble/bubble.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_bubble/bubble_type.dart';
+import 'package:flutter_chat_bubble/chat_bubble.dart';
+import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:intl/intl.dart';
 
 class MessageContainer extends StatelessWidget {
   const MessageContainer({
     required this.message,
-    this.isUser,
+    required this.isUser,
   });
 
   final ChatMessageModel message;
-  final bool? isUser;
+  final bool isUser;
 
   Widget bubble() {
     if (message.text.isNotEmpty) {
@@ -33,13 +35,14 @@ class MessageContainer extends StatelessWidget {
         );
       }
 
-      return Bubble(
-        color: isUser! ? Utils.darken(Colors.blue) : Utils.darken(Colors.green),
-        nip: isUser! ? BubbleNip.rightBottom : BubbleNip.leftBottom,
-        child: Padding(
-          padding: const EdgeInsets.all(4),
-          child: child,
-        ),
+      return ChatBubble(
+        clipper: isUser
+            ? ChatBubbleClipper1(type: BubbleType.sendBubble)
+            : ChatBubbleClipper1(type: BubbleType.receiverBubble),
+        backGroundColor:
+            isUser ? Utils.darken(Colors.blue) : Utils.darken(Colors.green),
+        padding: const EdgeInsets.all(4),
+        child: child,
       );
     }
 
@@ -74,7 +77,7 @@ class MessageContainer extends StatelessWidget {
         padding: const EdgeInsets.only(right: 8, left: 8),
         child: Column(
           crossAxisAlignment:
-              isUser! ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: <Widget>[
             bubble(),
             if (Utils.isNotEmpty(message.image))

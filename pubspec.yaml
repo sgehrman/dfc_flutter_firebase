@@ -9,7 +9,6 @@ environment:
 
 dependencies:
   avatar_glow: ^2.0.1
-  bubble: ^1.2.1
   cloud_firestore: ^3.1.0
   cloud_functions: ^3.0.0
   crypto: ^3.0.1
@@ -21,6 +20,7 @@ dependencies:
   firebase_storage: ^10.0.1
   flutter:
     sdk: flutter
+  flutter_chat_bubble: ^2.0.0
   flutter_keyboard_visibility: ^5.0.3
   flutter_multi_formatter: ^2.3.3
   flutter_parsed_text: ^2.1.0
