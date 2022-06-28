@@ -1,14 +1,14 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/image_url_model.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:dfc_flutter_firebase/src/image/image_delete_dialog.dart';
 import 'package:dfc_flutter_firebase/src/image/image_upload_dialog.dart';
-import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
 import 'package:flutter/material.dart';
 
 class ImageManagerScreen extends StatelessWidget {
   final String appBarTitle = 'Images';
 
-  Widget _buildGrid(BuildContext context, List<ImageUrl> imageUrls) {
+  Widget _buildGrid(BuildContext context, List<ImageUrlModel> imageUrls) {
     final double width = MediaQuery.of(context).size.width;
 
     final int count = width ~/ 120;
@@ -23,7 +23,7 @@ class ImageManagerScreen extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return GridTile(
           footer: Text(
-            imageUrls[index].name!,
+            imageUrls[index].name,
             textAlign: TextAlign.center,
           ),
           child: Stack(
@@ -32,7 +32,7 @@ class ImageManagerScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 child: Image.network(
-                  imageUrls[index].url ?? '',
+                  imageUrls[index].url,
                 ),
               ),
               Positioned(
@@ -59,11 +59,11 @@ class ImageManagerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<List<ImageUrl>>(
-        stream: Collection('images').streamData<ImageUrl>(),
+      body: StreamBuilder<List<ImageUrlModel>>(
+        stream: Collection('images').streamData<ImageUrlModel>(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final List<ImageUrl>? imageUrls = snapshot.data;
+            final List<ImageUrlModel>? imageUrls = snapshot.data;
 
             return _buildGrid(context, imageUrls ?? []);
           }

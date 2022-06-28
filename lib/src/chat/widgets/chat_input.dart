@@ -5,7 +5,7 @@ import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_utils.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
-import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
+import 'package:dfc_flutter_firebase/src/image/image_url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 

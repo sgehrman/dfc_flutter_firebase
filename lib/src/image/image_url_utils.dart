@@ -1,51 +1,20 @@
 import 'dart:typed_data';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/image_url_model.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
-import 'package:dfc_flutter_firebase/src/firebase/serializable.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image/image.dart' as img;
-
-class ImageUrl extends Serializable {
-  ImageUrl({this.name, this.id, this.url});
-
-  factory ImageUrl.fromMap(Map<String, dynamic> data) {
-    return ImageUrl(
-      id: data.strVal('id'),
-      name: data.strVal('name'),
-      url: data.strVal('url'),
-    );
-  }
-
-  final String? id;
-  final String? name;
-  final String? url;
-
-  @override
-  Map<String, dynamic> toMap({bool types = false}) {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['url'] = url;
-    map['name'] = name;
-
-    return map;
-  }
-
-  @override
-  String toString() {
-    return 'id: $id, name: $name url: $url';
-  }
-}
 
 class ImageUrlUtils {
   // folder name constants
   static String get chatImageFolder => 'chat-images';
 
-  static Future<void> uploadImage(ImageUrl imageUrl) async {
+  static Future<void> uploadImage(ImageUrlModel imageUrl) async {
     final doc = Document('images/${imageUrl.id}');
 
     try {
-      await doc.upsert(imageUrl.toMap());
+      await doc.upsert(imageUrl.toJson());
     } catch (error) {
       print('uploadImage exception: $error');
     }
@@ -60,12 +29,12 @@ class ImageUrlUtils {
     link['name'] = filename;
     link['url'] = url;
 
-    final ImageUrl imageUrl = ImageUrl.fromMap(link);
+    final ImageUrlModel imageUrl = ImageUrlModel.fromJson(link);
 
     uploadImage(imageUrl);
   }
 
-  static Future<void> deleteImage(ImageUrl imageUrl) async {
+  static Future<void> deleteImage(ImageUrlModel imageUrl) async {
     final doc = Document('images/${imageUrl.id}');
 
     try {

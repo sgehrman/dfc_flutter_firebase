@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
+import 'package:dfc_flutter_firebase/src/image/image_url_utils.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

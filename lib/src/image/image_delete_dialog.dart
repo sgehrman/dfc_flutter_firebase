@@ -1,11 +1,12 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/image_url_model.dart';
+import 'package:dfc_flutter_firebase/src/image/image_url_utils.dart';
 import 'package:flutter/material.dart';
 
 class ImageDeleteDialog extends StatefulWidget {
   const ImageDeleteDialog(this.imageUrl);
 
-  final ImageUrl imageUrl;
+  final ImageUrlModel imageUrl;
 
   @override
   _ImageDeleteDialogState createState() => _ImageDeleteDialogState();
@@ -14,7 +15,7 @@ class ImageDeleteDialog extends StatefulWidget {
 class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
   Widget imageWell(BuildContext context) {
     return Image.network(
-      widget.imageUrl.url ?? '',
+      widget.imageUrl.url,
       fit: BoxFit.contain,
     );
   }
@@ -68,7 +69,7 @@ class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
 
 Future<void> showImageDeleteDialog(
   BuildContext context,
-  ImageUrl imageUrl,
+  ImageUrlModel imageUrl,
 ) async {
   return showDialog<void>(
     context: context,
