@@ -95,17 +95,15 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
                   );
                 },
               ),
-              Visibility(
-                visible: _clickedChat != null,
-                child: Positioned.fill(
+              if (_clickedChat != null)
+                Positioned.fill(
                   child: ChatWidgetUser(
                     title: 'Admin',
                     name: 'admin',
-                    collectionPath: _clickedChat!.user.userId,
+                    collectionPath: _clickedChat?.user.userId ?? '',
                     scrollController: ScrollController(),
                   ),
                 ),
-              ),
             ],
           );
         }
