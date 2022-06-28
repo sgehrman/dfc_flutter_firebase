@@ -12,29 +12,22 @@ class ChatWidgetAdmin extends StatefulWidget {
   const ChatWidgetAdmin({
     required this.title,
     required this.name,
-    required this.collectionPath,
   });
 
   final String title;
   final String name;
-  final String collectionPath;
 
   @override
   _ChatWidgetAdminState createState() => _ChatWidgetAdminState();
 }
 
 class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
-  late Stream<List<ChatMessageModel>> stream;
   ChatMessageModel? _clickedChat;
   List<ChatMessageModel> _chatMessages = [];
 
   @override
   void initState() {
     super.initState();
-
-    stream = ChatMessageUtils.chatMessagesForUser(
-      collectionPath: widget.collectionPath,
-    );
 
     _queryChats();
   }
@@ -91,26 +84,22 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
               onTap: () {
                 _clickedChat = chat;
                 setState(() {});
-                // Navigator.of(context).push(
-                //   MaterialPageRoute<void>(
-                //     builder: (context) => ChatScreen(
-                //       title: widget.title,
-                //       name: widget.name,
-                //       collectionPath: widget.collectionPath,
-                //     ),
-                //   ),
-                // );
               },
               trailing: IconButton(
                 icon: const Icon(Icons.remove_circle, color: Colors.red),
                 onPressed: () {
                   final deleteStream = ChatMessageUtils.chatMessagesForUser(
-                    collectionPath: widget.collectionPath,
+                    collectionPath: ChatMessageUtils.userIdToCollectionPath(
+                      chat.user.userId,
+                    ),
                   );
 
                   ChatMessageUtils.deleteMessagesFromStream(
                     stream: deleteStream,
-                    collectionPath: widget.collectionPath,
+                    collectionPath: ChatMessageUtils.userIdToDocumentPath(
+                      chat.user.userId,
+                      chat.id,
+                    ),
                   );
                 },
               ),

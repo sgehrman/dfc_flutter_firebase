@@ -9,6 +9,9 @@ class ChatMessageUtils {
   static String userIdToCollectionPath(String userId) =>
       '/private/$userId/messages';
 
+  static String userIdToDocumentPath(String userId, String docId) =>
+      '${userIdToCollectionPath(userId)}/messages/$docId';
+
   static Stream<List<ChatMessageModel>> chatMessagesForUser({
     required String collectionPath,
   }) {

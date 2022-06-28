@@ -44,7 +44,6 @@ class _ChatScreenState extends State<ChatScreen> {
       content = ChatWidgetAdmin(
         title: widget.title,
         name: widget.name,
-        collectionPath: widget.collectionPath,
       );
     } else {
       content = ChatWidgetUser(
