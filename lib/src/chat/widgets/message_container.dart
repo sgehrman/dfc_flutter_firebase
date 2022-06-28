@@ -70,7 +70,7 @@ class MessageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.only(right: 8, left: 8),
       child: Column(
         crossAxisAlignment:

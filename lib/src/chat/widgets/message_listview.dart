@@ -177,10 +177,19 @@ class _MessageListViewState extends State<MessageListView> {
                         Flexible(
                           child: GestureDetector(
                             onLongPress: () => _handleLongPress(chatMessage),
-                            child: MessageContainer(
-                              isUser: chatMessage.user.userId ==
-                                  widget.userModel.userId,
-                              message: chatMessage,
+                            child: LayoutBuilder(
+                              builder: (context, contraints) {
+                                return ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: contraints.maxWidth * 0.6,
+                                  ),
+                                  child: MessageContainer(
+                                    isUser: chatMessage.user.userId ==
+                                        widget.userModel.userId,
+                                    message: chatMessage,
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),
