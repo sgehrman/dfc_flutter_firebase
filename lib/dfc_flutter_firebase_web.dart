@@ -1,7 +1,9 @@
 library dfc_flutter_firebase_web;
 
 export 'src/chat/chat_screen.dart';
+export 'src/chat/models/chat_message_model.dart';
 export 'src/chat/models/chat_message_utils.dart';
+export 'src/chat/models/chat_user_model.dart';
 export 'src/chat/widgets/avatar_container.dart';
 export 'src/firebase/auth.dart';
 export 'src/firebase/firebase_user_provider.dart';
