@@ -35,15 +35,24 @@ class MessageContainer extends StatelessWidget {
         );
       }
 
-      return ChatBubble(
-        clipper: isUser
-            ? ChatBubbleClipper1(type: BubbleType.sendBubble)
-            : ChatBubbleClipper1(type: BubbleType.receiverBubble),
-        backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Flexible(child: child),
-        ),
+      return LayoutBuilder(
+        builder: (context, constraints) {
+          return ChatBubble(
+            clipper: isUser
+                ? ChatBubbleClipper1(type: BubbleType.sendBubble)
+                : ChatBubbleClipper1(type: BubbleType.receiverBubble),
+            backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: constraints.maxWidth * 0.8,
+                ),
+                child: child,
+              ),
+            ),
+          );
+        },
       );
     }
 
@@ -70,42 +79,31 @@ class MessageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: constraints.maxWidth * 0.8,
-          ),
-          child: Container(
-            padding: const EdgeInsets.only(right: 8, left: 8),
-            child: Column(
-              crossAxisAlignment:
-                  isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-              children: <Widget>[
-                _bubble(),
-                if (Utils.isNotEmpty(message.image))
-                  Image.network(
-                    message.image,
-                    width: constraints.maxWidth * 0.7,
-                    fit: BoxFit.contain,
-                  ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    userName(),
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Utils.isDarkMode(context)
-                          ? Colors.white54
-                          : Colors.black54,
-                    ),
-                  ),
-                ),
-              ],
+    return Container(
+      padding: const EdgeInsets.only(right: 8, left: 8),
+      child: Column(
+        crossAxisAlignment:
+            isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: <Widget>[
+          _bubble(),
+          if (Utils.isNotEmpty(message.image))
+            Image.network(
+              message.image,
+              fit: BoxFit.contain,
+            ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              userName(),
+              style: TextStyle(
+                fontSize: 10,
+                color:
+                    Utils.isDarkMode(context) ? Colors.white54 : Colors.black54,
+              ),
             ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
