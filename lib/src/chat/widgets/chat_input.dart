@@ -158,6 +158,13 @@ class _ChatInputState extends State<ChatInput> {
 
   @override
   Widget build(BuildContext context) {
+    const border = OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.all(
+        Radius.circular(500),
+      ),
+    );
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       child: Row(
@@ -176,14 +183,16 @@ class _ChatInputState extends State<ChatInput> {
                   hintText: 'Message...',
                   filled: true,
                   fillColor: Color.fromRGBO(0, 0, 0, 0.1),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(500),
-                    ),
+                  border: border,
+                  errorBorder: border,
+                  enabledBorder: border,
+                  focusedBorder: border,
+                  disabledBorder: border,
+                  focusedErrorBorder: border,
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 22,
+                    vertical: 7,
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                 ),
                 controller: _textController,
                 style: const TextStyle(fontSize: 16),

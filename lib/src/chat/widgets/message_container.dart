@@ -40,8 +40,10 @@ class MessageContainer extends StatelessWidget {
             ? ChatBubbleClipper1(type: BubbleType.sendBubble)
             : ChatBubbleClipper1(type: BubbleType.receiverBubble),
         backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: child,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: child,
+        ),
       );
     }
 
