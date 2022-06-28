@@ -44,6 +44,8 @@ class MessageContainer extends StatelessWidget {
 
       return LayoutBuilder(
         builder: (context, constraints) {
+          print(constraints.maxWidth);
+
           return ChatBubble(
             clipper: isUser
                 ? ChatBubbleClipper1(type: BubbleType.sendBubble)
