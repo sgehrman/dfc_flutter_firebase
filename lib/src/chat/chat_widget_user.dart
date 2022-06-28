@@ -16,20 +16,19 @@ class ChatWidgetUser extends StatefulWidget {
     required this.title,
     required this.name,
     required this.collectionPath,
+    required this.scrollController,
   });
 
   final String title;
   final String name;
   final String collectionPath;
+  final ScrollController scrollController;
 
   @override
   _ChatWidgetUserState createState() => _ChatWidgetUserState();
 }
 
 class _ChatWidgetUserState extends State<ChatWidgetUser> {
-  final GlobalKey<ChatWidgetState> _chatWidgetKey =
-      GlobalKey<ChatWidgetState>();
-
   StreamSubscription<List<ChatMessageModel?>>? _subscription;
   List<ChatMessageModel> _messages = [];
 
@@ -44,11 +43,7 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
       if (visible) {
         // needs a delay so it scrolls after the keyboard is up and ready
         Timer(const Duration(milliseconds: 100), () {
-          final scrollController = getScrollController;
-
-          if (scrollController != null) {
-            Utils.scrollToEndAnimated(scrollController, reversed: true);
-          }
+          Utils.scrollToEndAnimated(widget.scrollController, reversed: true);
         });
       }
     });
@@ -60,10 +55,6 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
     _subscription = null;
 
     super.dispose();
-  }
-
-  ScrollController? get getScrollController {
-    return _chatWidgetKey.currentState?.scrollController;
   }
 
   void _subscribe() {
@@ -80,14 +71,11 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
         setState(() {});
 
         SchedulerBinding.instance.addPostFrameCallback((_) {
-          final scrollController = getScrollController;
-          if (scrollController != null) {
-            if (firstTime) {
-              firstTime = false;
-              Utils.scrollToEnd(scrollController, reversed: true);
-            } else {
-              Utils.scrollToEndAnimated(scrollController, reversed: true);
-            }
+          if (firstTime) {
+            firstTime = false;
+            Utils.scrollToEnd(widget.scrollController, reversed: true);
+          } else {
+            Utils.scrollToEndAnimated(widget.scrollController, reversed: true);
           }
         });
       },
@@ -108,11 +96,7 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
     return IconButton(
       icon: const Icon(Icons.keyboard_arrow_down),
       onPressed: () {
-        final scrollController = getScrollController;
-
-        if (scrollController != null) {
-          Utils.scrollToEndAnimated(scrollController, reversed: true);
-        }
+        Utils.scrollToEndAnimated(widget.scrollController, reversed: true);
       },
     );
   }
@@ -160,7 +144,7 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
           }
 
           return ChatWidget(
-            key: _chatWidgetKey,
+            scrollController: widget.scrollController,
             collectionPath: widget.collectionPath,
             messages: messages,
             userModel: _getUser(),

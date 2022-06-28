@@ -9,11 +9,11 @@ class ChatWidget extends StatefulWidget {
     required this.messages,
     required this.userModel,
     required this.collectionPath,
+    required this.scrollController,
     this.onLongPressAvatar,
     this.onLongPressMessage,
     this.onPressAvatar,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final List<ChatMessageModel> messages;
   final ChatUserModel userModel;
@@ -21,28 +21,20 @@ class ChatWidget extends StatefulWidget {
   final Function(ChatUserModel)? onPressAvatar;
   final Function(ChatUserModel)? onLongPressAvatar;
   final Function(ChatMessageModel)? onLongPressMessage;
+  final ScrollController scrollController;
 
   @override
   ChatWidgetState createState() => ChatWidgetState();
 }
 
 class ChatWidgetState extends State<ChatWidget> {
-  ScrollController? scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    scrollController = ScrollController(keepScrollOffset: false);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         MessageListView(
-          scrollController: scrollController,
+          scrollController: widget.scrollController,
           userModel: widget.userModel,
           messages: widget.messages,
           onLongPressAvatar: widget.onLongPressAvatar,
