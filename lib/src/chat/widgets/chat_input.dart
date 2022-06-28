@@ -27,6 +27,7 @@ class _ChatInputState extends State<ChatInput> {
   final TextEditingController _textController = TextEditingController();
   bool expanded = true;
   bool _showThumb = true;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -43,6 +44,7 @@ class _ChatInputState extends State<ChatInput> {
   void dispose() {
     _textController.removeListener(_textListener);
     _textController.dispose();
+    _focusNode.dispose();
 
     super.dispose();
   }
@@ -179,6 +181,7 @@ class _ChatInputState extends State<ChatInput> {
                     setState(() => expanded = false);
                   }
                 },
+                focusNode: _focusNode,
                 decoration: const InputDecoration(
                   hintText: 'Message...',
                   filled: true,
@@ -231,6 +234,7 @@ class _ChatInputState extends State<ChatInput> {
       );
 
       _textController.text = '';
+      _focusNode.requestFocus();
     }
   }
 

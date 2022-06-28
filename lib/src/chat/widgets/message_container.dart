@@ -42,7 +42,7 @@ class MessageContainer extends StatelessWidget {
         backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: child,
+          child: Flexible(child: child),
         ),
       );
     }

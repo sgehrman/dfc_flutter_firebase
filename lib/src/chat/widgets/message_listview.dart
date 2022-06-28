@@ -10,8 +10,8 @@ import 'package:intl/intl.dart';
 class MessageListView extends StatefulWidget {
   const MessageListView({
     required this.userModel,
-    this.scrollController,
-    this.messages,
+    required this.scrollController,
+    required this.messages,
     this.onLongPressAvatar,
     this.onLongPressMessage,
     this.onPressAvatar,
@@ -20,7 +20,7 @@ class MessageListView extends StatefulWidget {
     this.visible,
   });
 
-  final List<ChatMessageModel>? messages;
+  final List<ChatMessageModel> messages;
   final ChatUserModel userModel;
   final void Function(ChatUserModel)? onPressAvatar;
   final void Function(ChatUserModel)? onLongPressAvatar;
@@ -38,15 +38,15 @@ class _MessageListViewState extends State<MessageListView> {
   bool showDateFlag(int index) {
     bool showDate = false;
 
-    if (index == widget.messages!.length - 1) {
+    if (index == widget.messages.length - 1) {
       showDate = true;
     } else {
       final DateTime nextDate = DateTime.fromMillisecondsSinceEpoch(
-        widget.messages![index + 1].timestamp,
+        widget.messages[index + 1].timestamp,
       );
 
       final DateTime date = DateTime.fromMillisecondsSinceEpoch(
-        widget.messages![index].timestamp,
+        widget.messages[index].timestamp,
       );
 
       if (nextDate.difference(date).inDays != 0) {
@@ -74,7 +74,7 @@ class _MessageListViewState extends State<MessageListView> {
         child: Text(
           DateFormat('MMM dd').format(
             DateTime.fromMillisecondsSinceEpoch(
-              widget.messages![index].timestamp,
+              widget.messages[index].timestamp,
             ),
           ),
           style: const TextStyle(
@@ -90,7 +90,7 @@ class _MessageListViewState extends State<MessageListView> {
 
   Widget avatarWidget({required int index, required bool leftSide}) {
     final bool isUser =
-        widget.messages![index].user.userId == widget.userModel.userId;
+        widget.messages[index].user.userId == widget.userModel.userId;
     bool addAvatar = false;
 
     if (leftSide && !isUser) {
@@ -101,7 +101,7 @@ class _MessageListViewState extends State<MessageListView> {
 
     if (addAvatar) {
       return AvatarContainer(
-        user: widget.messages![index].user,
+        user: widget.messages[index].user,
         onPress: widget.onPressAvatar,
         onLongPress: widget.onLongPressAvatar,
         isUser: isUser,
@@ -109,6 +109,37 @@ class _MessageListViewState extends State<MessageListView> {
     }
 
     return NothingWidget();
+  }
+
+  void _handleLongPress(ChatMessageModel chatMessage) {
+    if (widget.onLongPressMessage != null) {
+      widget.onLongPressMessage!(chatMessage);
+    } else {
+      showBottomSheet<dynamic>(
+        context: context,
+        builder: (context) => Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: Color.fromRGBO(180, 180, 180, 1),
+              ),
+            ),
+          ),
+          child: ListTile(
+            leading: const Icon(Icons.content_copy),
+            title: const Text('Copy to clipboard'),
+            onTap: () {
+              Clipboard.setData(
+                ClipboardData(
+                  text: chatMessage.text,
+                ),
+              );
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -125,9 +156,11 @@ class _MessageListViewState extends State<MessageListView> {
             physics: const BouncingScrollPhysics(),
             controller: widget.scrollController,
             reverse: true,
-            itemCount: widget.messages!.length,
+            itemCount: widget.messages.length,
             itemBuilder: (context, i) {
               final bool showDate = showDateFlag(i);
+
+              final chatMessage = widget.messages[i];
 
               return Align(
                 child: Padding(
@@ -136,49 +169,19 @@ class _MessageListViewState extends State<MessageListView> {
                     children: <Widget>[
                       dateWidget(showDate: showDate, index: i),
                       Row(
-                        mainAxisAlignment: widget.messages![i].user.userId ==
-                                widget.userModel.userId
-                            ? MainAxisAlignment.end
-                            : MainAxisAlignment.start,
+                        mainAxisAlignment:
+                            chatMessage.user.userId == widget.userModel.userId
+                                ? MainAxisAlignment.end
+                                : MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           avatarWidget(index: i, leftSide: true),
                           GestureDetector(
-                            onLongPress: () {
-                              if (widget.onLongPressMessage != null) {
-                                widget.onLongPressMessage!(widget.messages![i]);
-                              } else {
-                                showBottomSheet<dynamic>(
-                                  context: context,
-                                  builder: (context) => Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        top: BorderSide(
-                                          color:
-                                              Color.fromRGBO(180, 180, 180, 1),
-                                        ),
-                                      ),
-                                    ),
-                                    child: ListTile(
-                                      leading: const Icon(Icons.content_copy),
-                                      title: const Text('Copy to clipboard'),
-                                      onTap: () {
-                                        Clipboard.setData(
-                                          ClipboardData(
-                                            text: widget.messages![i].text,
-                                          ),
-                                        );
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
+                            onLongPress: () => _handleLongPress(chatMessage),
                             child: MessageContainer(
-                              isUser: widget.messages![i].user.userId ==
+                              isUser: chatMessage.user.userId ==
                                   widget.userModel.userId,
-                              message: widget.messages![i],
+                              message: chatMessage,
                             ),
                           ),
                           avatarWidget(index: i, leftSide: false),
