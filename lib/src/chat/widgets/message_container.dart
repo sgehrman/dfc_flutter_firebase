@@ -32,12 +32,10 @@ class MessageContainer extends StatelessWidget {
         //     color: Colors.white,
         //   ),
         // );
-        child = Flexible(
-          child: Text(
-            message.text,
-            style: const TextStyle(
-              color: Colors.white,
-            ),
+        child = Text(
+          message.text,
+          style: const TextStyle(
+            color: Colors.white,
           ),
         );
       }
