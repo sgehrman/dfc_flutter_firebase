@@ -1,8 +1,6 @@
 import 'package:dfc_flutter_firebase/src/chat/chat_admin_screen_contents.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_login_screen.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_screen_contents.dart';
-import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_utils.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,36 +22,9 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  bool _loggingIn = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  Future<void> _login() async {
-    if (!_loggingIn) {
-      _loggingIn = true;
-      final AuthService auth = AuthService();
-
-      await auth.anonLogin();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<FirebaseUserProvider>(context);
-
-    if (!userProvider.hasUser) {
-      _login();
-
-      return ChatLoginScreen();
-    }
 
     if (widget.toAdminOnly && userProvider.isAdmin) {
       return ChatAdminScreenContents(

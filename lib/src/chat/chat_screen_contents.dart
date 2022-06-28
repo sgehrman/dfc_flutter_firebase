@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/chat_widget.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class ChatScreenContents extends StatefulWidget {
     this.isAdmin = false,
   });
 
-  final Stream<List<ChatMessage>> stream;
+  final Stream<List<ChatMessageModel>> stream;
   final bool isAdmin;
   final String? toUid;
   final String title;
@@ -32,7 +33,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
   final GlobalKey<ChatWidgetState> _chatWidgetKey =
       GlobalKey<ChatWidgetState>();
 
-  StreamSubscription<List<ChatMessage?>>? _subscription;
+  StreamSubscription<List<ChatMessageModel?>>? _subscription;
 
   @override
   void initState() {
@@ -118,12 +119,12 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
     );
   }
 
-  ChatUser _getUser() {
+  ChatUserModel _getUser() {
     final userProvider =
         Provider.of<FirebaseUserProvider>(context, listen: false);
 
     if (userProvider.hasUser) {
-      return ChatUser(
+      return ChatUserModel(
         name: userProvider.displayName,
         email: userProvider.email,
         uid: widget.isAdmin ? 'admin' : userProvider.userId,
@@ -131,10 +132,8 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
       );
     }
 
-    return ChatUser(
+    return ChatUserModel(
       name: 'No user',
-      uid: '',
-      avatar: '',
     );
   }
 
@@ -145,7 +144,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
         title: Text(widget.title),
         actions: [_scrollToBottomButton()],
       ),
-      body: StreamBuilder<List<ChatMessage>>(
+      body: StreamBuilder<List<ChatMessageModel>>(
         stream: widget.stream,
         builder: (context, snap) {
           bool hasData = false;
@@ -160,18 +159,18 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
           }
 
           if (hasData) {
-            List<ChatMessage>? messages = snap.data;
+            List<ChatMessageModel>? messages = snap.data;
 
             if (Utils.isNotEmpty(messages)) {
-              messages!.sort((ChatMessage a, ChatMessage b) {
-                return a.createdAt.compareTo(b.createdAt);
+              messages!.sort((ChatMessageModel a, ChatMessageModel b) {
+                return a.timestamp.compareTo(b.timestamp);
               });
               messages = messages.reversed.take(100).toList();
             } else {
               messages = [
-                ChatMessage(
-                  toUid: widget.toUid,
-                  user: ChatUser(
+                ChatMessageModel(
+                  toUid: widget.toUid ?? '',
+                  user: ChatUserModel(
                     uid: 'admin',
                     name: widget.name,
                   ),
@@ -186,10 +185,10 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
               messages: messages,
               user: _getUser(),
               toUid: widget.toUid,
-              onPressAvatar: (ChatUser user) {
+              onPressAvatar: (ChatUserModel user) {
                 print('OnPressAvatar: ${user.name}');
               },
-              onLongPressAvatar: (ChatUser user) {
+              onLongPressAvatar: (ChatUserModel user) {
                 print('OnLongPressAvatar: ${user.name}');
               },
             );

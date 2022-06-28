@@ -1,6 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:intl/intl.dart';
@@ -11,11 +11,11 @@ class MessageContainer extends StatelessWidget {
     this.isUser,
   });
 
-  final ChatMessage message;
+  final ChatMessageModel message;
   final bool? isUser;
 
   Widget bubble() {
-    if (message.text!.isNotEmpty) {
+    if (message.text.isNotEmpty) {
       Widget child;
 
       if (message.text == '_tu_') {
@@ -26,7 +26,7 @@ class MessageContainer extends StatelessWidget {
       } else {
         child = ParsedText(
           parse: Utils.matchArray(),
-          text: message.text!,
+          text: message.text,
           style: const TextStyle(
             color: Colors.white,
           ),
@@ -49,17 +49,19 @@ class MessageContainer extends StatelessWidget {
   String userName() {
     String? result = '';
 
-    if (message.user.name != null && message.user.name!.isNotEmpty) {
+    if (message.user.name.isNotEmpty) {
       result = message.user.name;
-    } else if (message.user.email != null && message.user.email!.isNotEmpty) {
+    } else if (message.user.email.isNotEmpty) {
       result = message.user.email;
     }
 
-    if (result!.isNotEmpty) {
+    if (result.isNotEmpty) {
       result += ',  ';
     }
 
-    return result + DateFormat('EEE h:mm a').format(message.createdAt);
+    return result +
+        DateFormat('EEE h:mm a')
+            .format(DateTime.fromMillisecondsSinceEpoch(message.timestamp));
   }
 
   @override
@@ -77,7 +79,7 @@ class MessageContainer extends StatelessWidget {
             bubble(),
             if (Utils.isNotEmpty(message.image))
               Image.network(
-                message.image!,
+                message.image,
                 width: MediaQuery.of(context).size.width * 0.7,
                 fit: BoxFit.contain,
               ),

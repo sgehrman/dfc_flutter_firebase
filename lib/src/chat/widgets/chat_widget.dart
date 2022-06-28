@@ -1,4 +1,5 @@
-import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/chat_input.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/message_listview.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +15,12 @@ class ChatWidget extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final List<ChatMessage> messages;
-  final ChatUser user;
+  final List<ChatMessageModel> messages;
+  final ChatUserModel user;
   final String? toUid;
-  final Function(ChatUser)? onPressAvatar;
-  final Function(ChatUser)? onLongPressAvatar;
-  final Function(ChatMessage)? onLongPressMessage;
+  final Function(ChatUserModel)? onPressAvatar;
+  final Function(ChatUserModel)? onLongPressAvatar;
+  final Function(ChatMessageModel)? onLongPressMessage;
 
   @override
   ChatWidgetState createState() => ChatWidgetState();

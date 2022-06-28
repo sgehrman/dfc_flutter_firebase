@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_utils.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +16,7 @@ class ChatInput extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final ChatUser user;
+  final ChatUserModel user;
   final String? toUid;
 
   @override
@@ -113,9 +115,8 @@ class _ChatInputState extends State<ChatInput> {
         folder: ImageUrlUtils.chatImageFolder,
       );
 
-      final ChatMessage message = ChatMessage(
-        toUid: widget.toUid,
-        text: '',
+      final ChatMessageModel message = ChatMessageModel(
+        toUid: widget.toUid ?? '',
         user: widget.user,
         image: url,
         imageId: imageId,
@@ -209,11 +210,10 @@ class _ChatInputState extends State<ChatInput> {
     }
 
     if (text.isNotEmpty) {
-      final ChatMessage message = ChatMessage(
-        toUid: widget.toUid,
+      final ChatMessageModel message = ChatMessageModel(
+        toUid: widget.toUid ?? '',
         text: text,
         user: widget.user,
-        createdAt: DateTime.now(),
       );
 
       await ChatMessageUtils.uploadChatMessage(message);

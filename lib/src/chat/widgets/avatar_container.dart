@@ -1,5 +1,5 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:flutter/material.dart';
 
 class AvatarContainer extends StatelessWidget {
@@ -10,14 +10,14 @@ class AvatarContainer extends StatelessWidget {
     this.isUser,
   });
 
-  final ChatUser user;
+  final ChatUserModel user;
   final bool? isUser;
-  final void Function(ChatUser)? onPress;
-  final void Function(ChatUser)? onLongPress;
+  final void Function(ChatUserModel)? onPress;
+  final void Function(ChatUserModel)? onLongPress;
 
   ImageProvider? avatarImage() {
-    if (user.avatar != null && user.avatar!.isNotEmpty) {
-      return NetworkImage(user.avatar!);
+    if (user.avatar.isNotEmpty) {
+      return NetworkImage(user.avatar);
     }
 
     return null;

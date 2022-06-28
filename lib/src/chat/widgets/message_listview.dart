@@ -1,5 +1,6 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/avatar_container.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/message_container.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,12 @@ class MessageListView extends StatefulWidget {
     this.visible,
   });
 
-  final List<ChatMessage>? messages;
-  final ChatUser user;
-  final void Function(ChatUser)? onPressAvatar;
-  final void Function(ChatUser)? onLongPressAvatar;
+  final List<ChatMessageModel>? messages;
+  final ChatUserModel user;
+  final void Function(ChatUserModel)? onPressAvatar;
+  final void Function(ChatUserModel)? onLongPressAvatar;
   final bool? renderAvatarOnTop;
-  final void Function(ChatMessage)? onLongPressMessage;
+  final void Function(ChatMessageModel)? onLongPressMessage;
   final ScrollController? scrollController;
   final Function? changeVisible;
   final bool? visible;
@@ -40,8 +41,15 @@ class _MessageListViewState extends State<MessageListView> {
     if (index == widget.messages!.length - 1) {
       showDate = true;
     } else {
-      final DateTime nextDate = widget.messages![index + 1].createdAt;
-      if (nextDate.difference(widget.messages![index].createdAt).inDays != 0) {
+      final DateTime nextDate = DateTime.fromMillisecondsSinceEpoch(
+        widget.messages![index + 1].timestamp,
+      );
+
+      final DateTime date = DateTime.fromMillisecondsSinceEpoch(
+        widget.messages![index].timestamp,
+      );
+
+      if (nextDate.difference(date).inDays != 0) {
         showDate = true;
       }
     }
@@ -64,7 +72,11 @@ class _MessageListViewState extends State<MessageListView> {
         ),
         margin: const EdgeInsets.symmetric(vertical: 10),
         child: Text(
-          DateFormat('MMM dd').format(widget.messages![index].createdAt),
+          DateFormat('MMM dd').format(
+            DateTime.fromMillisecondsSinceEpoch(
+              widget.messages![index].timestamp,
+            ),
+          ),
           style: const TextStyle(
             color: Colors.white,
             fontSize: 12,
