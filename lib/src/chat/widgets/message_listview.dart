@@ -150,58 +150,56 @@ class _MessageListViewState extends State<MessageListView> {
           // hides keyboard
           FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: Padding(
-          padding: const EdgeInsets.only(right: 10, left: 10),
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            controller: widget.scrollController,
-            reverse: true,
-            itemCount: widget.messages.length,
-            itemBuilder: (context, i) {
-              final bool showDate = showDateFlag(i);
+        child: ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          physics: const BouncingScrollPhysics(),
+          controller: widget.scrollController,
+          reverse: true,
+          itemCount: widget.messages.length,
+          itemBuilder: (context, i) {
+            final bool showDate = showDateFlag(i);
 
-              final chatMessage = widget.messages[i];
+            final chatMessage = widget.messages[i];
 
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: Column(
-                  children: <Widget>[
-                    dateWidget(showDate: showDate, index: i),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment:
-                          chatMessage.user.userId == widget.userModel.userId
-                              ? MainAxisAlignment.end
-                              : MainAxisAlignment.start,
-                      children: <Widget>[
-                        avatarWidget(index: i, leftSide: true),
-                        Flexible(
-                          child: GestureDetector(
-                            onLongPress: () => _handleLongPress(chatMessage),
-                            child: LayoutBuilder(
-                              builder: (context, contraints) {
-                                return ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                    maxWidth: contraints.maxWidth * 0.7,
-                                  ),
-                                  child: MessageContainer(
-                                    isUser: chatMessage.user.userId ==
-                                        widget.userModel.userId,
-                                    message: chatMessage,
-                                  ),
-                                );
-                              },
-                            ),
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Column(
+                children: <Widget>[
+                  dateWidget(showDate: showDate, index: i),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment:
+                        chatMessage.user.userId == widget.userModel.userId
+                            ? MainAxisAlignment.end
+                            : MainAxisAlignment.start,
+                    children: <Widget>[
+                      avatarWidget(index: i, leftSide: true),
+                      Flexible(
+                        child: GestureDetector(
+                          onLongPress: () => _handleLongPress(chatMessage),
+                          child: LayoutBuilder(
+                            builder: (context, contraints) {
+                              return ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth: contraints.maxWidth * 0.7,
+                                ),
+                                child: MessageContainer(
+                                  isUser: chatMessage.user.userId ==
+                                      widget.userModel.userId,
+                                  message: chatMessage,
+                                ),
+                              );
+                            },
                           ),
                         ),
-                        avatarWidget(index: i, leftSide: false),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
+                      ),
+                      avatarWidget(index: i, leftSide: false),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

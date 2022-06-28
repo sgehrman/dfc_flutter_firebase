@@ -42,7 +42,19 @@ class MessageContainer extends StatelessWidget {
             : ChatBubbleClipper1(type: BubbleType.receiverBubble),
         backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: rightAlign
+              ? const EdgeInsets.only(
+                  left: 15,
+                  right: 20,
+                  top: 8,
+                  bottom: 8,
+                )
+              : const EdgeInsets.only(
+                  left: 20,
+                  right: 15,
+                  top: 8,
+                  bottom: 8,
+                ),
           child: child,
         ),
       );
@@ -84,7 +96,7 @@ class MessageContainer extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           Padding(
-            padding: const EdgeInsets.only(top: 4),
+            padding: const EdgeInsets.only(top: 8),
             child: Text(
               userName(),
               style: TextStyle(
