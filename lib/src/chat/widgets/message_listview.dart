@@ -168,6 +168,7 @@ class _MessageListViewState extends State<MessageListView> {
                   children: <Widget>[
                     dateWidget(showDate: showDate, index: i),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment:
                           chatMessage.user.userId == widget.userModel.userId
                               ? MainAxisAlignment.end
@@ -181,7 +182,7 @@ class _MessageListViewState extends State<MessageListView> {
                               builder: (context, contraints) {
                                 return ConstrainedBox(
                                   constraints: BoxConstraints(
-                                    maxWidth: contraints.maxWidth * 0.6,
+                                    maxWidth: contraints.maxWidth * 0.7,
                                   ),
                                   child: MessageContainer(
                                     isUser: chatMessage.user.userId ==

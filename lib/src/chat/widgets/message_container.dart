@@ -16,7 +16,7 @@ class MessageContainer extends StatelessWidget {
   final ChatMessageModel message;
   final bool isUser;
 
-  Widget _bubble() {
+  Widget _bubble({required bool rightAlign}) {
     if (message.text.isNotEmpty) {
       Widget child;
 
@@ -36,6 +36,7 @@ class MessageContainer extends StatelessWidget {
       }
 
       return ChatBubble(
+        alignment: rightAlign ? Alignment.topRight : Alignment.topLeft,
         clipper: isUser
             ? ChatBubbleClipper1(type: BubbleType.sendBubble)
             : ChatBubbleClipper1(type: BubbleType.receiverBubble),
@@ -76,7 +77,7 @@ class MessageContainer extends StatelessWidget {
         crossAxisAlignment:
             isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          _bubble(),
+          _bubble(rightAlign: isUser),
           if (Utils.isNotEmpty(message.image))
             Image.network(
               message.image,
