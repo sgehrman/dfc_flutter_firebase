@@ -70,7 +70,9 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
     bool firstTime = true;
 
     final Stream<List<ChatMessageModel>> stream =
-        ChatMessageUtils.chatMessagesForUser(widget.collectionPath);
+        ChatMessageUtils.chatMessagesForUser(
+      collectionPath: widget.collectionPath,
+    );
 
     _subscription = stream.listen(
       (data) {
@@ -159,6 +161,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
 
           return ChatWidget(
             key: _chatWidgetKey,
+            collectionPath: widget.collectionPath,
             messages: messages,
             userModel: _getUser(),
             onPressAvatar: (ChatUserModel user) {

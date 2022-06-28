@@ -8,6 +8,7 @@ class ChatWidget extends StatefulWidget {
   const ChatWidget({
     required this.messages,
     required this.userModel,
+    required this.collectionPath,
     this.onLongPressAvatar,
     this.onLongPressMessage,
     this.onPressAvatar,
@@ -16,6 +17,7 @@ class ChatWidget extends StatefulWidget {
 
   final List<ChatMessageModel> messages;
   final ChatUserModel userModel;
+  final String collectionPath;
   final Function(ChatUserModel)? onPressAvatar;
   final Function(ChatUserModel)? onLongPressAvatar;
   final Function(ChatMessageModel)? onLongPressMessage;
@@ -47,6 +49,7 @@ class ChatWidgetState extends State<ChatWidget> {
           onLongPressMessage: widget.onLongPressMessage,
         ),
         ChatInput(
+          collectionPath: widget.collectionPath,
           userModel: widget.userModel,
         ),
       ],

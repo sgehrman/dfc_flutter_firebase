@@ -30,7 +30,7 @@ class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
     super.initState();
 
     stream = ChatMessageUtils.chatMessagesForUser(
-      widget.collectionPath,
+      collectionPath: widget.collectionPath,
     );
   }
 
@@ -80,10 +80,13 @@ class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
                     icon: const Icon(Icons.remove_circle, color: Colors.red),
                     onPressed: () {
                       final deleteStream = ChatMessageUtils.chatMessagesForUser(
-                        widget.collectionPath,
+                        collectionPath: widget.collectionPath,
                       );
 
-                      ChatMessageUtils.deleteMessagesFromStream(deleteStream);
+                      ChatMessageUtils.deleteMessagesFromStream(
+                        stream: deleteStream,
+                        collectionPath: widget.collectionPath,
+                      );
                     },
                   ),
                 );
