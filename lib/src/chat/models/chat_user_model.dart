@@ -9,7 +9,7 @@ part 'chat_user_model.g.dart';
 class ChatUserModel extends ModelToMap {
   ChatUserModel({
     this.id = '',
-    this.uid = '',
+    this.userId = '',
     this.name = '',
     this.email = '',
     this.avatar = '',
@@ -19,7 +19,7 @@ class ChatUserModel extends ModelToMap {
   dynamic document;
 
   String id;
-  String uid;
+  String userId;
   String name;
   String email;
   String avatar;

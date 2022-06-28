@@ -4,17 +4,18 @@ import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_screen_contents.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_utils.dart';
-import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatAdminScreenContents extends StatefulWidget {
   const ChatAdminScreenContents({
     required this.title,
     required this.name,
+    required this.collectionPath,
   });
 
   final String title;
   final String name;
+  final String collectionPath;
 
   @override
   _ChatAdminScreenContentsState createState() =>
@@ -22,9 +23,16 @@ class ChatAdminScreenContents extends StatefulWidget {
 }
 
 class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
-  final Stream<List<ChatMessageModel>> stream = ChatMessageUtils.stream(
-    where: [WhereQuery('', 'admin')],
-  );
+  late Stream<List<ChatMessageModel>> stream;
+
+  @override
+  void initState() {
+    super.initState();
+
+    stream = ChatMessageUtils.chatMessagesForUser(
+      widget.collectionPath,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +61,7 @@ class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
                 final ChatMessageModel chat = resources[index];
 
                 final String title =
-                    'From: ${chat.user.uid} message: ${chat.text.substring(0, math.min(10, chat.text.length))}';
+                    'From: ${chat.user.userId} message: ${chat.text.substring(0, math.min(10, chat.text.length))}';
 
                 return ListTile(
                   title: Text(title),
@@ -61,16 +69,9 @@ class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (context) => ChatScreenContents(
-                          toUid: chat.user.uid,
-                          stream: ChatMessageUtils.stream(
-                            where: [
-                              WhereQuery(chat.user.uid, 'admin'),
-                              WhereQuery('admin', chat.user.uid),
-                            ],
-                          ),
-                          isAdmin: true,
                           title: widget.title,
                           name: widget.name,
+                          collectionPath: widget.collectionPath,
                         ),
                       ),
                     );
@@ -78,11 +79,8 @@ class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
                   trailing: IconButton(
                     icon: const Icon(Icons.remove_circle, color: Colors.red),
                     onPressed: () {
-                      final deleteStream = ChatMessageUtils.stream(
-                        where: [
-                          WhereQuery(chat.user.uid, 'admin'),
-                          WhereQuery('admin', chat.user.uid),
-                        ],
+                      final deleteStream = ChatMessageUtils.chatMessagesForUser(
+                        widget.collectionPath,
                       );
 
                       ChatMessageUtils.deleteMessagesFromStream(deleteStream);

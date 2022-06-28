@@ -1,32 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
+import 'package:dfc_flutter_firebase/src/firebase/firestore_converter.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_utils.dart';
 
 class ChatMessageUtils {
-  static Stream<List<ChatMessageModel>> stream({
-    List<WhereQuery>? where,
-  }) {
-    final c = Collection('messages');
+  static Stream<List<ChatMessageModel>> chatMessagesForUser(
+    String collectionPath,
+  ) {
+    final collection = Collection(collectionPath);
 
-    if (Utils.isNotEmpty(where)) {
-      return c.orderedStreamData<ChatMessageModel>(
-        where: where,
-      );
-    }
+    final Query<Map<String, dynamic>> query =
+        collection.ref.orderBy('timestamp');
 
-    return c.orderedStreamData();
+    return query.snapshots().map(
+          (v) => v.docs
+              .map(
+                (doc) => FirestoreConverter.convert(
+                  ChatMessageModel,
+                  doc.data(),
+                  doc.id,
+                  Document.withRef(doc.reference),
+                ) as ChatMessageModel,
+              )
+              .toList(),
+        );
   }
 
-  static Future<List<ChatMessageModel?>> getData() {
-    return Collection('messages').getData<ChatMessageModel>();
+  static Future<List<ChatMessageModel?>> getMessagesForUser(String userId) {
+    return Collection('/private/$userId/messages').getData<ChatMessageModel>();
   }
 
-  static Future<bool> uploadChatMessage(ChatMessageModel resource) async {
+  static Future<bool> uploadChatMessage(ChatMessageModel model) async {
     final collection = Collection('messages');
 
     try {
-      await collection.addOrdered(resource.toJson());
+      await collection.document(model.id).upsert(model.toJson());
 
       return true;
     } catch (error) {
@@ -70,8 +80,8 @@ class ChatMessageUtils {
     return true;
   }
 
-  static Future<bool> deleteChatMessages() async {
-    final List<ChatMessageModel?> list = await getData();
+  static Future<bool> deleteMessages(String userId) async {
+    final List<ChatMessageModel?> list = await getMessagesForUser(userId);
 
     await Future.forEach(list, (ChatMessageModel? item) {
       if (Utils.isNotEmpty(item!.imageId)) {
@@ -83,16 +93,5 @@ class ChatMessageUtils {
     });
 
     return Collection('messages').delete();
-  }
-
-  static Future<bool> updateChatMessages(List<ChatMessageModel> list) async {
-    await deleteChatMessages();
-
-    // can't use normal forEach
-    await Future.forEach(list, (ChatMessageModel item) {
-      return ChatMessageUtils.uploadChatMessage(item);
-    });
-
-    return true;
   }
 }

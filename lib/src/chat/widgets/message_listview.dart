@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 
 class MessageListView extends StatefulWidget {
   const MessageListView({
-    required this.user,
+    required this.userModel,
     this.scrollController,
     this.messages,
     this.onLongPressAvatar,
@@ -21,7 +21,7 @@ class MessageListView extends StatefulWidget {
   });
 
   final List<ChatMessageModel>? messages;
-  final ChatUserModel user;
+  final ChatUserModel userModel;
   final void Function(ChatUserModel)? onPressAvatar;
   final void Function(ChatUserModel)? onLongPressAvatar;
   final bool? renderAvatarOnTop;
@@ -89,7 +89,8 @@ class _MessageListViewState extends State<MessageListView> {
   }
 
   Widget avatarWidget({required int index, required bool leftSide}) {
-    final bool isUser = widget.messages![index].user.uid == widget.user.uid;
+    final bool isUser =
+        widget.messages![index].user.userId == widget.userModel.userId;
     bool addAvatar = false;
 
     if (leftSide && !isUser) {
@@ -135,10 +136,10 @@ class _MessageListViewState extends State<MessageListView> {
                     children: <Widget>[
                       dateWidget(showDate: showDate, index: i),
                       Row(
-                        mainAxisAlignment:
-                            widget.messages![i].user.uid == widget.user.uid
-                                ? MainAxisAlignment.end
-                                : MainAxisAlignment.start,
+                        mainAxisAlignment: widget.messages![i].user.userId ==
+                                widget.userModel.userId
+                            ? MainAxisAlignment.end
+                            : MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           avatarWidget(index: i, leftSide: true),
@@ -175,8 +176,8 @@ class _MessageListViewState extends State<MessageListView> {
                               }
                             },
                             child: MessageContainer(
-                              isUser: widget.messages![i].user.uid ==
-                                  widget.user.uid,
+                              isUser: widget.messages![i].user.userId ==
+                                  widget.userModel.userId,
                               message: widget.messages![i],
                             ),
                           ),

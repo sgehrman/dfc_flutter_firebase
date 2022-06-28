@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_message_utils.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/widgets/chat_widget.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
@@ -12,18 +13,14 @@ import 'package:provider/provider.dart';
 
 class ChatScreenContents extends StatefulWidget {
   const ChatScreenContents({
-    required this.stream,
-    required this.toUid,
     required this.title,
     required this.name,
-    this.isAdmin = false,
+    required this.collectionPath,
   });
 
-  final Stream<List<ChatMessageModel>> stream;
-  final bool isAdmin;
-  final String? toUid;
   final String title;
   final String name;
+  final String collectionPath;
 
   @override
   _ChatScreenContentsState createState() => _ChatScreenContentsState();
@@ -34,6 +31,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
       GlobalKey<ChatWidgetState>();
 
   StreamSubscription<List<ChatMessageModel?>>? _subscription;
+  List<ChatMessageModel> _messages = [];
 
   @override
   void initState() {
@@ -58,7 +56,9 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
 
   @override
   void dispose() {
-    _unsubscribe();
+    _subscription?.cancel();
+    _subscription = null;
+
     super.dispose();
   }
 
@@ -69,19 +69,20 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
   void _subscribe() {
     bool firstTime = true;
 
-    _subscription = widget.stream.listen(
+    final Stream<List<ChatMessageModel>> stream =
+        ChatMessageUtils.chatMessagesForUser(widget.collectionPath);
+
+    _subscription = stream.listen(
       (data) {
+        _messages = data;
+        setState(() {});
+
         SchedulerBinding.instance.addPostFrameCallback((_) {
           final scrollController = getScrollController;
           if (scrollController != null) {
             if (firstTime) {
               firstTime = false;
               Utils.scrollToEnd(scrollController, reversed: true);
-
-              // Todo: SNG this isn't updating if new items are added that would cause the scroll to add elevation
-              // we don't get onScrolled window first comes up since we are already scrolled to the bottom (reverse mode)
-              // but we need to sync elevation
-              // onScrolled();
             } else {
               Utils.scrollToEndAnimated(scrollController, reversed: true);
             }
@@ -101,11 +102,6 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
     );
   }
 
-  void _unsubscribe() {
-    _subscription?.cancel();
-    _subscription = null;
-  }
-
   IconButton _scrollToBottomButton() {
     return IconButton(
       icon: const Icon(Icons.keyboard_arrow_down),
@@ -120,14 +116,13 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
   }
 
   ChatUserModel _getUser() {
-    final userProvider =
-        Provider.of<FirebaseUserProvider>(context, listen: false);
+    final userProvider = context.read<FirebaseUserProvider>();
 
     if (userProvider.hasUser) {
       return ChatUserModel(
         name: userProvider.displayName,
         email: userProvider.email,
-        uid: widget.isAdmin ? 'admin' : userProvider.userId,
+        userId: userProvider.userId,
         avatar: userProvider.photoUrl,
       );
     }
@@ -144,38 +139,22 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
         title: Text(widget.title),
         actions: [_scrollToBottomButton()],
       ),
-      body: StreamBuilder<List<ChatMessageModel>>(
-        stream: widget.stream,
-        builder: (context, snap) {
-          bool hasData = false;
-
-          if (snap.hasError) {
-            print('snap.hasError');
-            print(snap);
-          }
-
-          if (snap.hasData && !snap.hasError) {
-            hasData = true;
-          }
-
-          if (hasData) {
-            List<ChatMessageModel>? messages = snap.data;
+      body: Builder(
+        builder: (context) {
+          if (_messages.isNotEmpty) {
+            List<ChatMessageModel>? messages = _messages;
 
             if (Utils.isNotEmpty(messages)) {
-              messages!.sort((ChatMessageModel a, ChatMessageModel b) {
-                return a.timestamp.compareTo(b.timestamp);
-              });
               messages = messages.reversed.take(100).toList();
             } else {
               messages = [
                 ChatMessageModel(
-                  toUid: widget.toUid ?? '',
                   user: ChatUserModel(
-                    uid: 'admin',
+                    // userId:  '' just a generic message, no user
                     name: widget.name,
                   ),
                   text:
-                      'Hi, this is a community chat open to members.  Discuss whatever you like.',
+                      'Hi, send us your suggestions, comments, criticisms etc.',
                 ),
               ];
             }
@@ -183,8 +162,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
             return ChatWidget(
               key: _chatWidgetKey,
               messages: messages,
-              user: _getUser(),
-              toUid: widget.toUid,
+              userModel: _getUser(),
               onPressAvatar: (ChatUserModel user) {
                 print('OnPressAvatar: ${user.name}');
               },

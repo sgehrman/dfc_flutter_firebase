@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 class ChatWidget extends StatefulWidget {
   const ChatWidget({
     required this.messages,
-    required this.user,
-    required this.toUid,
+    required this.userModel,
     this.onLongPressAvatar,
     this.onLongPressMessage,
     this.onPressAvatar,
@@ -16,8 +15,7 @@ class ChatWidget extends StatefulWidget {
   }) : super(key: key);
 
   final List<ChatMessageModel> messages;
-  final ChatUserModel user;
-  final String? toUid;
+  final ChatUserModel userModel;
   final Function(ChatUserModel)? onPressAvatar;
   final Function(ChatUserModel)? onLongPressAvatar;
   final Function(ChatMessageModel)? onLongPressMessage;
@@ -42,15 +40,14 @@ class ChatWidgetState extends State<ChatWidget> {
       children: <Widget>[
         MessageListView(
           scrollController: scrollController,
-          user: widget.user,
+          userModel: widget.userModel,
           messages: widget.messages,
           onLongPressAvatar: widget.onLongPressAvatar,
           onPressAvatar: widget.onPressAvatar,
           onLongPressMessage: widget.onLongPressMessage,
         ),
         ChatInput(
-          toUid: widget.toUid,
-          user: widget.user,
+          userModel: widget.userModel,
         ),
       ],
     );

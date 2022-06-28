@@ -3,30 +3,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
-import 'package:dfc_flutter_firebase/src/firebase/firestore_refs.dart';
+import 'package:dfc_flutter_firebase/src/firebase/firestore_converter.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:stream_transform/stream_transform.dart';
-
-class WhereQuery {
-  WhereQuery(this.fromUid, this.toUid);
-
-  String? fromUid;
-  String? toUid;
-
-  Query where(Query query) {
-    Query result = query;
-
-    if (Utils.isNotEmpty(fromUid)) {
-      result = result.where('user.uid', isEqualTo: fromUid);
-    }
-
-    if (Utils.isNotEmpty(toUid)) {
-      result = result.where('toUid', isEqualTo: toUid);
-    }
-
-    return result;
-  }
-}
 
 class Document {
   Document(String path) {
@@ -49,7 +28,7 @@ class Document {
   Future<T?> getData<T>() async {
     final v = await ref.get();
 
-    return FirestoreRefs.convert(
+    return FirestoreConverter.convert(
       T,
       v.data(),
       documentId,
@@ -62,7 +41,7 @@ class Document {
     final filter = ref.snapshots().where((v) => v.data() != null);
 
     return filter.map(
-      (v) => FirestoreRefs.convert(
+      (v) => FirestoreConverter.convert(
         T,
         v.data(),
         documentId,
@@ -109,7 +88,7 @@ class Collection {
 
     return snapshots.docs
         .map(
-          (doc) => FirestoreRefs.convert(
+          (doc) => FirestoreConverter.convert(
             T,
             doc.data(),
             doc.id,
@@ -123,7 +102,7 @@ class Collection {
     return ref.snapshots().map(
           (v) => v.docs
               .map(
-                (doc) => FirestoreRefs.convert(
+                (doc) => FirestoreConverter.convert(
                   T,
                   doc.data(),
                   doc.id,
@@ -132,70 +111,6 @@ class Collection {
               )
               .toList(),
         );
-  }
-
-  // must use add to add the timestamp automatically
-  Stream<List<T>> orderedStreamData<T>({List<WhereQuery>? where}) {
-    final Query<Map<String, dynamic>> query = ref.orderBy('timestamp');
-
-    if (Utils.isNotEmpty(where)) {
-      final List<Stream<List<T>>> streams = [];
-
-      for (final w in where!) {
-        final Query<Map<String, dynamic>> tmpQuery =
-            w.where(query) as Query<Map<String, dynamic>>;
-
-        streams.add(
-          tmpQuery.snapshots().map(
-                (v) => v.docs.map((doc) {
-                  return FirestoreRefs.convert(
-                    T,
-                    doc.data(),
-                    doc.id,
-                    Document.withRef(doc.reference),
-                  ) as T;
-                }).toList(),
-              ),
-        );
-      }
-
-      Stream<List<T>> stream = streams.first;
-
-      if (streams.length > 1) {
-        stream = stream.combineLatest<List<T>, List<T>>(
-          streams[1],
-          (List<T> a, List<T> b) {
-            final List<T> result = [];
-            result.addAll(a);
-            result.addAll(b);
-
-            return result;
-          },
-        );
-      }
-
-      return stream.asBroadcastStream();
-    } else {
-      return query.snapshots().map(
-            (v) => v.docs
-                .map(
-                  (doc) => FirestoreRefs.convert(
-                    T,
-                    doc.data(),
-                    doc.id,
-                    Document.withRef(doc.reference),
-                  ) as T,
-                )
-                .toList(),
-          );
-    }
-  }
-
-  // use orderedStreamData above to sort by timestamp
-  Future<DocumentReference> addOrdered(Map<String, dynamic> data) {
-    data['timestamp'] = FieldValue.serverTimestamp();
-
-    return ref.add(Map<String, dynamic>.from(data));
   }
 
   Future<bool> delete() async {

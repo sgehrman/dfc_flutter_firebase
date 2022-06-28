@@ -11,13 +11,11 @@ import 'package:image_picker/image_picker.dart';
 
 class ChatInput extends StatefulWidget {
   const ChatInput({
-    required this.user,
-    required this.toUid,
+    required this.userModel,
     Key? key,
   }) : super(key: key);
 
-  final ChatUserModel user;
-  final String? toUid;
+  final ChatUserModel userModel;
 
   @override
   _ChatInputState createState() => _ChatInputState();
@@ -116,8 +114,7 @@ class _ChatInputState extends State<ChatInput> {
       );
 
       final ChatMessageModel message = ChatMessageModel(
-        toUid: widget.toUid ?? '',
-        user: widget.user,
+        user: widget.userModel,
         image: url,
         imageId: imageId,
       );
@@ -211,9 +208,8 @@ class _ChatInputState extends State<ChatInput> {
 
     if (text.isNotEmpty) {
       final ChatMessageModel message = ChatMessageModel(
-        toUid: widget.toUid ?? '',
         text: text,
-        user: widget.user,
+        user: widget.userModel,
       );
 
       await ChatMessageUtils.uploadChatMessage(message);

@@ -1,4 +1,5 @@
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
+import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 
 typedef FirestoreRefConverter = dynamic Function(
@@ -8,7 +9,7 @@ typedef FirestoreRefConverter = dynamic Function(
   Document document,
 );
 
-class FirestoreRefs {
+class FirestoreConverter {
   static FirestoreRefConverter? converter;
 
   static dynamic convert(
@@ -26,11 +27,21 @@ class FirestoreRefs {
     // always adding id so we can delete by id if needed
     data['id'] = id;
 
-    if (t == ChatMessageModel) {
-      return ChatMessageModel.fromJson(data);
+    if (t == ChatUserModel) {
+      final result = ChatUserModel.fromJson(data);
+      result.document = document;
+
+      return result;
+    } else if (t == ChatMessageModel) {
+      final result = ChatMessageModel.fromJson(data);
+      result.document = document;
+
+      return result;
     } else {
       if (converter != null) {
         return converter!(t, data, id, document);
+      } else {
+        print('### $t not found in FirestoreRefs.convert');
       }
     }
   }

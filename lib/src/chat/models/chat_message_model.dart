@@ -11,7 +11,6 @@ class ChatMessageModel extends ModelToMap {
   ChatMessageModel({
     required this.user,
     this.text = '',
-    this.toUid = '',
     this.id = '',
     this.image = '',
     this.imageId = '',
@@ -28,7 +27,6 @@ class ChatMessageModel extends ModelToMap {
   String text;
   int timestamp;
   ChatUserModel user;
-  String toUid;
   String image;
   String imageId;
   String id;
