@@ -174,7 +174,7 @@ class _MessageListViewState extends State<MessageListView> {
                               : MainAxisAlignment.start,
                       children: <Widget>[
                         avatarWidget(index: i, leftSide: true),
-                        Expanded(
+                        Flexible(
                           child: GestureDetector(
                             onLongPress: () => _handleLongPress(chatMessage),
                             child: MessageContainer(

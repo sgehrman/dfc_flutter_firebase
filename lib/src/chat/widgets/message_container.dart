@@ -76,7 +76,7 @@ class MessageContainer extends StatelessWidget {
         crossAxisAlignment:
             isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          Expanded(child: _bubble()),
+          _bubble(),
           if (Utils.isNotEmpty(message.image))
             Image.network(
               message.image,
