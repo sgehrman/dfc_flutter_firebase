@@ -1,4 +1,4 @@
-import 'package:dfc_flutter/dfc_flutter.dart';
+import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:dfc_flutter_firebase/src/image/image_delete_dialog.dart';
 import 'package:dfc_flutter_firebase/src/image/image_upload_dialog.dart';
@@ -31,9 +31,8 @@ class ImageManagerScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 18),
-                child: SuperImage(
-                  SuperImageSource(url: imageUrls[index].url),
-                  enableViewer: true,
+                child: Image.network(
+                  imageUrls[index].url ?? '',
                 ),
               ),
               Positioned(

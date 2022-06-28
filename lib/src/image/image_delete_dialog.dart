@@ -1,4 +1,4 @@
-import 'package:dfc_flutter/dfc_flutter.dart';
+import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +13,9 @@ class ImageDeleteDialog extends StatefulWidget {
 
 class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
   Widget imageWell(BuildContext context) {
-    return SuperImage(
-      SuperImageSource(url: widget.imageUrl.url),
+    return Image.network(
+      widget.imageUrl.url ?? '',
       fit: BoxFit.contain,
-      enableViewer: true,
     );
   }
 

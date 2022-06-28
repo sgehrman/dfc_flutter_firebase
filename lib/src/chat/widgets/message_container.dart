@@ -1,5 +1,5 @@
 import 'package:bubble/bubble.dart';
-import 'package:dfc_flutter/dfc_flutter.dart';
+import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
@@ -76,11 +76,10 @@ class MessageContainer extends StatelessWidget {
           children: <Widget>[
             bubble(),
             if (Utils.isNotEmpty(message.image))
-              SuperImage(
-                SuperImageSource(url: message.image),
+              Image.network(
+                message.image!,
                 width: MediaQuery.of(context).size.width * 0.7,
                 fit: BoxFit.contain,
-                enableViewer: true,
               ),
             Padding(
               padding: const EdgeInsets.only(top: 4),

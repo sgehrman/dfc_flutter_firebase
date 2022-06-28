@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:dfc_flutter/dfc_flutter.dart';
+import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_model.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
@@ -33,10 +33,9 @@ class _UploadDialogState extends State<UploadDialog> {
     Widget? child;
 
     if (_imageUrl != null && _imageUrl!.isNotEmpty) {
-      child = SuperImage(
-        SuperImageSource(url: _imageUrl),
+      child = Image.network(
+        _imageUrl ?? '',
         fit: BoxFit.contain,
-        enableViewer: true,
       );
     } else if (_imageFile != null) {
       child = ExtendedImage.file(_imageFile!, fit: BoxFit.contain);
