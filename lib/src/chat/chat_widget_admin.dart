@@ -1,13 +1,13 @@
 import 'dart:math' as math;
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_screen_contents.dart';
+import 'package:dfc_flutter_firebase/src/chat/chat_widget_user.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_utils.dart';
 import 'package:flutter/material.dart';
 
-class ChatAdminScreenContents extends StatefulWidget {
-  const ChatAdminScreenContents({
+class ChatWidgetAdmin extends StatefulWidget {
+  const ChatWidgetAdmin({
     required this.title,
     required this.name,
     required this.collectionPath,
@@ -18,11 +18,10 @@ class ChatAdminScreenContents extends StatefulWidget {
   final String collectionPath;
 
   @override
-  _ChatAdminScreenContentsState createState() =>
-      _ChatAdminScreenContentsState();
+  _ChatWidgetAdminState createState() => _ChatWidgetAdminState();
 }
 
-class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
+class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
   late Stream<List<ChatMessageModel>> stream;
 
   @override
@@ -68,7 +67,7 @@ class _ChatAdminScreenContentsState extends State<ChatAdminScreenContents> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
-                        builder: (context) => ChatScreenContents(
+                        builder: (context) => ChatWidgetUser(
                           title: widget.title,
                           name: widget.name,
                           collectionPath: widget.collectionPath,

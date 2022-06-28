@@ -11,8 +11,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 
-class ChatScreenContents extends StatefulWidget {
-  const ChatScreenContents({
+class ChatWidgetUser extends StatefulWidget {
+  const ChatWidgetUser({
     required this.title,
     required this.name,
     required this.collectionPath,
@@ -23,10 +23,10 @@ class ChatScreenContents extends StatefulWidget {
   final String collectionPath;
 
   @override
-  _ChatScreenContentsState createState() => _ChatScreenContentsState();
+  _ChatWidgetUserState createState() => _ChatWidgetUserState();
 }
 
-class _ChatScreenContentsState extends State<ChatScreenContents> {
+class _ChatWidgetUserState extends State<ChatWidgetUser> {
   final GlobalKey<ChatWidgetState> _chatWidgetKey =
       GlobalKey<ChatWidgetState>();
 
@@ -151,7 +151,7 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
             messages = [
               ChatMessageModel(
                 user: ChatUserModel(
-                  // userId:  '' just a generic message, no user
+                  // just a generic message, no user
                   name: widget.name,
                 ),
                 text: 'Hi, send us your suggestions, comments, criticisms etc.',

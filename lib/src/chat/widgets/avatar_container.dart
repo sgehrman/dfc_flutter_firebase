@@ -1,4 +1,3 @@
-import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -34,9 +33,7 @@ class AvatarContainer extends StatelessWidget {
       },
       child: CircleAvatar(
         backgroundImage: avatarImage(),
-        backgroundColor: isUser!
-            ? Utils.darken(Colors.blue, 0.2)
-            : Utils.darken(Colors.green, 0.2),
+        backgroundColor: isUser! ? Colors.blue[600] : Colors.green[600],
         foregroundColor: Colors.white,
         child: Text(user.initials),
       ),

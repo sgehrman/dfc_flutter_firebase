@@ -16,7 +16,7 @@ class MessageContainer extends StatelessWidget {
   final ChatMessageModel message;
   final bool isUser;
 
-  Widget bubble() {
+  Widget _bubble() {
     if (message.text.isNotEmpty) {
       Widget child;
 
@@ -39,9 +39,8 @@ class MessageContainer extends StatelessWidget {
         clipper: isUser
             ? ChatBubbleClipper1(type: BubbleType.sendBubble)
             : ChatBubbleClipper1(type: BubbleType.receiverBubble),
-        backGroundColor:
-            isUser ? Utils.darken(Colors.blue) : Utils.darken(Colors.green),
-        padding: const EdgeInsets.all(4),
+        backGroundColor: isUser ? Colors.blue[600] : Colors.green[600],
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: child,
       );
     }
@@ -79,7 +78,7 @@ class MessageContainer extends StatelessWidget {
           crossAxisAlignment:
               isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: <Widget>[
-            bubble(),
+            _bubble(),
             if (Utils.isNotEmpty(message.image))
               Image.network(
                 message.image,

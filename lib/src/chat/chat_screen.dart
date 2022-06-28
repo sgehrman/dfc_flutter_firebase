@@ -1,5 +1,5 @@
-import 'package:dfc_flutter_firebase/src/chat/chat_admin_screen_contents.dart';
-import 'package:dfc_flutter_firebase/src/chat/chat_screen_contents.dart';
+import 'package:dfc_flutter_firebase/src/chat/chat_widget_admin.dart';
+import 'package:dfc_flutter_firebase/src/chat/chat_widget_user.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,14 +27,14 @@ class _ChatScreenState extends State<ChatScreen> {
     final userProvider = Provider.of<FirebaseUserProvider>(context);
 
     if (widget.admin && userProvider.isAdmin) {
-      return ChatAdminScreenContents(
+      return ChatWidgetAdmin(
         title: widget.title,
         name: widget.name,
         collectionPath: widget.collectionPath,
       );
     }
 
-    return ChatScreenContents(
+    return ChatWidgetUser(
       collectionPath: widget.collectionPath,
       title: widget.title,
       name: widget.name,
