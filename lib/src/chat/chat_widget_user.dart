@@ -92,15 +92,6 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
     );
   }
 
-  IconButton _scrollToBottomButton() {
-    return IconButton(
-      icon: const Icon(Icons.keyboard_arrow_down),
-      onPressed: () {
-        Utils.scrollToEndAnimated(widget.scrollController, reversed: true);
-      },
-    );
-  }
-
   ChatUserModel _getUser() {
     final userProvider = context.read<FirebaseUserProvider>();
 
@@ -120,43 +111,33 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: [_scrollToBottomButton()],
-      ),
-      body: Builder(
-        builder: (context) {
-          List<ChatMessageModel>? messages = _messages;
+    List<ChatMessageModel>? messages = _messages;
 
-          if (Utils.isNotEmpty(messages)) {
-            messages = messages.reversed.take(100).toList();
-          } else {
-            messages = [
-              ChatMessageModel(
-                user: ChatUserModel(
-                  // just a generic message, no user
-                  name: widget.name,
-                ),
-                text: 'Hi, send us your suggestions, comments, criticisms etc.',
-              ),
-            ];
-          }
+    if (Utils.isNotEmpty(messages)) {
+      messages = messages.reversed.take(100).toList();
+    } else {
+      messages = [
+        ChatMessageModel(
+          user: ChatUserModel(
+            // just a generic message, no user
+            name: widget.name,
+          ),
+          text: 'Hi, send us your suggestions, comments, criticisms etc.',
+        ),
+      ];
+    }
 
-          return ChatWidget(
-            scrollController: widget.scrollController,
-            collectionPath: widget.collectionPath,
-            messages: messages,
-            userModel: _getUser(),
-            onPressAvatar: (ChatUserModel user) {
-              print('OnPressAvatar: ${user.name}');
-            },
-            onLongPressAvatar: (ChatUserModel user) {
-              print('OnLongPressAvatar: ${user.name}');
-            },
-          );
-        },
-      ),
+    return ChatWidget(
+      scrollController: widget.scrollController,
+      collectionPath: widget.collectionPath,
+      messages: messages,
+      userModel: _getUser(),
+      onPressAvatar: (ChatUserModel user) {
+        print('OnPressAvatar: ${user.name}');
+      },
+      onLongPressAvatar: (ChatUserModel user) {
+        print('OnLongPressAvatar: ${user.name}');
+      },
     );
   }
 }
