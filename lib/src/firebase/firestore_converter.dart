@@ -1,5 +1,4 @@
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
-import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 
 typedef FirestoreRefConverter = dynamic Function(
@@ -27,12 +26,7 @@ class FirestoreConverter {
     // always adding id so we can delete by id if needed
     data['id'] = id;
 
-    if (t == ChatUserModel) {
-      final result = ChatUserModel.fromJson(data);
-      result.document = document;
-
-      return result;
-    } else if (t == ChatMessageModel) {
+    if (t == ChatMessageModel) {
       final result = ChatMessageModel.fromJson(data);
       result.document = document;
 

@@ -1,4 +1,3 @@
-import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_user_model.g.dart';
@@ -6,7 +5,7 @@ part 'chat_user_model.g.dart';
 @JsonSerializable(
   explicitToJson: true,
 )
-class ChatUserModel extends ModelToMap {
+class ChatUserModel {
   ChatUserModel({
     this.id = '',
     this.userId = '',
@@ -14,9 +13,6 @@ class ChatUserModel extends ModelToMap {
     this.email = '',
     this.avatar = '',
   });
-
-  @JsonKey(ignore: true)
-  dynamic document;
 
   String id;
   String userId;
@@ -29,15 +25,9 @@ class ChatUserModel extends ModelToMap {
     return toJson().toString();
   }
 
-  @override
-  String getId() {
-    return id;
-  }
-
   factory ChatUserModel.fromJson(Map<String, dynamic> json) =>
       _$ChatUserModelFromJson(json);
 
-  @override
   Map<String, dynamic> toJson() => _$ChatUserModelToJson(this);
 
   String get initials {

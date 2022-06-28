@@ -9,7 +9,7 @@ part of 'chat_user_model.dart';
 ChatUserModel _$ChatUserModelFromJson(Map<String, dynamic> json) =>
     ChatUserModel(
       id: json['id'] as String? ?? '',
-      uid: json['uid'] as String? ?? '',
+      userId: json['userId'] as String? ?? '',
       name: json['name'] as String? ?? '',
       email: json['email'] as String? ?? '',
       avatar: json['avatar'] as String? ?? '',
@@ -18,7 +18,7 @@ ChatUserModel _$ChatUserModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ChatUserModelToJson(ChatUserModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'uid': instance.uid,
+      'userId': instance.userId,
       'name': instance.name,
       'email': instance.email,
       'avatar': instance.avatar,
