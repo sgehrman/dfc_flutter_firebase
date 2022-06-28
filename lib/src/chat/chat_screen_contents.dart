@@ -141,38 +141,33 @@ class _ChatScreenContentsState extends State<ChatScreenContents> {
       ),
       body: Builder(
         builder: (context) {
-          if (_messages.isNotEmpty) {
-            List<ChatMessageModel>? messages = _messages;
+          List<ChatMessageModel>? messages = _messages;
 
-            if (Utils.isNotEmpty(messages)) {
-              messages = messages.reversed.take(100).toList();
-            } else {
-              messages = [
-                ChatMessageModel(
-                  user: ChatUserModel(
-                    // userId:  '' just a generic message, no user
-                    name: widget.name,
-                  ),
-                  text:
-                      'Hi, send us your suggestions, comments, criticisms etc.',
+          if (Utils.isNotEmpty(messages)) {
+            messages = messages.reversed.take(100).toList();
+          } else {
+            messages = [
+              ChatMessageModel(
+                user: ChatUserModel(
+                  // userId:  '' just a generic message, no user
+                  name: widget.name,
                 ),
-              ];
-            }
-
-            return ChatWidget(
-              key: _chatWidgetKey,
-              messages: messages,
-              userModel: _getUser(),
-              onPressAvatar: (ChatUserModel user) {
-                print('OnPressAvatar: ${user.name}');
-              },
-              onLongPressAvatar: (ChatUserModel user) {
-                print('OnLongPressAvatar: ${user.name}');
-              },
-            );
+                text: 'Hi, send us your suggestions, comments, criticisms etc.',
+              ),
+            ];
           }
 
-          return const LoadingWidget();
+          return ChatWidget(
+            key: _chatWidgetKey,
+            messages: messages,
+            userModel: _getUser(),
+            onPressAvatar: (ChatUserModel user) {
+              print('OnPressAvatar: ${user.name}');
+            },
+            onLongPressAvatar: (ChatUserModel user) {
+              print('OnLongPressAvatar: ${user.name}');
+            },
+          );
         },
       ),
     );
