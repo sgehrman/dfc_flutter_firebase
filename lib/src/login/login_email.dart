@@ -10,6 +10,10 @@ class LoginData {
   String toString() {
     return '$email $password';
   }
+
+  // set thse in your app to change
+  static String devEmail = 'test@user.org';
+  static String devPassword = 'password';
 }
 
 class LoginDialog extends StatefulWidget {
@@ -30,9 +34,10 @@ class _LoginDialogState extends State<LoginDialog> {
   void initState() {
     super.initState();
 
-    _initialValue = Utils.debugBuild ? 'test@user.org' : Preferences.loginEmail;
+    _initialValue =
+        Utils.debugBuild ? LoginData.devEmail : Preferences.loginEmail;
 
-    _initialPassword = Utils.debugBuild ? 'password' : '';
+    _initialPassword = Utils.debugBuild ? LoginData.devPassword : '';
   }
 
   void _doSubmit() {
