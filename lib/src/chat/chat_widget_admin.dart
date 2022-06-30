@@ -23,7 +23,7 @@ class ChatWidgetAdmin extends StatefulWidget {
 
 class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
   ChatMessageModel? _clickedChat;
-  List<ChatMessageModel> _chatMessages = [];
+  Stream<List<ChatMessageModel>> _chatMessages = const Stream.empty();
 
   @override
   void initState() {
@@ -62,7 +62,7 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
         // remove ourselves
         map.remove(AuthService().currentUser!.uid);
 
-        _chatMessages = map.values.toList();
+        _chatMessages = Stream.value(map.values.toList());
         setState(() {});
       } catch (err) {
         print(err);
@@ -72,55 +72,68 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ListView.builder(
-          itemCount: _chatMessages.length,
-          itemBuilder: (context, index) {
-            final ChatMessageModel chat = _chatMessages[index];
+    return StreamBuilder<List<ChatMessageModel>>(
+      stream: _chatMessages,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final messages = snapshot.data ?? [];
 
-            final String title =
-                'From: ${chat.user.userId} message: ${chat.text.substring(0, math.min(10, chat.text.length))}';
+          return Stack(
+            children: [
+              ListView.builder(
+                itemCount: messages.length,
+                itemBuilder: (context, index) {
+                  final ChatMessageModel chat = messages[index];
 
-            return ListTile(
-              title: Text(title),
-              subtitle: Text(chat.user.email),
-              onTap: () {
-                _clickedChat = chat;
-                setState(() {});
-              },
-              trailing: IconButton(
-                icon: const Icon(Icons.remove_circle, color: Colors.red),
-                onPressed: () {
-                  final deleteStream = ChatMessageUtils.chatMessagesForUser(
-                    collectionPath: ChatMessageUtils.userIdToCollectionPath(
-                      chat.user.userId,
+                  final String title =
+                      'From: ${chat.user.userId} message: ${chat.text.substring(0, math.min(10, chat.text.length))}';
+
+                  return ListTile(
+                    title: Text(title),
+                    subtitle: Text(chat.user.email),
+                    onTap: () {
+                      _clickedChat = chat;
+                      setState(() {});
+                    },
+                    trailing: IconButton(
+                      icon: const Icon(Icons.remove_circle, color: Colors.red),
+                      onPressed: () {
+                        final deleteStream =
+                            ChatMessageUtils.chatMessagesForUser(
+                          collectionPath:
+                              ChatMessageUtils.userIdToCollectionPath(
+                            chat.user.userId,
+                          ),
+                        );
+
+                        ChatMessageUtils.deleteMessagesFromStream(
+                          stream: deleteStream,
+                        );
+                      },
                     ),
-                  );
-
-                  ChatMessageUtils.deleteMessagesFromStream(
-                    stream: deleteStream,
                   );
                 },
               ),
-            );
-          },
-        ),
-        if (_clickedChat != null)
-          Positioned.fill(
-            child: Material(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              child: ChatWidgetUser(
-                title: 'Admin',
-                name: 'admin',
-                collectionPath: ChatMessageUtils.userIdToCollectionPath(
-                  _clickedChat?.user.userId ?? '',
+              if (_clickedChat != null)
+                Positioned.fill(
+                  child: Material(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    child: ChatWidgetUser(
+                      title: 'Admin',
+                      name: 'admin',
+                      collectionPath: ChatMessageUtils.userIdToCollectionPath(
+                        _clickedChat?.user.userId ?? '',
+                      ),
+                      scrollController: ScrollController(),
+                    ),
+                  ),
                 ),
-                scrollController: ScrollController(),
-              ),
-            ),
-          ),
-      ],
+            ],
+          );
+        }
+
+        return const Center(child: Text('Nothing found'));
+      },
     );
   }
 }
