@@ -59,6 +59,9 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
           map[r.user.userId] = r;
         }
 
+        // remove ourselves
+        map.remove(AuthService().currentUser!.uid);
+
         _chatMessages = map.values.toList();
         setState(() {});
       } catch (err) {
@@ -81,6 +84,7 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
 
             return ListTile(
               title: Text(title),
+              subtitle: Text(chat.user.email),
               onTap: () {
                 _clickedChat = chat;
                 setState(() {});
