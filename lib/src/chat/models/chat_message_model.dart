@@ -1,5 +1,6 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_user_model.dart';
+import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_message_model.g.dart';
@@ -26,7 +27,7 @@ class ChatMessageModel extends ModelToMap {
   }
 
   @JsonKey(ignore: true)
-  dynamic document;
+  Document? document;
 
   String text;
   int timestamp;

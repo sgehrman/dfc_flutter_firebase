@@ -1,4 +1,5 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
+import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'image_url_model.g.dart';
@@ -18,7 +19,7 @@ class ImageUrlModel extends ModelToMap {
   }
 
   @JsonKey(ignore: true)
-  dynamic document;
+  Document? document;
 
   String id;
   String name;

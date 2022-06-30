@@ -100,10 +100,6 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
 
                   ChatMessageUtils.deleteMessagesFromStream(
                     stream: deleteStream,
-                    collectionPath: ChatMessageUtils.userIdToDocumentPath(
-                      chat.user.userId,
-                      chat.id,
-                    ),
                   );
                 },
               ),

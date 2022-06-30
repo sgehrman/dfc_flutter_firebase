@@ -58,21 +58,17 @@ class ChatMessageUtils {
   }
 
   static Future<bool> deleteChatMessage({
-    required String collectionPath,
-    required String id,
+    required ChatMessageModel model,
   }) async {
-    final doc = Document('$collectionPath/$id');
-
     try {
-      final ChatMessageModel? message = await doc.getData<ChatMessageModel>();
-      if (Utils.isNotEmpty(message?.imageId)) {
+      if (Utils.isNotEmpty(model.imageId)) {
         await ImageUrlUtils.deleteImageStorage(
-          message!.imageId,
+          model.imageId,
           ImageUrlUtils.chatImageFolder,
         );
       }
 
-      await doc.delete();
+      await model.document?.delete();
 
       return true;
     } catch (error) {
@@ -83,13 +79,12 @@ class ChatMessageUtils {
   }
 
   static Future<bool> deleteMessagesFromStream({
-    required Stream<List<ChatMessageModel?>> stream,
-    required String collectionPath,
+    required Stream<List<ChatMessageModel>> stream,
   }) async {
-    final List<ChatMessageModel?> list = await stream.first;
+    final List<ChatMessageModel> list = await stream.first;
 
-    for (final ChatMessageModel? chat in list) {
-      await deleteChatMessage(collectionPath: collectionPath, id: chat!.id);
+    for (final ChatMessageModel chat in list) {
+      await deleteChatMessage(model: chat);
     }
 
     return true;

@@ -1,4 +1,5 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
+import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_user_model.g.dart';
@@ -20,7 +21,7 @@ class ChatUserModel extends ModelToMap {
   }
 
   @JsonKey(ignore: true)
-  dynamic document;
+  Document? document;
 
   String id;
   String userId;
