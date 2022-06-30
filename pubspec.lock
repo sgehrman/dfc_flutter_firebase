@@ -349,7 +349,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9298d97b2b54949f87e96a7f0d9c39feb6d9511f"
+      resolved-ref: b320561b2a4e394ff9ecd579a986e1b9876c277d
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"

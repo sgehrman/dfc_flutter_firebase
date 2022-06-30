@@ -85,7 +85,7 @@ class _MessageListViewState extends State<MessageListView> {
       );
     }
 
-    return NothingWidget();
+    return const NothingWidget();
   }
 
   Widget avatarWidget({required int index, required bool leftSide}) {
@@ -108,7 +108,7 @@ class _MessageListViewState extends State<MessageListView> {
       );
     }
 
-    return NothingWidget();
+    return const NothingWidget();
   }
 
   void _handleLongPress(ChatMessageModel chatMessage) {

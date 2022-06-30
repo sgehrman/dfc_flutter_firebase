@@ -60,7 +60,7 @@ class MessageContainer extends StatelessWidget {
       );
     }
 
-    return NothingWidget();
+    return const NothingWidget();
   }
 
   String userName() {
