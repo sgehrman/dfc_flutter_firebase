@@ -39,30 +39,21 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
       try {
         final query = store.collectionGroup('messages');
 
-        final snapshot = await query.snapshots().first;
+        final snapshot = query.snapshots();
 
-        final results = snapshot.docs.map(
-          (doc) {
-            return FirestoreConverter.convert(
-              ChatMessageModel,
-              doc.data(),
-              doc.id,
-              Document.withRef(doc.reference),
-            ) as ChatMessageModel;
-          },
-        ).toList();
+        _chatMessages = snapshot.map((snap) {
+          return snap.docs.map(
+            (doc) {
+              return FirestoreConverter.convert(
+                ChatMessageModel,
+                doc.data(),
+                doc.id,
+                Document.withRef(doc.reference),
+              ) as ChatMessageModel;
+            },
+          ).toList();
+        });
 
-        final Map<String, ChatMessageModel> map = {};
-
-        // we only need the last message, so this limits it to one message per user
-        for (final r in results) {
-          map[r.user.userId] = r;
-        }
-
-        // remove ourselves
-        map.remove(AuthService().currentUser!.uid);
-
-        _chatMessages = Stream.value(map.values.toList());
         setState(() {});
       } catch (err) {
         print(err);
@@ -76,7 +67,19 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
       stream: _chatMessages,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          final messages = snapshot.data ?? [];
+          final data = snapshot.data ?? [];
+
+          final Map<String, ChatMessageModel> map = {};
+
+          // we only need the last message, so this limits it to one message per user
+          for (final r in data) {
+            map[r.user.userId] = r;
+          }
+
+          // remove ourselves
+          map.remove(AuthService().currentUser!.uid);
+
+          final messages = map.values.toList();
 
           return Stack(
             children: [
