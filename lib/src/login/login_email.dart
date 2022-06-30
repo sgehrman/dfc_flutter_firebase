@@ -1,5 +1,6 @@
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
+import 'package:dfc_flutter_firebase/src/login/user_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginData {
@@ -10,10 +11,6 @@ class LoginData {
   String toString() {
     return '$email $password';
   }
-
-  // set thse in your app to change
-  static String devEmail = 'test@user.org';
-  static String devPassword = 'password';
 }
 
 class LoginDialog extends StatefulWidget {
@@ -35,9 +32,9 @@ class _LoginDialogState extends State<LoginDialog> {
     super.initState();
 
     _initialValue =
-        Utils.debugBuild ? LoginData.devEmail : Preferences.loginEmail;
+        Utils.debugBuild ? UserLoginScreen.devEmail : Preferences.loginEmail;
 
-    _initialPassword = Utils.debugBuild ? LoginData.devPassword : '';
+    _initialPassword = Utils.debugBuild ? UserLoginScreen.devPassword : '';
   }
 
   void _doSubmit() {

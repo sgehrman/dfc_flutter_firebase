@@ -12,6 +12,10 @@ class UserLoginScreen extends StatefulWidget {
   final String? title;
   final bool anonymousLogin;
 
+  // set thse in your app to change
+  static String devEmail = 'test@user.org';
+  static String devPassword = 'password';
+
   @override
   _UserLoginScreenState createState() => _UserLoginScreenState();
 }
