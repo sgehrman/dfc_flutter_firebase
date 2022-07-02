@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen();
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<FirebaseUserProvider>(context);
@@ -15,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(userName)),
-      body: ProfileWidget(),
+      body: const ProfileWidget(),
     );
   }
 }

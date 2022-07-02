@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfileWidget extends StatelessWidget {
+  const ProfileWidget();
+
   Widget _userImageWidget(
     BuildContext context,
     FirebaseUserProvider userProvider,

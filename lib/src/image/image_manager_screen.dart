@@ -6,7 +6,7 @@ import 'package:dfc_flutter_firebase/src/image/image_upload_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ImageManagerScreen extends StatelessWidget {
-  final String appBarTitle = 'Images';
+  const ImageManagerScreen();
 
   Widget _buildGrid(BuildContext context, List<ImageUrlModel> imageUrls) {
     final double width = MediaQuery.of(context).size.width;
@@ -71,7 +71,7 @@ class ImageManagerScreen extends StatelessWidget {
           return const LoadingWidget();
         },
       ),
-      appBar: AppBar(title: Text(appBarTitle)),
+      appBar: AppBar(title: const Text('Images')),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showImageUploadDialog(context);
