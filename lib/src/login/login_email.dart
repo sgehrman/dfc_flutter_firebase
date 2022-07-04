@@ -70,7 +70,7 @@ class _LoginDialogState extends State<LoginDialog> {
         style: Theme.of(context).textTheme.headline5,
       ),
       contentPadding:
-          const EdgeInsets.only(top: 12, bottom: 16, left: 16, right: 16),
+          const EdgeInsets.only(top: 16, bottom: 24, left: 24, right: 24),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -91,10 +91,9 @@ class _LoginDialogState extends State<LoginDialog> {
                   });
                 },
                 initialValue: _initialValue,
-                keyboardType: TextInputType
-                    .emailAddress, // Use email input type for emails.
-                textInputAction: TextInputAction.next,
-
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.done,
+                onFieldSubmitted: (s) => _doSubmit(),
                 decoration: const InputDecoration(
                   icon: Icon(Icons.email),
                   hintText: 'Email Address',
