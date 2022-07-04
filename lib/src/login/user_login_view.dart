@@ -7,9 +7,11 @@ class UserLoginView extends StatefulWidget {
   const UserLoginView({
     this.googleClientId,
     this.anonymousLogin = true,
+    this.appleLogin = false,
   });
 
   final bool anonymousLogin;
+  final bool appleLogin;
   final String? googleClientId;
 
   @override
@@ -41,13 +43,13 @@ class UserLoginViewState extends State<UserLoginView> {
         icon: Icons.email,
         type: 'email',
       ),
-      const SizedBox(height: 4),
+      const SizedBox(height: 10),
       const UserLoginButton(
         text: 'Login with Phone',
         icon: Icons.phone,
         type: 'phone',
       ),
-      const SizedBox(height: 4),
+      const SizedBox(height: 10),
       UserLoginButton(
         text: 'Login with Google',
         icon: Icons.golf_course, // SNG needs svg
@@ -56,9 +58,9 @@ class UserLoginViewState extends State<UserLoginView> {
       ),
     ]);
 
-    if (Utils.isIOS) {
+    if (widget.appleLogin && Utils.isIOS || Utils.isMacOS) {
       result.addAll(<Widget>[
-        const SizedBox(height: 4),
+        const SizedBox(height: 10),
         const UserLoginButton(
           text: 'Sign in With Apple',
           icon: Icons.person, // not used
