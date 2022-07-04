@@ -95,26 +95,22 @@ class UserLoginViewState extends State<UserLoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 30),
-          Text(
-            appName,
-            style: Theme.of(context).textTheme.headline5,
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            'Login to get started',
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          const SizedBox(height: 40),
-          loginButtons(context),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          appName,
+          style: Theme.of(context).textTheme.headline5,
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          'Login to get started',
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+        const SizedBox(height: 40),
+        loginButtons(context),
+      ],
     );
   }
 }
