@@ -81,6 +81,7 @@ class _LoginDialogState extends State<LoginDialog> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               TextFormField(
+                autofocus: true,
                 autocorrect: false,
                 autovalidateMode: _autovalidate
                     ? AutovalidateMode.always
