@@ -20,6 +20,10 @@ class AuthService {
   AuthService._();
   static AuthService? _instance;
 
+  // set this to turn off firebase on some platforms
+  // call in main if (!web) AuthService.firebaseDisabled = true; for example
+  static bool firebaseDisabled = false;
+
   // only used for the disconnect
   GoogleSignIn? _googleSignIn;
   final AuthInstance _authInstance = AuthInstance();
@@ -417,8 +421,7 @@ class AuthService {
 
 class AuthInstance {
   auth.User? get currentUser {
-    // firebase plugins don't work yet on these
-    if (!Utils.isLinux && !Utils.isWindows) {
+    if (!AuthService.firebaseDisabled) {
       return authInstance!.currentUser;
     }
 
@@ -426,8 +429,7 @@ class AuthInstance {
   }
 
   Stream<auth.User?> get userStream {
-    // firebase plugins don't work yet on these
-    if (!Utils.isLinux && !Utils.isWindows) {
+    if (!AuthService.firebaseDisabled) {
       return authInstance!.authStateChanges();
     }
 
@@ -435,8 +437,7 @@ class AuthInstance {
   }
 
   FirebaseFirestore? get store {
-    // firebase plugins don't work yet on these
-    if (!Utils.isLinux && !Utils.isWindows) {
+    if (!AuthService.firebaseDisabled) {
       return FirebaseFirestore.instance;
     }
 
@@ -444,8 +445,7 @@ class AuthInstance {
   }
 
   auth.FirebaseAuth? get authInstance {
-    // firebase plugins don't work yet on these
-    if (!Utils.isLinux && !Utils.isWindows) {
+    if (!AuthService.firebaseDisabled) {
       return auth.FirebaseAuth.instance;
     }
 
