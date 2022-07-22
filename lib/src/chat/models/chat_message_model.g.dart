@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+import './chat_user_model.dart';
 
 part of 'chat_message_model.dart';
 
