@@ -17,8 +17,8 @@ dependencies:
   extended_image: ^6.2.1
 
   # bug fix builds
-  firebase_auth: 3.4.1
-  firebase_core: 1.19.1
+  firebase_auth: 3.4.0
+  firebase_core: 1.19.0
 
   firebase_storage: ^10.3.2
   flutter:
