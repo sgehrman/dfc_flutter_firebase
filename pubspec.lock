@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "40.0.0"
+    version: "43.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.3.1"
   analyzer_plugin:
     dependency: transitive
     description:
@@ -217,7 +217,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.0"
+    version: "3.4.2"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -231,7 +231,7 @@ packages:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.0"
+    version: "2.8.2"
   cloud_functions:
     dependency: "direct main"
     description:
@@ -259,7 +259,7 @@ packages:
       name: code_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.0"
   collection:
     dependency: transitive
     description:
@@ -301,7 +301,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.16.0"
+    version: "4.17.0"
   dart_style:
     dependency: transitive
     description:
@@ -370,7 +370,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c4a5548e6e7c6e2a2a2af20b1d0fe61966880db9
+      resolved-ref: d702b36aae3b0f6c4658fc819dc6b13192ed9e18
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -379,7 +379,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: de9c46d4a5f523e5ffcc5fc892e5a4eb6ec3ddbf
+      resolved-ref: b0299efb1aded3e7a7965c7bce94df14b4a73248
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
@@ -396,7 +396,7 @@ packages:
       name: email_validator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.1.16"
   extended_image:
     dependency: "direct main"
     description:
@@ -445,21 +445,21 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.5.0"
+    version: "3.6.1"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.4.0"
+    version: "6.5.1"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.1"
   firebase_core:
     dependency: "direct main"
     description:
@@ -487,7 +487,7 @@ packages:
       name: firebase_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.3.3"
+    version: "10.3.4"
   firebase_storage_platform_interface:
     dependency: transitive
     description:
@@ -501,7 +501,7 @@ packages:
       name: firebase_storage_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.1"
+    version: "3.3.2"
   fixnum:
     dependency: transitive
     description:
@@ -719,7 +719,7 @@ packages:
       name: http_client_helper
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   http_multi_server:
     dependency: transitive
     description:
@@ -775,7 +775,7 @@ packages:
       name: image_picker_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.0"
   intl:
     dependency: "direct main"
     description:
@@ -971,14 +971,14 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.16"
+    version: "2.0.17"
   path_provider_ios:
     dependency: transitive
     description:
       name: path_provider_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.10"
+    version: "2.0.11"
   path_provider_linux:
     dependency: transitive
     description:
@@ -1104,7 +1104,7 @@ packages:
       name: rive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.0"
+    version: "0.9.1"
   share_extend:
     dependency: transitive
     description:
@@ -1174,7 +1174,7 @@ packages:
       name: shelf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.1"
+    version: "1.3.2"
   shelf_web_socket:
     dependency: transitive
     description:
@@ -1424,7 +1424,7 @@ packages:
       name: video_player_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.11"
+    version: "2.0.12"
   watcher:
     dependency: transitive
     description:
