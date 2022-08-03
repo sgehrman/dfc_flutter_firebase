@@ -15,7 +15,7 @@ dependencies:
   dfc_flutter:
     git: https://github.com/sgehrman/dfc_flutter
   extended_image: ^6.2.1
-  firebase_auth: ^3.6.1
+  firebase_auth: ^3.6.2
   firebase_core: ^1.20.0
   firebase_storage: ^10.3.4
   flutter:
