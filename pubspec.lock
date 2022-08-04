@@ -217,7 +217,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.2"
+    version: "3.4.3"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -231,7 +231,7 @@ packages:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.2"
+    version: "2.8.3"
   cloud_functions:
     dependency: "direct main"
     description:
@@ -370,7 +370,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d702b36aae3b0f6c4658fc819dc6b13192ed9e18
+      resolved-ref: "315394ab462d0131f3f44ccc277e96e66337380c"
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -396,7 +396,7 @@ packages:
       name: email_validator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.16"
+    version: "2.1.17"
   extended_image:
     dependency: "direct main"
     description:
@@ -597,7 +597,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1+1"
+    version: "1.1.2"
   flutter_test:
     dependency: transitive
     description: flutter
@@ -712,7 +712,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.4"
+    version: "0.13.5"
   http_client_helper:
     dependency: transitive
     description:
@@ -775,7 +775,7 @@ packages:
       name: image_picker_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.0"
+    version: "2.6.1"
   intl:
     dependency: "direct main"
     description:
@@ -950,14 +950,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   path_provider:
     dependency: transitive
     description:

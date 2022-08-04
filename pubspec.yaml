@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   avatar_glow: ^2.0.1
-  cloud_firestore: ^3.4.2
+  cloud_firestore: ^3.4.3
   cloud_functions: ^3.3.3
   crypto: ^3.0.1
   dfc_flutter:
