@@ -370,7 +370,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: fd6ed97f61eb7cd9abd7dd0af1b09b65098454f6
+      resolved-ref: "4dd3697974cc2a9475329ed5e975eb92ab42d70e"
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -563,11 +563,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  flutter_localizations:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_markdown:
     dependency: transitive
     description:
@@ -1103,13 +1098,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.1"
-  relative_time:
-    dependency: transitive
-    description:
-      name: relative_time
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   rive:
     dependency: transitive
     description:
