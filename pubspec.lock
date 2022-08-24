@@ -370,7 +370,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "4dd3697974cc2a9475329ed5e975eb92ab42d70e"
+      resolved-ref: "03413fc919a73215b1e6dbc814eee799cf24e3ac"
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -569,14 +569,14 @@ packages:
       name: flutter_markdown
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.10+3"
+    version: "0.6.10+4"
   flutter_multi_formatter:
     dependency: "direct main"
     description:
       name: flutter_multi_formatter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.6.2"
   flutter_parsed_text:
     dependency: "direct main"
     description:
