@@ -9,15 +9,15 @@ environment:
 
 dependencies:
   avatar_glow: ^2.0.1
-  cloud_firestore: ^3.4.3
-  cloud_functions: ^3.3.3
+  cloud_firestore: ^3.4.6
+  cloud_functions: ^3.3.6
   crypto: ^3.0.1
   dfc_flutter:
     git: https://github.com/sgehrman/dfc_flutter
   extended_image: ^6.2.1
-  firebase_auth: ^3.6.2
-  firebase_core: ^1.20.0
-  firebase_storage: ^10.3.4
+  firebase_auth: ^3.7.0
+  firebase_core: ^1.21.1
+  firebase_storage: ^10.3.7
   flutter:
     sdk: flutter
   flutter_chat_bubble: ^2.0.0
