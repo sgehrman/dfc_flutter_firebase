@@ -2,7 +2,9 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 
 class FirebaseUtils {
-  static Future<List<Map>?> users({String? nextPageToken}) async {
+  static Future<List<Map<dynamic, dynamic>>?> users({
+    String? nextPageToken,
+  }) async {
     try {
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'users',
@@ -12,12 +14,12 @@ class FirebaseUtils {
         'nextPageToken': nextPageToken,
       };
 
-      final resp = await callable.call<Map>(params);
+      final resp = await callable.call<Map<dynamic, dynamic>>(params);
 
-      final Map m = resp.data;
+      final Map<dynamic, dynamic> m = resp.data;
 
-      if (m.listVal<Map>('list') != null) {
-        return m.listVal<Map>('list');
+      if (m.listVal<Map<dynamic, dynamic>>('list') != null) {
+        return m.listVal<Map<dynamic, dynamic>>('list');
       }
 
       return null;
@@ -38,7 +40,7 @@ class FirebaseUtils {
         'docPath': docPath,
       };
 
-      final resp = await callable.call<Map>(params);
+      final resp = await callable.call<Map<dynamic, dynamic>>(params);
 
       final respMap = resp.data;
 
@@ -59,8 +61,8 @@ class FirebaseUtils {
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'addUserClaims',
       );
-      final HttpsCallableResult resp =
-          await callable.call<Map>(<String, dynamic>{
+      final HttpsCallableResult<dynamic> resp =
+          await callable.call<Map<dynamic, dynamic>>(<String, dynamic>{
         'email': email,
         'uid': uid,
         'claims': claims,
@@ -95,8 +97,8 @@ class FirebaseUtils {
       final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'sendEmail',
       );
-      final HttpsCallableResult resp =
-          await callable.call<Map>(<String, dynamic>{
+      final HttpsCallableResult<dynamic> resp =
+          await callable.call<Map<dynamic, dynamic>>(<String, dynamic>{
         'to': to,
         'subject': subject,
         'from': from,

@@ -225,7 +225,7 @@ class AuthService {
     return false;
   }
 
-  Future<Map> sendPasswordResetEmail(String email) async {
+  Future<Map<dynamic, dynamic>> sendPasswordResetEmail(String email) async {
     try {
       await authInstance?.sendPasswordResetEmail(email: email);
 

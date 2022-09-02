@@ -201,7 +201,6 @@ Future<LoginData?> showEmailLoginDialog(BuildContext context) async {
         ),
       );
     },
-    transitionDuration: const Duration(milliseconds: 200),
     barrierDismissible: true,
     barrierLabel: '',
     context: context,
