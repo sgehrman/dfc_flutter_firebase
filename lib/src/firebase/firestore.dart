@@ -98,6 +98,29 @@ class Collection {
         .toList();
   }
 
+  Future<List<T>> getPagedData<T>(int limit, String? startAfterDocId) async {
+    var query = ref.limit(limit);
+
+    if (Utils.isNotEmpty(startAfterDocId)) {
+      final startAfterDoc = await ref.doc(startAfterDocId).get();
+
+      query = query.startAfterDocument(startAfterDoc);
+    }
+
+    final snapshot = await query.get();
+
+    return snapshot.docs
+        .map(
+          (doc) => FirestoreConverter.convert(
+            T,
+            doc.data(),
+            doc.id,
+            Document.withRef(doc.reference),
+          ) as T,
+        )
+        .toList();
+  }
+
   Stream<List<T>> streamData<T>() {
     return ref.snapshots().map(
           (v) => v.docs
