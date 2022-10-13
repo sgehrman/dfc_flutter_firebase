@@ -98,7 +98,10 @@ class Collection {
         .toList();
   }
 
-  Future<List<T>> getPagedData<T>(int limit, String? startAfterDocId) async {
+  Future<List<T>> getPagedData<T>({
+    required int limit,
+    String? startAfterDocId,
+  }) async {
     var query = ref.limit(limit);
 
     if (Utils.isNotEmpty(startAfterDocId)) {
