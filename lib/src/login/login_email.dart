@@ -32,7 +32,7 @@ class _LoginDialogState extends State<LoginDialog> {
     super.initState();
 
     _initialValue =
-        Utils.debugBuild ? UserLoginScreen.devEmail : Preferences.loginEmail;
+        Utils.debugBuild ? UserLoginScreen.devEmail : Preferences().loginEmail;
 
     _initialPassword = Utils.debugBuild ? UserLoginScreen.devPassword : '';
   }

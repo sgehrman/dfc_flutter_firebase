@@ -36,11 +36,11 @@ class _UserLoginButtonState extends State<UserLoginButton> {
       if (user != null) {
         // save in prefs.
         if (Utils.isNotEmpty(user.email)) {
-          Preferences.loginEmail = user.email;
+          Preferences().loginEmail = user.email;
         }
 
         if (Utils.isNotEmpty(user.phoneNumber)) {
-          Preferences.loginPhone = user.phoneNumber;
+          Preferences().loginPhone = user.phoneNumber;
         }
       }
     }
