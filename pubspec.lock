@@ -377,7 +377,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "3c23328afafe6874f816bd5224e037c4e7375415"
+      resolved-ref: "79be529b8be745c6a335b8bcae47a6f20c06faa2"
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -386,7 +386,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "2743a7ff92cf4da15e1945904dccb65bc7eb59ce"
+      resolved-ref: "095e20f7ec56b4b660406ef371f29aea17e3f6e3"
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"
