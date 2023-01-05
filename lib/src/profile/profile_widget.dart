@@ -55,22 +55,22 @@ class ProfileWidget extends StatelessWidget {
         child: Column(
           children: [
             _userImageWidget(context, userProvider),
-            Text(userName, style: Theme.of(context).textTheme.headline5),
+            Text(userName, style: Theme.of(context).textTheme.headlineSmall),
             Text(
               userProvider.email,
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
               userProvider.phoneNumber,
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
               'id: ${userProvider.userId}',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
               'admin: ${userProvider.isAdmin}',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 30),
             ElevatedButton(

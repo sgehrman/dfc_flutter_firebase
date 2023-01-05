@@ -67,7 +67,7 @@ class _LoginDialogState extends State<LoginDialog> {
     return SimpleDialog(
       title: Text(
         'Login with Email',
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       contentPadding:
           const EdgeInsets.only(top: 16, bottom: 24, left: 24, right: 24),

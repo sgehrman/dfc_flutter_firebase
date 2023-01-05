@@ -42,7 +42,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
     return SimpleDialog(
       title: Text(
         'Edit your Profile',
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       contentPadding:
           const EdgeInsets.only(top: 12, bottom: 16, left: 16, right: 16),
@@ -106,7 +106,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
         const SizedBox(height: 20),
         Text(
           'Edit your Avatar image',
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

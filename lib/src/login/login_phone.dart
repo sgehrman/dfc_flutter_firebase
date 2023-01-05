@@ -70,7 +70,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
     return SimpleDialog(
       title: Text(
         'Login with Phone',
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       contentPadding:
           const EdgeInsets.only(top: 12, bottom: 16, left: 16, right: 16),

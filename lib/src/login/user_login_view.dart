@@ -101,12 +101,12 @@ class UserLoginViewState extends State<UserLoginView> {
       children: [
         Text(
           appName,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
         ),
         Text(
           'Login to get started',
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 40),
         loginButtons(context),

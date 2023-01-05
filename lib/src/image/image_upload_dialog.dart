@@ -148,7 +148,7 @@ class _UploadDialogState extends State<UploadDialog> {
     return SimpleDialog(
       title: Text(
         'Upload Image',
-        style: Theme.of(context).textTheme.headline5,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       contentPadding:
           const EdgeInsets.only(top: 6, bottom: 16, left: 20, right: 20),
