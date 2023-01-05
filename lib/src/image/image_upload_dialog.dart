@@ -1,9 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_utils.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,7 +38,7 @@ class _UploadDialogState extends State<UploadDialog> {
         fit: BoxFit.contain,
       );
     } else if (_imageFile != null) {
-      child = ExtendedImage.file(_imageFile!, fit: BoxFit.contain);
+      child = Image.file(_imageFile!, fit: BoxFit.contain);
     }
 
     return Stack(
@@ -100,12 +100,26 @@ class _UploadDialogState extends State<UploadDialog> {
   }
 
   Future<String?> _uploadImageUrl(BuildContext context, String filename) async {
-    final Uint8List? imageData = await getNetworkImageData(_imageUrl!);
+    // final Uint8List? imageData = await getNetworkImageData(_imageUrl!);
 
-    if (imageData != null) {
+    final imageStream =
+        NetworkImage(_imageUrl!).resolve(ImageConfiguration.empty);
+
+    final completer = Completer<ByteData>();
+
+    final ImageStreamListener listener =
+        ImageStreamListener((image, synchronousCall) async {
+      completer.complete(await image.image.toByteData());
+    });
+
+    imageStream.addListener(listener);
+    final imageBytes = await completer.future;
+    imageStream.removeListener(listener);
+
+    if (imageBytes.lengthInBytes > 0) {
       return ImageUrlUtils.uploadImageData(
         filename,
-        imageData,
+        imageBytes.buffer.asUint8List(),
         saveAsJpg: _saveAsJpg!,
       );
     }
