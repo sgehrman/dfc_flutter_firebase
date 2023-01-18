@@ -13,8 +13,8 @@ class ChatInput extends StatefulWidget {
   const ChatInput({
     required this.userModel,
     required this.collectionPath,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ChatUserModel userModel;
   final String collectionPath;
