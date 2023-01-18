@@ -295,7 +295,7 @@ class AuthService {
     return SignInResult(user: user, errorString: errorString);
   }
 
-  Future<bool> addClaimToEmail(String email, String claim) async {
+  Future<bool> addClaimToEmail(String email, String claim) {
     return FirebaseUtils.modifyClaims(
       email: email,
       uid: null,
@@ -303,7 +303,7 @@ class AuthService {
     );
   }
 
-  Future<bool> removeClaimForEmail(String email, String claim) async {
+  Future<bool> removeClaimForEmail(String email, String claim) {
     return FirebaseUtils.modifyClaims(
       email: email,
       uid: null,
@@ -311,7 +311,7 @@ class AuthService {
     );
   }
 
-  Future<bool> addClaimToUid(String? uid, String? claim) async {
+  Future<bool> addClaimToUid(String? uid, String? claim) {
     return FirebaseUtils.modifyClaims(
       email: null,
       uid: uid,
@@ -319,7 +319,7 @@ class AuthService {
     );
   }
 
-  Future<bool> removeClaimForUid(String? uid, String? claim) async {
+  Future<bool> removeClaimForUid(String? uid, String? claim) {
     return FirebaseUtils.modifyClaims(
       email: null,
       uid: uid,

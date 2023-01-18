@@ -177,7 +177,7 @@ class UserData {
     });
   }
 
-  Future<T?> getDocument<T>() async {
+  Future<T?> getDocument<T>() {
     final auth.User? user = authService.currentUser;
 
     if (Utils.isNotEmpty(user?.uid)) {
@@ -189,7 +189,7 @@ class UserData {
     }
   }
 
-  Future<void> upsert(Map<String, dynamic> data) async {
+  Future<void> upsert(Map<String, dynamic> data) {
     final auth.User? user = authService.currentUser;
 
     if (user != null && user.uid.isNotEmpty) {
@@ -197,5 +197,7 @@ class UserData {
 
       return ref.upsert(data);
     }
+
+    return Future.value();
   }
 }

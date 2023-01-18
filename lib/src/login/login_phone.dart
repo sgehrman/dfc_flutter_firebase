@@ -74,8 +74,8 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
       ),
       contentPadding:
           const EdgeInsets.only(top: 12, bottom: 16, left: 16, right: 16),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       children: [
         ChangeNotifierProvider.value(

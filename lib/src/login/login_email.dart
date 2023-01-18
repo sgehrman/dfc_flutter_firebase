@@ -71,8 +71,8 @@ class _LoginDialogState extends State<LoginDialog> {
       ),
       contentPadding:
           const EdgeInsets.only(top: 16, bottom: 24, left: 24, right: 24),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       children: [
         Form(

@@ -83,9 +83,11 @@ class _UploadDialogState extends State<UploadDialog> {
     final image = await ImagePicker().pickImage(source: imageSource);
 
     if (image != null) {
-      setState(() {
-        _imageFile = File(image.path);
-      });
+      _imageFile = File(image.path);
+
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 
@@ -152,8 +154,8 @@ class _UploadDialogState extends State<UploadDialog> {
       ),
       contentPadding:
           const EdgeInsets.only(top: 6, bottom: 16, left: 20, right: 20),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       children: [
         Form(

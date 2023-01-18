@@ -60,15 +60,13 @@ class _MessageListViewState extends State<MessageListView> {
   Widget dateWidget({required bool showDate, required int index}) {
     if (showDate) {
       return Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.grey,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        padding: const EdgeInsets.only(
-          bottom: 5,
-          top: 5,
-          left: 10,
-          right: 10,
+        padding: const EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 10,
         ),
         margin: const EdgeInsets.symmetric(vertical: 10),
         child: Text(

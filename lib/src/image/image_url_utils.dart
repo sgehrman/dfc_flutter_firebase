@@ -104,7 +104,7 @@ class ImageUrlUtils {
   static Future<void> deleteImageStorage(
     String? imageId, [
     String? folder,
-  ]) async {
+  ]) {
     final Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child(folder != null ? '$folder/$imageId' : imageId!);

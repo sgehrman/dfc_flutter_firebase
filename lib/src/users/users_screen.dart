@@ -94,9 +94,11 @@ class _UsersScreenState extends State<UsersScreen> {
                     );
 
                     if (modified ?? false) {
-                      setState(() {
-                        _future = FirebaseUtils.users();
-                      });
+                      _future = FirebaseUtils.users();
+
+                      if (mounted) {
+                        setState(() {});
+                      }
                     }
                   },
                 );

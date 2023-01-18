@@ -27,11 +27,11 @@ class UserLoginViewState extends State<UserLoginView> {
   String appName = '';
 
   Future<void> _setup() async {
-    final name = await Utils.getAppName();
+    appName = await Utils.getAppName();
 
-    setState(() {
-      appName = name;
-    });
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   List<Widget> _buttons() {

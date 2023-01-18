@@ -41,8 +41,8 @@ class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
       ),
       contentPadding:
           const EdgeInsets.only(top: 6, bottom: 16, left: 20, right: 20),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       children: [
         imageWell(context),
