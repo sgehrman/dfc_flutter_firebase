@@ -115,7 +115,7 @@ class _MessageListViewState extends State<MessageListView> {
     } else {
       showBottomSheet<dynamic>(
         context: context,
-        builder: (context) => Container(
+        builder: (context) => DecoratedBox(
           decoration: const BoxDecoration(
             border: Border(
               top: BorderSide(
