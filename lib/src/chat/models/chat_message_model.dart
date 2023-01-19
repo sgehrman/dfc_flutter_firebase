@@ -26,7 +26,7 @@ class ChatMessageModel extends ModelToMap {
     }
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   Document? document;
 
   String text;

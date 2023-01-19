@@ -18,7 +18,7 @@ class ImageUrlModel extends ModelToMap {
     }
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   Document? document;
 
   String id;
