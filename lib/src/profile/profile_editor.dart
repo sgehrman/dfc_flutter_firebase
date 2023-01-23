@@ -32,6 +32,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
       );
 
       _data.photoUrl = url;
+    } else {
+      print('file null for ImagePicker');
     }
   }
 
@@ -128,9 +130,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
           ],
         ),
         // Text(_data.photoUrl ?? userProvider.photoUrl ?? ''),
-        const SizedBox(
-          height: 10,
-        ),
+        const SizedBox(height: 10),
 
         ElevatedButton(
           onPressed: () {

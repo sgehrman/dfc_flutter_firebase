@@ -98,7 +98,10 @@ class ImageUrlUtils {
 
     final taskSnapshot = await uploadTask;
 
-    return taskSnapshot.ref.getDownloadURL();
+    final downloadUrl = await taskSnapshot.ref.getDownloadURL();
+    print('uploadImageDataReturnUrl: $downloadUrl');
+
+    return downloadUrl;
   }
 
   static Future<void> deleteImageStorage(
