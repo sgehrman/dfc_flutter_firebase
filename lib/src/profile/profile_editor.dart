@@ -111,12 +111,13 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
-              onPressed: () => handleImagePicker(camera: true),
-              icon: const Icon(
-                Icons.photo_camera,
+            if (Utils.isMobile)
+              IconButton(
+                onPressed: () => handleImagePicker(camera: true),
+                icon: const Icon(
+                  Icons.photo_camera,
+                ),
               ),
-            ),
             IconButton(
               onPressed: () => handleImagePicker(camera: false),
               icon: const Icon(
