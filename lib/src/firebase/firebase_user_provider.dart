@@ -20,7 +20,10 @@ class FirebaseUserProvider extends ChangeNotifier {
 
   // work around for reload
   Future<void> reload() async {
-    await _user!.reload();
+    if (_user != null) {
+      await _user!.reload();
+    }
+
     _user = _auth.currentUser;
 
     notifyListeners();
@@ -46,15 +49,19 @@ class FirebaseUserProvider extends ChangeNotifier {
     return _auth.photoUrl;
   }
 
-  Future<void> updateProfile(String displayName, String? photoURL) async {
-    await _user!.updatePhotoURL(photoURL);
-    await _user!.updateDisplayName(displayName);
-    await reload();
+  Future<void> updateProfile(String inDisplayName, String? inPhotoUrl) async {
+    if (_user != null) {
+      await _user!.updatePhotoURL(inPhotoUrl);
+      await _user!.updateDisplayName(inDisplayName);
+      await reload();
+    }
   }
 
-  Future<void> updateEmail(String email) async {
-    await _user!.updateEmail(email);
-    await reload();
+  Future<void> updateEmail(String inEmail) async {
+    if (_user != null) {
+      await _user!.updateEmail(inEmail);
+      await reload();
+    }
   }
 
   Future<void> _setup() async {

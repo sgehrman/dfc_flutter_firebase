@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
@@ -74,7 +72,7 @@ class ProfileWidget extends StatelessWidget {
                     await showEmailEditProfileDialog(context);
 
                 if (data != null) {
-                  print('Saving profile: ${json.encode(data)}');
+                  print('Saving profile: ${data.toString()}');
 
                   try {
                     if (Utils.isNotEmpty(data.name)) {

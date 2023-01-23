@@ -171,6 +171,6 @@ class ProfileData {
 
   @override
   String toString() {
-    return '$email $name';
+    return 'ProfileData: $email $name ${photoUrl ?? 'photoUrl null'}';
   }
 }
