@@ -32,6 +32,10 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
       );
 
       _data.photoUrl = url;
+
+      if (mounted) {
+        setState(() {});
+      }
     } else {
       print('file null for ImagePicker');
     }
@@ -39,7 +43,17 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<FirebaseUserProvider>(context);
+    final userProvider = context.watch<FirebaseUserProvider>();
+
+    Widget image = const Icon(Icons.image, size: 32);
+
+    final String imageUrl = _data.photoUrl ?? userProvider.photoUrl;
+    if (imageUrl.isNotEmpty) {
+      image = Image.network(
+        imageUrl,
+        fit: BoxFit.contain,
+      );
+    }
 
     return SimpleDialog(
       title: Text(
@@ -129,9 +143,14 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
             ),
           ],
         ),
-        // Text(_data.photoUrl ?? userProvider.photoUrl ?? ''),
-        const SizedBox(height: 10),
-
+        Container(
+          height: 300,
+          width: 300,
+          padding: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(color: Colors.white),
+          child: image,
+        ),
+        const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () {
             if (_formKey.currentState!.validate()) {
