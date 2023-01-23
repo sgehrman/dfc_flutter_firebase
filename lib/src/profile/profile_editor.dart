@@ -104,13 +104,14 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
           ),
         ),
         const SizedBox(height: 20),
-        Text(
-          'Edit your Avatar image',
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              'Edit your Avatar image',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const Spacer(),
             if (Utils.isMobile)
               IconButton(
                 onPressed: () => handleImagePicker(camera: true),
@@ -150,6 +151,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
   }
 }
 
+// ==================================================
+
 Future<ProfileData?> showEmailEditProfileDialog(BuildContext context) async {
   return showDialog<ProfileData>(
     context: context,
@@ -158,6 +161,8 @@ Future<ProfileData?> showEmailEditProfileDialog(BuildContext context) async {
     },
   );
 }
+
+// ==================================================
 
 class ProfileData {
   String email = '';

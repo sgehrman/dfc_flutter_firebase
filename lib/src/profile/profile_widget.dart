@@ -8,10 +8,15 @@ import 'package:provider/provider.dart';
 class ProfileWidget extends StatelessWidget {
   const ProfileWidget();
 
-  Widget _userImageWidget(
-    BuildContext context,
-    FirebaseUserProvider userProvider,
-  ) {
+  @override
+  Widget build(BuildContext context) {
+    final userProvider = context.watch<FirebaseUserProvider>();
+    String userName = 'Profile';
+
+    if (userProvider.hasUser) {
+      userName = userProvider.identity;
+    }
+
     Widget image;
     Color backColor = Colors.white;
 
@@ -22,39 +27,27 @@ class ProfileWidget extends StatelessWidget {
       image = const Icon(Icons.person, size: 90, color: Colors.black54);
     }
 
-    return AvatarGlow(
-      endRadius: 80, //required
-      glowColor: Colors.blue,
-
-      child: Material(
-        clipBehavior: Clip.antiAlias,
-        elevation: 8,
-        shape: const CircleBorder(),
-        child: CircleAvatar(
-          backgroundColor: backColor,
-          radius: 60,
-          child: image,
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final userProvider = Provider.of<FirebaseUserProvider>(context);
-    String userName = 'Profile';
-
-    if (userProvider.hasUser) {
-      userName = userProvider.identity;
-    }
-
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Center(
         child: Column(
           children: [
-            _userImageWidget(context, userProvider),
+            AvatarGlow(
+              endRadius: 80, //required
+              glowColor: Colors.blue,
+
+              child: Material(
+                clipBehavior: Clip.antiAlias,
+                elevation: 8,
+                shape: const CircleBorder(),
+                child: CircleAvatar(
+                  backgroundColor: backColor,
+                  radius: 60,
+                  child: image,
+                ),
+              ),
+            ),
             Text(userName, style: Theme.of(context).textTheme.headlineSmall),
             Text(
               userProvider.email,
