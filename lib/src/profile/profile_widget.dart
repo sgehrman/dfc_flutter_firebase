@@ -72,8 +72,6 @@ class ProfileWidget extends StatelessWidget {
                     await showEmailEditProfileDialog(context);
 
                 if (data != null) {
-                  print('Saving profile: ${data.toString()}');
-
                   try {
                     if (Utils.isNotEmpty(data.name)) {
                       await userProvider.updateProfile(
