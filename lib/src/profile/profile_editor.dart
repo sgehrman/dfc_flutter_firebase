@@ -144,8 +144,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
           ],
         ),
         Container(
-          height: 300,
-          width: 300,
+          height: 150,
           padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(color: Colors.white),
           child: image,
