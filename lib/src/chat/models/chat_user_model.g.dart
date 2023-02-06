@@ -12,6 +12,7 @@ ChatUserModel _$ChatUserModelFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String? ?? '',
       name: json['name'] as String? ?? '',
       email: json['email'] as String? ?? '',
+      phone: json['phone'] as String? ?? '',
       avatar: json['avatar'] as String? ?? '',
     );
 
@@ -21,5 +22,6 @@ Map<String, dynamic> _$ChatUserModelToJson(ChatUserModel instance) =>
       'userId': instance.userId,
       'name': instance.name,
       'email': instance.email,
+      'phone': instance.phone,
       'avatar': instance.avatar,
     };

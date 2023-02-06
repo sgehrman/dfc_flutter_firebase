@@ -95,10 +95,15 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
   ChatUserModel _getUser() {
     final userProvider = context.read<FirebaseUserProvider>();
 
+    print(
+      '${userProvider.identity} ${userProvider.email} ${userProvider.userId} ${userProvider.photoUrl} ',
+    );
+
     if (userProvider.hasUser) {
       return ChatUserModel(
         name: userProvider.identity,
         email: userProvider.email,
+        phone: userProvider.phoneNumber,
         userId: userProvider.userId,
         avatar: userProvider.photoUrl,
       );

@@ -13,6 +13,7 @@ class ChatUserModel extends ModelToMap {
     this.userId = '',
     this.name = '',
     this.email = '',
+    this.phone = '',
     this.avatar = '',
   }) {
     if (id.isEmpty) {
@@ -27,6 +28,7 @@ class ChatUserModel extends ModelToMap {
   String userId;
   String name;
   String email;
+  String phone;
   String avatar;
 
   @override
