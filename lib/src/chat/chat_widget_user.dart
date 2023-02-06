@@ -97,7 +97,7 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
 
     if (userProvider.hasUser) {
       return ChatUserModel(
-        name: userProvider.displayName,
+        name: userProvider.identity,
         email: userProvider.email,
         userId: userProvider.userId,
         avatar: userProvider.photoUrl,
@@ -133,7 +133,7 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
       messages: messages,
       userModel: _getUser(),
       onPressAvatar: (ChatUserModel user) {
-        print('OnPressAvatar: ${user.name}');
+        print('OnPressAvatar: $user');
       },
       onLongPressAvatar: (ChatUserModel user) {
         print('OnLongPressAvatar: ${user.name}');
