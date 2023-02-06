@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 class UserLoginView extends StatefulWidget {
   const UserLoginView({
-    this.googleClientId,
+    this.googleClientId = '',
     this.anonymousLogin = true,
     this.appleLogin = false,
   });
 
   final bool anonymousLogin;
   final bool appleLogin;
-  final String? googleClientId;
+  final String googleClientId;
 
   @override
   State<StatefulWidget> createState() => UserLoginViewState();
@@ -50,12 +50,13 @@ class UserLoginViewState extends State<UserLoginView> {
         type: 'phone',
       ),
       const SizedBox(height: 10),
-      UserLoginButton(
-        text: 'Login with Google',
-        icon: Icons.golf_course, // SNG needs svg
-        type: 'google',
-        googleClientId: widget.googleClientId,
-      ),
+      if (widget.googleClientId.isNotEmpty)
+        UserLoginButton(
+          text: 'Login with Google',
+          icon: Icons.golf_course, // SNG needs svg
+          type: 'google',
+          googleClientId: widget.googleClientId,
+        ),
     ]);
 
     if (widget.appleLogin && Utils.isIOS || Utils.isMacOS) {
