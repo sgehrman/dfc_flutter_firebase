@@ -17,7 +17,7 @@ class UserLoginScreen extends StatefulWidget {
   static String devPassword = 'password';
 
   @override
-  _UserLoginScreenState createState() => _UserLoginScreenState();
+  State<UserLoginScreen> createState() => _UserLoginScreenState();
 }
 
 class _UserLoginScreenState extends State<UserLoginScreen> {

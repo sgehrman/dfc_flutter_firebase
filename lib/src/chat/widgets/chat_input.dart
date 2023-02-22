@@ -20,7 +20,7 @@ class ChatInput extends StatefulWidget {
   final String collectionPath;
 
   @override
-  _ChatInputState createState() => _ChatInputState();
+  State<ChatInput> createState() => _ChatInputState();
 }
 
 class _ChatInputState extends State<ChatInput> {

@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 class EditProfileDialog extends StatefulWidget {
   @override
-  _EditProfileDialogState createState() => _EditProfileDialogState();
+  State<EditProfileDialog> createState() => _EditProfileDialogState();
 }
 
 class _EditProfileDialogState extends State<EditProfileDialog> {

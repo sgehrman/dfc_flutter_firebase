@@ -9,7 +9,7 @@ class ImageDeleteDialog extends StatefulWidget {
   final ImageUrlModel imageUrl;
 
   @override
-  _ImageDeleteDialogState createState() => _ImageDeleteDialogState();
+  State<ImageDeleteDialog> createState() => _ImageDeleteDialogState();
 }
 
 class _ImageDeleteDialogState extends State<ImageDeleteDialog> {

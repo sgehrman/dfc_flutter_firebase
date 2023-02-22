@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 class LoginPhoneDialog extends StatefulWidget {
   @override
-  _LoginPhoneDialogState createState() => _LoginPhoneDialogState();
+  State<LoginPhoneDialog> createState() => _LoginPhoneDialogState();
 }
 
 class _LoginPhoneDialogState extends State<LoginPhoneDialog> {

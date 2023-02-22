@@ -18,7 +18,7 @@ class ChatWidgetAdmin extends StatefulWidget {
   final String name;
 
   @override
-  _ChatWidgetAdminState createState() => _ChatWidgetAdminState();
+  State<ChatWidgetAdmin> createState() => _ChatWidgetAdminState();
 }
 
 class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {

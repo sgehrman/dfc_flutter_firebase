@@ -19,7 +19,7 @@ class UploadData {
 
 class UploadDialog extends StatefulWidget {
   @override
-  _UploadDialogState createState() => _UploadDialogState();
+  State<UploadDialog> createState() => _UploadDialogState();
 }
 
 class _UploadDialogState extends State<UploadDialog> {

@@ -25,7 +25,7 @@ class ChatWidgetUser extends StatefulWidget {
   final ScrollController scrollController;
 
   @override
-  _ChatWidgetUserState createState() => _ChatWidgetUserState();
+  State<ChatWidgetUser> createState() => _ChatWidgetUserState();
 }
 
 class _ChatWidgetUserState extends State<ChatWidgetUser> {

@@ -21,7 +21,7 @@ class UserLoginButton extends StatefulWidget {
   final String? googleClientId;
 
   @override
-  _UserLoginButtonState createState() => _UserLoginButtonState();
+  State<UserLoginButton> createState() => _UserLoginButtonState();
 }
 
 class _UserLoginButtonState extends State<UserLoginButton> {

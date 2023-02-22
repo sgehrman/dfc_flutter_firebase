@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class UsersScreen extends StatefulWidget {
   @override
-  _UsersScreenState createState() => _UsersScreenState();
+  State<UsersScreen> createState() => _UsersScreenState();
 }
 
 class _UsersScreenState extends State<UsersScreen> {

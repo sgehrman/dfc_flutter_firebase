@@ -31,7 +31,7 @@ class MessageListView extends StatefulWidget {
   final bool? visible;
 
   @override
-  _MessageListViewState createState() => _MessageListViewState();
+  State<MessageListView> createState() => _MessageListViewState();
 }
 
 class _MessageListViewState extends State<MessageListView> {

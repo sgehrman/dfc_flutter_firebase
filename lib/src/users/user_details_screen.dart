@@ -8,7 +8,7 @@ class UserDetailsScreen extends StatefulWidget {
   final Map<String, dynamic>? map;
 
   @override
-  _UserDetailsScreenState createState() => _UserDetailsScreenState();
+  State<UserDetailsScreen> createState() => _UserDetailsScreenState();
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {

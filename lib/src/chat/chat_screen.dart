@@ -19,7 +19,7 @@ class ChatScreen extends StatefulWidget {
   final String collectionPath;
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {

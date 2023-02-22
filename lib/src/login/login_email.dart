@@ -15,7 +15,7 @@ class LoginData {
 
 class LoginDialog extends StatefulWidget {
   @override
-  _LoginDialogState createState() => _LoginDialogState();
+  State<LoginDialog> createState() => _LoginDialogState();
 }
 
 class _LoginDialogState extends State<LoginDialog> {
