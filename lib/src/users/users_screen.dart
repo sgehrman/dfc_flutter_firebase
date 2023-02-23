@@ -107,7 +107,7 @@ class _UsersScreenState extends State<UsersScreen> {
               itemCount: list.length,
             );
           } else {
-            return const LoadingWidget();
+            return LoadingWidget(color: Theme.of(context).primaryColor);
           }
         },
       ),

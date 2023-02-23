@@ -68,7 +68,7 @@ class ImageManagerScreen extends StatelessWidget {
             return _buildGrid(context, imageUrls ?? []);
           }
 
-          return const LoadingWidget();
+          return LoadingWidget(color: Theme.of(context).primaryColor);
         },
       ),
       appBar: AppBar(title: const Text('Images')),
