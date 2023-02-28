@@ -52,10 +52,12 @@ class _UserLoginButtonState extends State<UserLoginButton> {
     if (data != null) {
       final AuthService auth = AuthService();
 
-      handleAuthResult(
-        context,
-        await auth.emailSignIn(data.email, data.password),
-      );
+      if (context.mounted) {
+        handleAuthResult(
+          context,
+          await auth.emailSignIn(data.email, data.password),
+        );
+      }
     }
   }
 
@@ -86,10 +88,12 @@ class _UserLoginButtonState extends State<UserLoginButton> {
       case 'apple':
         final userCredential = await signInWithApple();
 
-        handleAuthResult(
-          context,
-          SignInResult(user: userCredential.user, errorString: ''),
-        );
+        if (context.mounted) {
+          handleAuthResult(
+            context,
+            SignInResult(user: userCredential.user, errorString: ''),
+          );
+        }
         break;
       default:
         handleAuthResult(context, await auth.anonLogin());

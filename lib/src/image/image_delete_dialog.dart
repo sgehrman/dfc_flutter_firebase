@@ -56,7 +56,9 @@ class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
           onPressed: () async {
             final bool success = await _deleteImage(context);
             if (success) {
-              Navigator.of(context).pop();
+              if (context.mounted) {
+                Navigator.of(context).pop();
+              }
             } else {
               print('error on delete image');
             }

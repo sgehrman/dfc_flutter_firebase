@@ -232,7 +232,9 @@ class _UploadDialogState extends State<UploadDialog> {
 
               _data.url = await _uploadImage(context, _data.name);
               if (Utils.isNotEmpty(_data.url)) {
-                Navigator.of(context).pop(_data);
+                if (context.mounted) {
+                  Navigator.of(context).pop(_data);
+                }
               } else {
                 print('error on upload image');
               }

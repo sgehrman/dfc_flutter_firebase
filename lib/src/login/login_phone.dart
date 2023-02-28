@@ -110,7 +110,9 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
                 _smsCodeController.text.trim(),
               );
 
-              Navigator.of(context).pop(result);
+              if (context.mounted) {
+                Navigator.of(context).pop(result);
+              }
             }
           },
           label: const Text('Login'),

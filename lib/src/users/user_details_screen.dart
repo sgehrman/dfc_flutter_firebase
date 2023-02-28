@@ -54,18 +54,22 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   final bool result = await auth.addClaimToUid(uid, claim);
 
                   if (result) {
-                    Utils.showSnackbar(
-                      context,
-                      '$uid as now is a member of $claim',
-                    );
+                    if (context.mounted) {
+                      Utils.showSnackbar(
+                        context,
+                        '$uid as now is a member of $claim',
+                      );
 
-                    Navigator.of(context).pop(true);
+                      Navigator.of(context).pop(true);
+                    }
                   } else {
-                    Utils.showSnackbar(
-                      context,
-                      'An error occurred',
-                      error: true,
-                    );
+                    if (context.mounted) {
+                      Utils.showSnackbar(
+                        context,
+                        'An error occurred',
+                        error: true,
+                      );
+                    }
                   }
                 }
               },
@@ -84,18 +88,22 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   final bool result = await auth.removeClaimForUid(uid, claim);
 
                   if (result) {
-                    Utils.showSnackbar(
-                      context,
-                      '$claim membership has been removed for $uid',
-                    );
+                    if (context.mounted) {
+                      Utils.showSnackbar(
+                        context,
+                        '$claim membership has been removed for $uid',
+                      );
 
-                    Navigator.of(context).pop(true);
+                      Navigator.of(context).pop(true);
+                    }
                   } else {
-                    Utils.showSnackbar(
-                      context,
-                      'An error occurred',
-                      error: true,
-                    );
+                    if (context.mounted) {
+                      Utils.showSnackbar(
+                        context,
+                        'An error occurred',
+                        error: true,
+                      );
+                    }
                   }
                 }
               },
