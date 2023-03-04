@@ -22,7 +22,7 @@ dependencies:
   flutter_chat_bubble: ^2.0.0
   flutter_keyboard_visibility: ^5.4.0
   flutter_multi_formatter: ^2.9.11
-  google_sign_in: ^5.4.2
+  google_sign_in: ^6.0.2
   image: ^4.0.15
   image_picker: ^0.8.6
   intl: ^0.17.0
