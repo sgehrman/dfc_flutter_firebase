@@ -25,6 +25,7 @@ class MessageContainer extends StatelessWidget {
       } else {
         child = TextWithLinks(
           message.text,
+          humanize: true,
           style: const TextStyle(
             color: Colors.white,
           ),
