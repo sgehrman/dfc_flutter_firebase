@@ -374,7 +374,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "67167d0ef6728274783f1af141fd666da4b38c73"
+      resolved-ref: ab3d6eee4bb09c3a3ab4465662f56eaae66c4bf5
       url: "https://github.com/sgehrman/dfc_dart"
     source: git
     version: "1.0.1"
@@ -383,7 +383,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9f3d38501e2fd2a4f90942309ccc5eebdfca4acb"
+      resolved-ref: "33f421c4c34d3a7b4bc11cd84f368f048f6b3233"
       url: "https://github.com/sgehrman/dfc_flutter"
     source: git
     version: "1.0.1"
@@ -392,7 +392,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b683ad03c50dd5e1df9213f7cf846d5ae8c452cc
+      resolved-ref: "44e4685f8052681c07391da4f809173daddf3b21"
       url: "https://github.com/sgehrman/dfc_lints"
     source: git
     version: "1.0.6"

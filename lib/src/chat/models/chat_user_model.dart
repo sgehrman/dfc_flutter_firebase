@@ -21,6 +21,9 @@ class ChatUserModel extends ModelToMap {
     }
   }
 
+  factory ChatUserModel.fromJson(Map<String, dynamic> json) =>
+      _$ChatUserModelFromJson(json);
+
   @JsonKey(includeFromJson: false, includeToJson: false)
   Document? document;
 
@@ -40,9 +43,6 @@ class ChatUserModel extends ModelToMap {
   String getId() {
     return id;
   }
-
-  factory ChatUserModel.fromJson(Map<String, dynamic> json) =>
-      _$ChatUserModelFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$ChatUserModelToJson(this);

@@ -18,6 +18,9 @@ class ImageUrlModel extends ModelToMap {
     }
   }
 
+  factory ImageUrlModel.fromJson(Map<String, dynamic> json) =>
+      _$ImageUrlModelFromJson(json);
+
   @JsonKey(includeFromJson: false, includeToJson: false)
   Document? document;
 
@@ -34,9 +37,6 @@ class ImageUrlModel extends ModelToMap {
   String getId() {
     return id;
   }
-
-  factory ImageUrlModel.fromJson(Map<String, dynamic> json) =>
-      _$ImageUrlModelFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$ImageUrlModelToJson(this);
