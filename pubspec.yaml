@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_chat_bubble: ^2.0.0
-  flutter_keyboard_visibility: ^5.4.3
+  flutter_keyboard_visibility: ^5.4.1
   flutter_multi_formatter: ^2.9.11
   google_sign_in: ^6.0.2
   image: ^4.0.15
