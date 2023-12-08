@@ -8,7 +8,7 @@
   "workbench.editor.limit.enabled": true,
   "dart.closingLabels": false,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll": true,
-  },
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  }
 }
