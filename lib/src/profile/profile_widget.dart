@@ -34,9 +34,7 @@ class ProfileWidget extends StatelessWidget {
         child: Column(
           children: [
             AvatarGlow(
-              endRadius: 80, //required
               glowColor: Colors.blue,
-
               child: Material(
                 clipBehavior: Clip.antiAlias,
                 elevation: 8,
