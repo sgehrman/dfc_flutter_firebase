@@ -113,7 +113,7 @@ class _MessageListViewState extends State<MessageListView> {
     if (widget.onLongPressMessage != null) {
       widget.onLongPressMessage!(chatMessage);
     } else {
-      showBottomSheet<dynamic>(
+      showBottomSheet(
         context: context,
         builder: (context) => DecoratedBox(
           decoration: const BoxDecoration(

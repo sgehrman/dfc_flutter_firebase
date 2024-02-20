@@ -59,7 +59,7 @@ class FirebaseUserProvider extends ChangeNotifier {
 
   Future<void> updateEmail(String inEmail) async {
     if (_user != null) {
-      await _user!.updateEmail(inEmail);
+      await _user!.verifyBeforeUpdateEmail(inEmail);
       await reload();
     }
   }
