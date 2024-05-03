@@ -9,36 +9,36 @@ environment:
 
 dependencies:
   avatar_glow: ^3.0.1
-  cloud_firestore: ^4.5.0
-  cloud_functions: ^4.1.0
-  crypto: ^3.0.1
+  cloud_firestore: ^4.17.2
+  cloud_functions: ^4.7.3
+  crypto: ^3.0.3
   dfc_flutter:
     git: https://github.com/sgehrman/dfc_flutter
-  firebase_auth: ^4.4.0
-  firebase_core: ^2.9.0
-  firebase_storage: ^11.1.0
+  firebase_auth: ^4.19.4
+  firebase_core: ^2.30.1
+  firebase_storage: ^11.7.4
   flutter:
     sdk: flutter
-  flutter_chat_bubble: ^2.0.0
+  flutter_chat_bubble: ^2.0.2
   flutter_keyboard_visibility: ^6.0.0
-  flutter_multi_formatter: ^2.9.11
-  google_sign_in: ^6.0.2
-  image: ^4.0.15
-  image_picker: ^1.0.4
+  flutter_multi_formatter: ^2.12.8
+  google_sign_in: ^6.2.1
+  image: ^4.1.7
+  image_picker: ^1.1.1
   intl: ^0.18.1
-  json_annotation: ^4.8.0
-  provider: ^6.0.5
-  sign_in_with_apple: ^5.0.0
-  stream_transform: ^2.0.1
+  json_annotation: ^4.9.0
+  provider: ^6.1.2
+  sign_in_with_apple: ^6.1.0
+  stream_transform: ^2.1.0
 
 dev_dependencies:
-  build_runner: ^2.4.6
+  build_runner: ^2.4.9
   # must include this with dfc_lints. see https://github.com/dart-code-checker/dart-code-metrics/issues/254
   dart_code_metrics:
     git: https://github.com/paulkastel/dart-code-metrics
   dfc_lints:
     git: https://github.com/sgehrman/dfc_lints
-  json_serializable: ^6.7.1
+  json_serializable: ^6.8.0
 
 flutter:
   uses-material-design: true
