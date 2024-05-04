@@ -10,7 +10,7 @@ import 'package:stream_transform/stream_transform.dart';
 class Document {
   Document(String path) {
     if (_store != null) {
-      ref = _store!.doc(path);
+      ref = _store.doc(path);
     }
   }
 
@@ -66,7 +66,7 @@ class Document {
 class Collection {
   Collection(String path) {
     if (_store != null) {
-      ref = _store!.collection(path);
+      ref = _store.collection(path);
     }
   }
 
