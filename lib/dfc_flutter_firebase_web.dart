@@ -1,5 +1,3 @@
-library dfc_flutter_firebase_web;
-
 export 'src/chat/chat_message_utils.dart';
 export 'src/chat/chat_screen.dart';
 export 'src/chat/chat_widget_admin.dart';

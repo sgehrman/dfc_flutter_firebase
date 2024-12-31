@@ -41,7 +41,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
           decoration: InputDecoration(
             border: const UnderlineInputBorder(),
             hintText: 'Type a phone to format',
-            hintStyle: TextStyle(color: Colors.black.withOpacity(0.3)),
+            hintStyle: TextStyle(color: Colors.black.withValues(alpha: 0.3)),
             errorStyle: const TextStyle(color: Colors.red),
           ),
           keyboardType: TextInputType.phone,
@@ -124,7 +124,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
 
 Future<SignInResult?> showLoginPhoneDialog(BuildContext context) async {
   return showGeneralDialog<SignInResult>(
-    barrierColor: Colors.black.withOpacity(0.5),
+    barrierColor: Colors.black.withValues(alpha: 0.5),
     transitionBuilder: (context, a1, a2, widget) {
       return Transform.scale(
         scale: a1.value,
