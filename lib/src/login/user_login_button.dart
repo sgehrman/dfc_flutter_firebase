@@ -88,7 +88,7 @@ class _UserLoginButtonState extends State<UserLoginButton> {
       case 'apple':
         final userCredential = await signInWithApple();
 
-        if (context.mounted) {
+        if (mounted) {
           handleAuthResult(
             context,
             SignInResult(user: userCredential.user, errorString: ''),

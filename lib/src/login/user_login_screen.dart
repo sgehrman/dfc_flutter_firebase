@@ -32,7 +32,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
     final userProvider = Provider.of<FirebaseUserProvider>(context);
     if (userProvider.hasUser) {
       Future.delayed(const Duration(milliseconds: 100), () {
-        if (mounted) {
+        if (context.mounted) {
           Navigator.pop(context);
         }
       });
