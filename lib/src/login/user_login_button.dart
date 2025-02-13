@@ -52,17 +52,19 @@ class _UserLoginButtonState extends State<UserLoginButton> {
     if (data != null) {
       final AuthService auth = AuthService();
 
-      if (context.mounted) {
-        handleAuthResult(
-          context,
-          await auth.emailSignIn(data.email, data.password),
-        );
+      final signIn = await auth.emailSignIn(data.email, data.password);
+      if (mounted) {
+        handleAuthResult(context, signIn);
       }
     }
   }
 
   Future<void> loginWithPhone() async {
-    handleAuthResult(context, await showLoginPhoneDialog(context));
+    final signIn = await showLoginPhoneDialog(context);
+
+    if (mounted) {
+      handleAuthResult(context, signIn);
+    }
   }
 
   Future<void> _handleOnPressed() async {
@@ -77,10 +79,11 @@ class _UserLoginButtonState extends State<UserLoginButton> {
         break;
       case 'google':
         if (Utils.isNotEmpty(widget.googleClientId)) {
-          handleAuthResult(
-            context,
-            await auth.googleSignIn(widget.googleClientId!),
-          );
+          final signIn = await auth.googleSignIn(widget.googleClientId!);
+
+          if (mounted) {
+            handleAuthResult(context, signIn);
+          }
         } else {
           print('### googleClientId is required.');
         }
@@ -96,7 +99,11 @@ class _UserLoginButtonState extends State<UserLoginButton> {
         }
         break;
       default:
-        handleAuthResult(context, await auth.anonLogin());
+        final signIn = await auth.anonLogin();
+
+        if (mounted) {
+          handleAuthResult(context, signIn);
+        }
         break;
     }
   }
@@ -104,9 +111,7 @@ class _UserLoginButtonState extends State<UserLoginButton> {
   @override
   Widget build(BuildContext context) {
     if (widget.type == 'apple') {
-      return SignInWithAppleButton(
-        onPressed: _handleOnPressed,
-      );
+      return SignInWithAppleButton(onPressed: _handleOnPressed);
     }
 
     return ElevatedButton.icon(
