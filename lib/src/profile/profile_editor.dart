@@ -172,7 +172,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
 
 // ==================================================
 
-Future<ProfileData?> showEmailEditProfileDialog(BuildContext context) async {
+Future<ProfileData?> showEmailEditProfileDialog(BuildContext context) {
   return showDialog<ProfileData>(
     context: context,
     builder: (BuildContext context) {

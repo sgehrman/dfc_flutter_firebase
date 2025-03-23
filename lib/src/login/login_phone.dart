@@ -122,7 +122,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
   }
 }
 
-Future<SignInResult?> showLoginPhoneDialog(BuildContext context) async {
+Future<SignInResult?> showLoginPhoneDialog(BuildContext context) {
   return showGeneralDialog<SignInResult>(
     barrierColor: Colors.black.withValues(alpha: 0.5),
     transitionBuilder: (context, a1, a2, widget) {

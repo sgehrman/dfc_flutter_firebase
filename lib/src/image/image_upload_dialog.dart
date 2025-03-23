@@ -247,7 +247,7 @@ class _UploadDialogState extends State<UploadDialog> {
   }
 }
 
-Future<UploadData?> showImageUploadDialog(BuildContext context) async {
+Future<UploadData?> showImageUploadDialog(BuildContext context) {
   return showDialog<UploadData>(
     context: context,
     builder: (BuildContext context) {

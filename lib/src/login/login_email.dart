@@ -189,7 +189,7 @@ class _LoginDialogState extends State<LoginDialog> {
   }
 }
 
-Future<LoginData?> showEmailLoginDialog(BuildContext context) async {
+Future<LoginData?> showEmailLoginDialog(BuildContext context) {
   return showGeneralDialog<LoginData>(
     barrierColor: Colors.black.withValues(alpha: 0.5),
     transitionBuilder: (context, a1, a2, widget) {
