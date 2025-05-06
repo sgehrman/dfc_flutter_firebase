@@ -3,7 +3,6 @@ import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:dfc_flutter_firebase/src/login/login_apple.dart';
 import 'package:dfc_flutter_firebase/src/login/login_email.dart';
 import 'package:dfc_flutter_firebase/src/login/login_phone.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
@@ -31,7 +30,7 @@ class _UserLoginButtonState extends State<UserLoginButton> {
         Utils.showSnackbar(context, result.errorString!, error: true);
       }
 
-      final auth.User? user = result.user;
+      final user = result.user;
 
       if (user != null) {
         // save in prefs.
@@ -47,10 +46,10 @@ class _UserLoginButtonState extends State<UserLoginButton> {
   }
 
   Future<void> loginWithEmail() async {
-    final LoginData? data = await showEmailLoginDialog(context);
+    final data = await showEmailLoginDialog(context);
 
     if (data != null) {
-      final AuthService auth = AuthService();
+      final auth = AuthService();
 
       final signIn = await auth.emailSignIn(data.email, data.password);
       if (mounted) {
@@ -68,7 +67,7 @@ class _UserLoginButtonState extends State<UserLoginButton> {
   }
 
   Future<void> _handleOnPressed() async {
-    final AuthService auth = AuthService();
+    final auth = AuthService();
 
     switch (widget.type) {
       case 'email':

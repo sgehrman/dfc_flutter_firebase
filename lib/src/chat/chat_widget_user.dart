@@ -36,10 +36,10 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
   void initState() {
     super.initState();
 
-    _subscribe();
+    _subscribe();  
 
     final keyboardVisibilityController = KeyboardVisibilityController();
-    keyboardVisibilityController.onChange.listen((bool visible) {
+    keyboardVisibilityController.onChange.listen((visible) {
       if (visible) {
         // needs a delay so it scrolls after the keyboard is up and ready
         Timer(const Duration(milliseconds: 100), () {
@@ -58,9 +58,9 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
   }
 
   void _subscribe() {
-    bool firstTime = true;
+    var firstTime = true;
 
-    final Stream<List<ChatMessageModel>> stream =
+    final stream =
         ChatMessageUtils.chatMessagesForUser(
       collectionPath: widget.collectionPath,
     );
@@ -133,10 +133,10 @@ class _ChatWidgetUserState extends State<ChatWidgetUser> {
       collectionPath: widget.collectionPath,
       messages: messages,
       userModel: _getUser(),
-      onPressAvatar: (ChatUserModel user) {
+      onPressAvatar: (user) {
         print('OnPressAvatar: $user');
       },
-      onLongPressAvatar: (ChatUserModel user) {
+      onLongPressAvatar: (user) {
         print('OnLongPressAvatar: ${user.name}');
       },
     );

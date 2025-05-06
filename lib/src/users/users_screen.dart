@@ -25,7 +25,7 @@ class _UsersScreenState extends State<UsersScreen> {
       body: FutureBuilder<List<Map<dynamic, dynamic>>?>(
         future: _future,
         builder: (context, snap) {
-          bool hasData = false;
+          var hasData = false;
 
           if (snap.hasError) {
             print('snap.hasError');
@@ -37,20 +37,20 @@ class _UsersScreenState extends State<UsersScreen> {
           }
 
           if (hasData) {
-            final List<Map<dynamic, dynamic>> list = snap.data!;
+            final list = snap.data!;
 
             return ListView.separated(
               itemBuilder: (context, index) {
                 final item = list[index];
 
-                final String displayName = item.strVal('displayName');
-                final String email = item.strVal('email');
-                final String uid = item.strVal('uid');
-                final String photoUrl = item.strVal('photoURL');
+                final displayName = item.strVal('displayName');
+                final email = item.strVal('email');
+                final uid = item.strVal('uid');
+                final photoUrl = item.strVal('photoURL');
                 final customClaims =
                     item.mapVal<String, dynamic>('customClaims');
 
-                String title = '';
+                var title = '';
                 title += displayName.isNotEmpty ? displayName : '';
                 if (title.isNotEmpty) {
                   title += email.isNotEmpty ? ' / $email' : '';
@@ -61,7 +61,7 @@ class _UsersScreenState extends State<UsersScreen> {
                   title += title.isEmpty ? uid : '';
                 }
 
-                final Map<dynamic, dynamic> metadata = item['metadata'] as Map;
+                final metadata = item['metadata'] as Map;
                 final subtitle = Padding(
                   padding: const EdgeInsets.only(top: 4, left: 2),
                   child: Column(

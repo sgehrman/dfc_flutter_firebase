@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/models/chat_message_model.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore.dart';
@@ -16,8 +15,8 @@ class ChatMessageUtils {
     required String collectionPath,
   }) {
     final collection = Collection(collectionPath);
-
-    final Query<Map<String, dynamic>> query =
+ 
+    final query =
         collection.ref.orderBy('timestamp');
 
     return query.snapshots().map(
@@ -81,9 +80,9 @@ class ChatMessageUtils {
   static Future<bool> deleteMessagesFromStream({
     required Stream<List<ChatMessageModel>> stream,
   }) async {
-    final List<ChatMessageModel> list = await stream.first;
+    final list = await stream.first;
 
-    for (final ChatMessageModel chat in list) {
+    for (final chat in list) {
       await deleteChatMessage(model: chat);
     }
 
@@ -91,10 +90,10 @@ class ChatMessageUtils {
   }
 
   static Future<bool> deleteMessages({required String collectionPath}) async {
-    final List<ChatMessageModel?> list =
+    final list =
         await getMessagesForUser(collectionPath: collectionPath);
 
-    await Future.forEach(list, (ChatMessageModel? item) {
+    await Future.forEach(list, (item) {
       if (Utils.isNotEmpty(item!.imageId)) {
         ImageUrlUtils.deleteImageStorage(
           item.imageId,

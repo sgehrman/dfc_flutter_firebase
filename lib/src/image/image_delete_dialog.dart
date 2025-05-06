@@ -54,7 +54,7 @@ class _ImageDeleteDialogState extends State<ImageDeleteDialog> {
           title: 'Delete',
           icon: const Icon(Icons.remove_circle, size: 16),
           onPressed: () async {
-            final bool success = await _deleteImage(context);
+            final success = await _deleteImage(context);
             if (success) {
               if (context.mounted) {
                 Navigator.of(context).pop();
@@ -75,7 +75,7 @@ Future<void> showImageDeleteDialog(
 ) {
   return showDialog<void>(
     context: context,
-    builder: (BuildContext context) {
+    builder: (context) {
       return ImageDeleteDialog(imageUrl);
     },
   );

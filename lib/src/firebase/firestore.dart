@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/auth.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firestore_converter.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:stream_transform/stream_transform.dart';
 
 class Document {
@@ -146,7 +145,7 @@ class Collection {
       final List<DocumentSnapshot> docs = snap.docs;
 
       // can't use forEach with await
-      await Future.forEach(docs, (DocumentSnapshot d) {
+      await Future.forEach(docs, (d) {
         return d.reference.delete();
       });
 
@@ -168,7 +167,7 @@ class UserData {
   Stream<T> documentStream<T>() {
     return authService.userStream.switchMap((user) {
       if (user != null) {
-        final Document doc = Document('$collection/${user.uid}');
+        final doc = Document('$collection/${user.uid}');
 
         return doc.streamData<T>();
       } else {
@@ -178,10 +177,10 @@ class UserData {
   }
 
   Future<T?> getDocument<T>() {
-    final auth.User? user = authService.currentUser;
+    final user = authService.currentUser;
 
     if (Utils.isNotEmpty(user?.uid)) {
-      final Document doc = Document('$collection/${user!.uid}');
+      final doc = Document('$collection/${user!.uid}');
 
       return doc.getData<T>();
     } else {
@@ -190,10 +189,10 @@ class UserData {
   }
 
   Future<void> upsert(Map<String, dynamic> data) {
-    final auth.User? user = authService.currentUser;
+    final user = authService.currentUser;
 
     if (user != null && user.uid.isNotEmpty) {
-      final Document ref = Document('$collection/${user.uid}');
+      final ref = Document('$collection/${user.uid}');
 
       return ref.upsert(data);
     }

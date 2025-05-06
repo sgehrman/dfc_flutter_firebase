@@ -16,7 +16,7 @@ class PhoneVerifyier extends ChangeNotifier {
     auth.AuthCredential phoneAuthCredential,
   ) async {
     try {
-      final auth.FirebaseAuth? authInstance = AuthService().authInstance;
+      final authInstance = AuthService().authInstance;
 
       await authInstance?.signInWithCredential(phoneAuthCredential);
     } on auth.FirebaseAuthException catch (error) {
@@ -68,7 +68,7 @@ class PhoneVerifyier extends ChangeNotifier {
   }
 
   Future<void> verifyPhoneNumber(String phoneNumber) async {
-    final auth.FirebaseAuth? authInstance = AuthService().authInstance;
+    final authInstance = AuthService().authInstance;
 
     await authInstance?.verifyPhoneNumber(
       phoneNumber: phoneNumber,

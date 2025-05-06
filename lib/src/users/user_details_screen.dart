@@ -37,7 +37,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
 
     // Snackbar needed a context
     return Builder(
-      builder: (BuildContext context) {
+      builder: (context) {
         return Wrap(
           spacing: 6,
           alignment: WrapAlignment.center,
@@ -51,7 +51,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 );
 
                 if (Utils.isNotEmpty(claim)) {
-                  final bool result = await auth.addClaimToUid(uid, claim);
+                  final result = await auth.addClaimToUid(uid, claim);
 
                   if (result) {
                     if (context.mounted) {
@@ -85,7 +85,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 );
 
                 if (Utils.isNotEmpty(claim)) {
-                  final bool result = await auth.removeClaimForUid(uid, claim);
+                  final result = await auth.removeClaimForUid(uid, claim);
 
                   if (result) {
                     if (context.mounted) {

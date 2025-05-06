@@ -107,7 +107,7 @@ class _LoginDialogState extends State<LoginDialog> {
 
                   return 'Please enter your email address';
                 },
-                onSaved: (String? value) {
+                onSaved: (value) {
                   _data.email = value!.trim();
                 },
               ),
@@ -143,7 +143,7 @@ class _LoginDialogState extends State<LoginDialog> {
 
                   return null;
                 },
-                onSaved: (String? value) {
+                onSaved: (value) {
                   _data.password = value!.trim();
                 },
               ),

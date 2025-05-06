@@ -23,13 +23,13 @@ class ImageUrlUtils {
   }
 
   static void addImage(String filename, String url) {
-    final Map<String, dynamic> link = <String, dynamic>{};
+    final link = <String, dynamic>{};
 
     link['id'] = Utils.uniqueFirestoreId();
     link['name'] = filename;
     link['url'] = url;
 
-    final ImageUrlModel imageUrl = ImageUrlModel.fromJson(link);
+    final imageUrl = ImageUrlModel.fromJson(link);
 
     uploadImage(imageUrl);
   }
@@ -55,7 +55,7 @@ class ImageUrlUtils {
     bool saveAsJpg = true,
     int maxWidth = 1024,
   }) async {
-    final String url = await uploadImageDataReturnUrl(
+    final url = await uploadImageDataReturnUrl(
       imageName,
       imageData,
       saveAsJpg: saveAsJpg,
@@ -74,11 +74,11 @@ class ImageUrlUtils {
     int maxWidth = 1024,
     String? folder,
   }) async {
-    final Reference firebaseStorageRef = FirebaseStorage.instance
+    final firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child(folder != null ? '$folder/$imageName' : imageName);
 
-    img.Image image = img.decodeImage(imageData)!;
+    var image = img.decodeImage(imageData)!;
 
     // shrink image
     if (image.width > maxWidth) {
@@ -93,8 +93,7 @@ class ImageUrlUtils {
       data = img.encodePng(image, level: 7);
     }
 
-    final UploadTask uploadTask =
-        firebaseStorageRef.putData(Uint8List.fromList(data));
+    final uploadTask = firebaseStorageRef.putData(Uint8List.fromList(data));
 
     final taskSnapshot = await uploadTask;
 
@@ -105,7 +104,7 @@ class ImageUrlUtils {
     String? imageId, [
     String? folder,
   ]) {
-    final Reference firebaseStorageRef = FirebaseStorage.instance
+    final firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child(folder != null ? '$folder/$imageId' : imageId!);
 

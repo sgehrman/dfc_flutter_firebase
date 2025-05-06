@@ -48,14 +48,14 @@ class ChatUserModel extends ModelToMap {
   Map<String, dynamic> toJson() => _$ChatUserModelToJson(this);
 
   String get initials {
-    String result = '?';
+    var result = '?';
 
     if (name.isNotEmpty) {
       result = name[0];
 
-      final List<String> names = name.split(' ');
+      final names = name.split(' ');
       if (names.length > 1) {
-        final String lastName = names.last;
+        final lastName = names.last;
 
         if (lastName.isNotEmpty) {
           result += lastName[0];

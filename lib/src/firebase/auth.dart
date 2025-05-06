@@ -43,8 +43,7 @@ class AuthService {
     final trimmedPassword = StrUtils.trim(password);
 
     try {
-      final auth.UserCredential? result =
-          await authInstance?.signInWithEmailAndPassword(
+      final result = await authInstance?.signInWithEmailAndPassword(
         email: trimmedEmail,
         password: trimmedPassword,
       );
@@ -66,8 +65,7 @@ class AuthService {
           break;
         case 'user-not-found':
           // create user if doesn't have account
-          final SignInResult createRes =
-              await createUserWithEmail(email, password);
+          final createRes = await createUserWithEmail(email, password);
           user = createRes.user;
           errorString = createRes.errorString;
           break;
@@ -90,8 +88,7 @@ class AuthService {
     final trimmedPassword = StrUtils.trim(password);
 
     try {
-      final auth.UserCredential? result =
-          await authInstance?.createUserWithEmailAndPassword(
+      final result = await authInstance?.createUserWithEmailAndPassword(
         email: trimmedEmail,
         password: trimmedPassword,
       );
@@ -127,12 +124,10 @@ class AuthService {
     try {
       _googleSignIn = GoogleSignIn(clientId: clientId);
 
-      final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn!.signIn();
+      final googleSignInAccount = await _googleSignIn!.signIn();
 
       if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleAuth =
-            await googleSignInAccount.authentication;
+        final googleAuth = await googleSignInAccount.authentication;
 
         final auth.AuthCredential credential =
             auth.GoogleAuthProvider.credential(
@@ -140,8 +135,7 @@ class AuthService {
           idToken: googleAuth.idToken,
         );
 
-        final auth.UserCredential? result =
-            await authInstance?.signInWithCredential(credential);
+        final result = await authInstance?.signInWithCredential(credential);
 
         if (result != null) {
           user = result.user;
@@ -183,8 +177,7 @@ class AuthService {
     String? errorString;
 
     try {
-      final auth.UserCredential? result =
-          await authInstance?.signInAnonymously();
+      final result = await authInstance?.signInAnonymously();
 
       if (result != null) {
         user = result.user;
@@ -216,7 +209,7 @@ class AuthService {
   }
 
   bool isAnonymous() {
-    final auth.User? user = currentUser;
+    final user = currentUser;
 
     if (user != null && user.uid.isNotEmpty) {
       return user.isAnonymous;
@@ -231,7 +224,7 @@ class AuthService {
 
       return <String, dynamic>{'result': true, 'errorString': ''};
     } on auth.FirebaseAuthException catch (error) {
-      final String? errorString = error.message;
+      final errorString = error.message;
 
       switch (error.code) {
         case 'invalid-email':
@@ -261,8 +254,7 @@ class AuthService {
         smsCode: trimmedSmsCode,
       );
 
-      final auth.UserCredential? result =
-          await authInstance?.signInWithCredential(credential);
+      final result = await authInstance?.signInWithCredential(credential);
 
       if (result != null) {
         user = result.user;
@@ -334,9 +326,9 @@ class AuthService {
   }
 
   Future<List<String>> claims() async {
-    final List<String> result = [];
+    final result = <String>[];
 
-    final auth.User? user = currentUser;
+    final user = currentUser;
     if (user != null) {
       try {
         final x = await user.getIdTokenResult();
@@ -355,7 +347,7 @@ class AuthService {
   }
 
   String get identity {
-    String result = displayName;
+    var result = displayName;
 
     if (Utils.isEmpty(result)) {
       result = phoneNumber;
@@ -375,7 +367,7 @@ class AuthService {
   String get displayName {
     String? result;
 
-    final auth.User? user = currentUser;
+    final user = currentUser;
     if (user != null) {
       result = user.displayName;
     }
@@ -386,7 +378,7 @@ class AuthService {
   String get phoneNumber {
     String? result;
 
-    final auth.User? user = currentUser;
+    final user = currentUser;
     if (user != null) {
       result = user.phoneNumber;
     }
@@ -397,7 +389,7 @@ class AuthService {
   String get email {
     String? result;
 
-    final auth.User? user = currentUser;
+    final user = currentUser;
     if (user != null) {
       result = user.email;
     }
@@ -408,7 +400,7 @@ class AuthService {
   String get photoUrl {
     String? result;
 
-    final auth.User? user = currentUser;
+    final user = currentUser;
     if (user != null) {
       result = user.photoURL;
     }

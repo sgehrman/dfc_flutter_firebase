@@ -65,9 +65,9 @@ class FirebaseUserProvider extends ChangeNotifier {
   }
 
   Future<void> _setup() async {
-    final Stream<auth.User?> stream = _auth.userStream;
+    final stream = _auth.userStream;
 
-    await stream.forEach((auth.User? user) async {
+    await stream.forEach((user) async {
       _user = user;
 
       // this checks for user == null

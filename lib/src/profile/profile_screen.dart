@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<FirebaseUserProvider>(context);
 
-    String userName = 'Profile';
+    var userName = 'Profile';
     if (userProvider.hasUser) {
       userName = userProvider.identity;
     }

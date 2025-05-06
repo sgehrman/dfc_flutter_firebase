@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/firebase/firebase_user_provider.dart';
 import 'package:dfc_flutter_firebase/src/image/image_url_utils.dart';
@@ -22,7 +20,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
         .pickImage(source: camera ? ImageSource.camera : ImageSource.gallery);
 
     if (file != null) {
-      final Uint8List imageData = await file.readAsBytes();
+      final imageData = await file.readAsBytes();
       final imageId = Utils.uniqueFirestoreId();
 
       final url = await ImageUrlUtils.uploadImageDataReturnUrl(
@@ -47,7 +45,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
 
     Widget image = const Icon(Icons.image, size: 32);
 
-    final String imageUrl = _data.photoUrl ?? userProvider.photoUrl;
+    final imageUrl = _data.photoUrl ?? userProvider.photoUrl;
     if (imageUrl.isNotEmpty) {
       image = Image.network(
         imageUrl,
@@ -88,7 +86,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
 
                   return null;
                 },
-                onSaved: (String? value) {
+                onSaved: (value) {
                   _data.name = value!.trim();
                 },
               ),
@@ -112,7 +110,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
 
                   return 'Please enter your email address';
                 },
-                onSaved: (String? value) {
+                onSaved: (value) {
                   _data.email = value!.trim();
                 },
               ),
@@ -175,7 +173,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
 Future<ProfileData?> showEmailEditProfileDialog(BuildContext context) {
   return showDialog<ProfileData>(
     context: context,
-    builder: (BuildContext context) {
+    builder: (context) {
       return EditProfileDialog();
     },
   );

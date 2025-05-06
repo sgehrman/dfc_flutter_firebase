@@ -33,7 +33,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
   }
 
   List<Widget> _children(BuildContext context) {
-    final PhoneVerifyier phoneVerifier = Provider.of<PhoneVerifyier>(context);
+    final phoneVerifier = Provider.of<PhoneVerifyier>(context);
 
     if (!phoneVerifier.hasVerificationId) {
       return <Widget>[
@@ -81,7 +81,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
         ChangeNotifierProvider.value(
           value: _phoneVerifier,
           child: Builder(
-            builder: (BuildContext context) {
+            builder: (context) {
               return Form(
                 key: _formKey,
                 child: Column(
@@ -105,7 +105,7 @@ class _LoginPhoneDialogState extends State<LoginPhoneDialog> {
                 await _phoneVerifier.verifyPhoneNumber(_phoneController!.text);
               }
             } else {
-              final SignInResult result = await AuthService().phoneSignIn(
+              final result = await AuthService().phoneSignIn(
                 _phoneVerifier.verificationId!,
                 _smsCodeController.text.trim(),
               );

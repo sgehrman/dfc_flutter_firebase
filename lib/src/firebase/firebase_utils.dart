@@ -6,7 +6,7 @@ class FirebaseUtils {
     String? nextPageToken,
   }) async {
     try {
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+      final callable = FirebaseFunctions.instance.httpsCallable(
         'users',
       );
 
@@ -16,7 +16,7 @@ class FirebaseUtils {
 
       final resp = await callable.call<Map<dynamic, dynamic>>(params);
 
-      final Map<dynamic, dynamic> m = resp.data;
+      final m = resp.data;
 
       if (m.listVal<Map<dynamic, dynamic>>('list') != null) {
         return m.listVal<Map<dynamic, dynamic>>('list');
@@ -32,7 +32,7 @@ class FirebaseUtils {
 
   static Future<List<String>?> getSubCollections(String docPath) async {
     try {
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+      final callable = FirebaseFunctions.instance.httpsCallable(
         'users',
       );
 
@@ -58,7 +58,7 @@ class FirebaseUtils {
     required Map<String?, bool> claims,
   }) async {
     try {
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+      final callable = FirebaseFunctions.instance.httpsCallable(
         'addUserClaims',
       );
       final HttpsCallableResult<dynamic> resp =
@@ -94,7 +94,7 @@ class FirebaseUtils {
     required String from,
   }) async {
     try {
-      final HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+      final callable = FirebaseFunctions.instance.httpsCallable(
         'sendEmail',
       );
       final HttpsCallableResult<dynamic> resp =

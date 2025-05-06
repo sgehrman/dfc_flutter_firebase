@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:dfc_flutter/dfc_flutter_web.dart';
 import 'package:dfc_flutter_firebase/src/chat/chat_message_utils.dart';
@@ -58,7 +57,7 @@ class _ChatInputState extends State<ChatInput> {
   }
 
   Widget toolbar(BuildContext context) {
-    final List<Widget> result = <Widget>[];
+    final result = <Widget>[];
 
     result.add(
       InkWell(
@@ -108,7 +107,7 @@ class _ChatInputState extends State<ChatInput> {
         .pickImage(source: camera ? ImageSource.camera : ImageSource.gallery);
 
     if (file != null) {
-      final Uint8List imageData = await file.readAsBytes();
+      final imageData = await file.readAsBytes();
       final imageId = Utils.uniqueFirestoreId();
 
       final url = await ImageUrlUtils.uploadImageDataReturnUrl(
@@ -117,7 +116,7 @@ class _ChatInputState extends State<ChatInput> {
         folder: ImageUrlUtils.chatImageFolder,
       );
 
-      final ChatMessageModel message = ChatMessageModel(
+      final message = ChatMessageModel(
         user: widget.userModel,
         image: url,
         imageId: imageId,
@@ -141,7 +140,7 @@ class _ChatInputState extends State<ChatInput> {
   }
 
   void adjustUIOnTextInput() {
-    bool needsSetState = false;
+    var needsSetState = false;
 
     if (_showThumb != _textController.text.isEmpty) {
       _showThumb = !_showThumb;
@@ -214,7 +213,7 @@ class _ChatInputState extends State<ChatInput> {
   }
 
   Future<void> handleSend({required bool fromKeyboard}) async {
-    String text = _textController.text;
+    var text = _textController.text;
 
     if (!fromKeyboard) {
       if (text.isEmpty) {
@@ -223,7 +222,7 @@ class _ChatInputState extends State<ChatInput> {
     }
 
     if (text.isNotEmpty) {
-      final ChatMessageModel message = ChatMessageModel(
+      final message = ChatMessageModel(
         text: text,
         user: widget.userModel,
       );

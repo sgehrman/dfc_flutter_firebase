@@ -11,14 +11,14 @@ class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userProvider = context.watch<FirebaseUserProvider>();
-    String userName = 'Profile';
+    var userName = 'Profile';
 
     if (userProvider.hasUser) {
       userName = userProvider.identity;
     }
 
     Widget image;
-    Color backColor = Colors.white;
+    var backColor = Colors.white;
 
     if (userProvider.photoUrl.isNotEmpty) {
       image = Image.network(userProvider.photoUrl);
@@ -66,8 +66,7 @@ class ProfileWidget extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () async {
-                final ProfileData? data =
-                    await showEmailEditProfileDialog(context);
+                final data = await showEmailEditProfileDialog(context);
 
                 if (data != null) {
                   try {

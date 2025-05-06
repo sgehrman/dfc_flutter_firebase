@@ -60,7 +60,7 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
       }
     }
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<ChatMessageModel>>(
@@ -69,7 +69,7 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
         if (snapshot.hasData) {
           final data = snapshot.data ?? [];
 
-          final Map<String, ChatMessageModel> map = {};
+          final map = <String, ChatMessageModel>{};
 
           // we only need the last message, so this limits it to one message per user
           for (final r in data) {
@@ -86,9 +86,9 @@ class _ChatWidgetAdminState extends State<ChatWidgetAdmin> {
               ListView.builder(
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
-                  final ChatMessageModel chat = messages[index];
+                  final chat = messages[index];
 
-                  final String title =
+                  final title =
                       'From: ${chat.user.userId} message: ${chat.text.substring(0, math.min(10, chat.text.length))}';
 
                   return ListTile(

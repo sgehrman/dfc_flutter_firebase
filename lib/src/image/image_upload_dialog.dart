@@ -109,8 +109,7 @@ class _UploadDialogState extends State<UploadDialog> {
 
     final completer = Completer<ByteData>();
 
-    final ImageStreamListener listener =
-        ImageStreamListener((image, synchronousCall) async {
+    final listener = ImageStreamListener((image, synchronousCall) async {
       completer.complete(await image.image.toByteData());
     });
 
@@ -133,7 +132,7 @@ class _UploadDialogState extends State<UploadDialog> {
     BuildContext context,
     String filename,
   ) async {
-    final Uint8List? imageData = await _imageFile?.readAsBytes();
+    final imageData = await _imageFile?.readAsBytes();
     if (imageData != null) {
       return ImageUrlUtils.uploadImageData(
         filename,
@@ -185,7 +184,7 @@ class _UploadDialogState extends State<UploadDialog> {
                     },
                   ),
                 ),
-                onChanged: (String value) {
+                onChanged: (value) {
                   setState(() {
                     _data.url = value;
                   });
@@ -204,7 +203,7 @@ class _UploadDialogState extends State<UploadDialog> {
 
                   return null;
                 },
-                onSaved: (String? value) {
+                onSaved: (value) {
                   _data.name = value!.trim();
                 },
               ),
@@ -212,7 +211,7 @@ class _UploadDialogState extends State<UploadDialog> {
                 title: const Text('Save in JPG format'),
                 value: _saveAsJpg,
                 controlAffinity: ListTileControlAffinity.leading,
-                onChanged: (bool? value) {
+                onChanged: (value) {
                   setState(() {
                     _saveAsJpg = value;
                   });
@@ -250,7 +249,7 @@ class _UploadDialogState extends State<UploadDialog> {
 Future<UploadData?> showImageUploadDialog(BuildContext context) {
   return showDialog<UploadData>(
     context: context,
-    builder: (BuildContext context) {
+    builder: (context) {
       return UploadDialog();
     },
   );

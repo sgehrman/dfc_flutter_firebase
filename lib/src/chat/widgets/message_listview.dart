@@ -36,16 +36,16 @@ class MessageListView extends StatefulWidget {
 
 class _MessageListViewState extends State<MessageListView> {
   bool showDateFlag(int index) {
-    bool showDate = false;
+    var showDate = false;
 
     if (index == widget.messages.length - 1) {
       showDate = true;
     } else {
-      final DateTime nextDate = DateTime.fromMillisecondsSinceEpoch(
+      final nextDate = DateTime.fromMillisecondsSinceEpoch(
         widget.messages[index + 1].timestamp,
       );
 
-      final DateTime date = DateTime.fromMillisecondsSinceEpoch(
+      final date = DateTime.fromMillisecondsSinceEpoch(
         widget.messages[index].timestamp,
       );
 
@@ -87,9 +87,9 @@ class _MessageListViewState extends State<MessageListView> {
   }
 
   Widget avatarWidget({required int index, required bool leftSide}) {
-    final bool isUser =
+    final isUser =
         widget.messages[index].user.userId == widget.userModel.userId;
-    bool addAvatar = false;
+    var addAvatar = false;
 
     if (leftSide && !isUser) {
       addAvatar = true;
@@ -155,7 +155,7 @@ class _MessageListViewState extends State<MessageListView> {
           reverse: true,
           itemCount: widget.messages.length,
           itemBuilder: (context, i) {
-            final bool showDate = showDateFlag(i);
+            final showDate = showDateFlag(i);
 
             final chatMessage = widget.messages[i];
 

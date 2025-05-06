@@ -9,9 +9,9 @@ class ImageManagerScreen extends StatelessWidget {
   const ImageManagerScreen();
 
   Widget _buildGrid(BuildContext context, List<ImageUrlModel> imageUrls) {
-    final double width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
 
-    final int count = width ~/ 120;
+    final count = width ~/ 120;
 
     return GridView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -20,7 +20,7 @@ class ImageManagerScreen extends StatelessWidget {
         crossAxisSpacing: 4,
       ),
       itemCount: imageUrls.length,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         return GridTile(
           footer: Text(
             imageUrls[index].name,
@@ -63,7 +63,7 @@ class ImageManagerScreen extends StatelessWidget {
         stream: Collection('images').streamData<ImageUrlModel>(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final List<ImageUrlModel>? imageUrls = snapshot.data;
+            final imageUrls = snapshot.data;
 
             return _buildGrid(context, imageUrls ?? []);
           }

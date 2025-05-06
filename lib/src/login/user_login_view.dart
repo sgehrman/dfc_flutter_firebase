@@ -35,7 +35,7 @@ class UserLoginViewState extends State<UserLoginView> {
   }
 
   List<Widget> _buttons() {
-    final List<Widget> result = [];
+    final result = <Widget>[];
 
     result.addAll(<Widget>[
       const UserLoginButton(
