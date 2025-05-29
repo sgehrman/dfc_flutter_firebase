@@ -9,14 +9,16 @@ environment:
 
 dependencies:
   avatar_glow: ^3.0.1
-  cloud_firestore: ^5.6.7
-  cloud_functions: ^5.5.0
+  cloud_firestore: ^5.6.8
+  cloud_functions: ^5.5.1
   crypto: ^3.0.6
   dfc_flutter:
-    git: https://github.com/sgehrman/dfc_flutter
-  firebase_auth: ^5.5.3
-  firebase_core: ^3.13.0
-  firebase_storage: ^12.4.5
+    git:
+      url: https://github.com/sgehrman/dfc_flutter.git
+      ref: "3.27.4"
+  firebase_auth: ^5.5.4
+  firebase_core: ^3.13.1
+  firebase_storage: ^12.4.6
   flutter:
     sdk: flutter
   flutter_chat_bubble: ^2.0.2
@@ -25,7 +27,8 @@ dependencies:
   google_sign_in: ^6.3.0
   image: ^4.5.4
   image_picker: ^1.1.2
-  intl: ^0.19.0
+  # intl: added <= to be compatible with Dart 3.27.4 for html rendering
+  intl: ">=0.19.0"
   json_annotation: ^4.9.0
   provider: ^6.1.5
   sign_in_with_apple: ^7.0.1
@@ -37,7 +40,9 @@ dev_dependencies:
   dart_code_metrics:
     git: https://github.com/rei-codes/dart-code-metrics
   dfc_lints:
-    git: https://github.com/sgehrman/dfc_lints
+    git:
+      url: https://github.com/sgehrman/dfc_lints.git
+      ref: "3.27.4"
   json_serializable: ^6.9.5
 
 flutter:
